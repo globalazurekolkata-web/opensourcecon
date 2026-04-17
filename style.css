@@ -1,13 +1,13 @@
 :root {
-    --green: #3DA34A;
+    --green: #7ed957;
     --green-light: #5ABF68;
-    --green-dark: #68c173;
+    --green-dark: #000000;
     --green-pale: #E8F5EA;
     --green-glow: rgba(61,163,74,0.18);
     --white: #FFFFFF;
     --off-white: #F7FAF7;
     --gray: #8A9A8C;
-    --dark: #0F1A10;
+    --dark: #000000;
     --text: #1A2E1C;
 }
 
@@ -80,7 +80,7 @@ nav {
     font-family: 'Space Mono', monospace;
     font-size: 0.75rem;
     background: var(--green);
-    color: white;
+    color: #000000;
     border: none;
     padding: 0.6rem 1.4rem;
     border-radius: 2px;
@@ -89,7 +89,7 @@ nav {
     text-transform: uppercase;
     transition: background 0.2s, transform 0.2s;
 }
-.nav-cta:hover { background: var(--green-dark); transform: translateY(-1px); }
+.nav-cta:hover { background: var(--green-dark); transform: translateY(-1px); color: var(--white) }
 
 /* ── HERO ── */
 #hero {
@@ -206,7 +206,7 @@ nav {
     margin-top: 0.2rem;
 }
 .hero-meta-value.tba {
-    color: var(--green);
+    color: black;
     font-size: 0.9rem;
     font-family: 'Space Mono', monospace;
     animation: blinkCaret 1.2s step-end infinite;
@@ -228,7 +228,7 @@ nav {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     background: var(--green);
-    color: white;
+    color: #000000;
     border: none;
     padding: 0.9rem 2.2rem;
     border-radius: 2px;
@@ -247,7 +247,7 @@ nav {
 }
 .btn-primary:hover::before { transform: translateX(0); }
 .btn-primary span { position: relative; z-index: 1; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(61,163,74,0.3); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(61,163,74,0.3); color: var(--white) }
 
 .btn-secondary {
     font-family: 'Space Mono', monospace;
@@ -255,8 +255,8 @@ nav {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     background: transparent;
-    color: var(--green);
-    border: 1.5px solid rgba(61,163,74,0.4);
+    color: black;
+    border: 1.5px solid rgb(0 0 0 / 0.4);
     padding: 0.9rem 2.2rem;
     border-radius: 2px;
     cursor: pointer;
@@ -266,7 +266,7 @@ nav {
 
 .scroll-indicator {
     position: absolute;
-    bottom: 2rem;
+    bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
