@@ -24,9 +24,7 @@
         <li><a href="#venue">Venue</a></li>
         <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="https://forms.gle/XYowbzT9cRsMB6jCA" target="_blank">
-        <button class="nav-cta">Register Interest</button>
-    </a>
+    <button class="nav-cta" id="konfhub-nav">Register Now</button>
 </nav>
 
 <!-- HERO -->
@@ -77,9 +75,7 @@
     </div>
 
     <div class="hero-cta-group">
-        <a href="https://forms.gle/XYowbzT9cRsMB6jCA" target="_blank">
-            <button class="btn-primary"><span>Register Interest</span></button>
-        </a>
+        <button class="btn-primary" id="konfhub-open"><span>Register Now</span></button>
         <a href="https://forms.gle/tFUzkFuCyb1heshu9" target="_blank">
             <button class="btn-secondary">Submit Talk</button>
         </a>
@@ -625,7 +621,7 @@
             <div class="footer-col">
                 <h4>Get Involved</h4>
                 <ul>
-                    <li><a href="https://forms.gle/XYowbzT9cRsMB6jCA" target="_blank">Register Interest</a></li>
+                    <li><a href="#" id="konfhub-footer">Register Now</a></li>
                     <li><a href="https://forms.gle/tFUzkFuCyb1heshu9" target="_blank">Submit a Talk</a></li>
                     <li><a href="#">Become a Sponsor</a></li>
                     <li><a href="#">Community Partners</a></li>
@@ -699,6 +695,18 @@
             setTimeout(() => input.style.borderColor = '', 1500);
         }
     });
+    // All "Register Now" buttons trigger the hidden KonfHub widget
+    function openKonfHub(e) {
+        e.preventDefault();
+        var kBtn = document.querySelector('#konfhub-widget-trigger button, #konfhub-widget-trigger a');
+        if (kBtn) kBtn.click();
+    }
+    document.getElementById('konfhub-open').addEventListener('click', openKonfHub);
+    document.getElementById('konfhub-nav').addEventListener('click', openKonfHub);
+    document.getElementById('konfhub-footer').addEventListener('click', openKonfHub);
 </script>
+<div id="konfhub-widget-trigger" style="position:fixed;bottom:20px;left:-300px;z-index:9999;">
+    <script src="https://widget.konfhub.com/widget.js" button_id="btn_d1721416a361"></script>
+</div>
 </body>
 </html>
