@@ -740,6 +740,21 @@ section { padding: 7rem 2rem; }
     justify-content: space-between;
     gap: 2rem;
 }
+
+.btn-link {
+    text-decoration: none;
+    color: inherit;
+
+}
+
+.btn-link:visited,
+.btn-link:hover,
+.btn-link:active {
+    text-decoration: none;
+    color: inherit;
+
+}
+
 .sponsor-cta h3 { font-family: 'DM Mono', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--dark); }
 .sponsor-cta p { color: var(--gray); font-size: 0.9rem; margin-top: 0.4rem; font-weight: 300; }
 
