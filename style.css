@@ -20,6 +20,39 @@ body {
     background: var(--white);
     color: var(--text);
     overflow-x: hidden;
+    padding-top: 42px; /* pushes everything below the fixed banner */
+}
+
+.promo-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* above nav */
+  background: var(--lime);
+  color: var(--black);
+  text-align: center;
+  padding: 10px 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.promo-banner a {
+  color: var(--black);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-left: 12px;
+  transition: opacity 0.2s;
+}
+
+.promo-banner a:hover {
+  opacity: 0.6;
+}
+
+nav {
+  top: 42px; /* if your nav is position: fixed, offset it below the banner */
 }
 
 /* ── NOISE OVERLAY ── */
@@ -988,53 +1021,6 @@ footer {
 }
 .social-btn:hover { border-color: var(--green); color: var(--green); background: rgba(61,163,74,0.1); }
 
-.promo-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-  background: var(--lime);
-  color: var(--black);
-  text-align: center;
-  padding: 10px 20px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.promo-banner a {
-  color: var(--black);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  margin-left: 12px;
-  transition: opacity 0.2s;
-}
-
-.promo-banner a:hover {
-  opacity: 0.6;
-}
-
-/* ── FLYING BADGES ── */
-.floating-badges {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-}
-.fbadge {
-    position: absolute;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    color: rgba(61,163,74,0.35);
-    letter-spacing: 0.1em;
-    border: 1px solid rgba(61,163,74,0.15);
-    padding: 0.3rem 0.7rem;
-    border-radius: 100px;
-    animation: floatBadge linear infinite;
-    white-space: nowrap;
-}
 @keyframes floatBadge { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-80px) rotate(5deg); opacity: 0; } }
 
 /* ── SCROLL REVEAL ── */
