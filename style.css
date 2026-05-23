@@ -13,7 +13,6 @@
     --lime-dim: #8fcc00;
     --black: #0a0a0a;
     --surface: #111;
-    --text: #e8e8e8;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,7 +33,7 @@ body {
   left: 0;
   width: 100%;
   z-index: 1000; /* above nav */
-  background: var(--);
+  background: var(--lime);
   color: var(--black);
   text-align: center;
   padding: 10px 20px;
