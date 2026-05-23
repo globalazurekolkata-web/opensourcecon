@@ -1079,3 +1079,40 @@ footer {
     .about-stats { grid-template-columns: 1fr 1fr; }
     .footer-top { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 768px) {
+    .promo-banner {
+        padding: 8px 14px;
+        font-size: 0.65rem;
+        letter-spacing: 0.04em;
+    }
+
+    .promo-banner a {
+        display: block;
+        margin-left: 0;
+        margin-top: 4px;
+    }
+
+    body {
+        padding-top: 56px; /* taller because banner wraps to 2 lines */
+    }
+
+    nav {
+        top: 56px;
+    }
+}
+
+@media (max-width: 480px) {
+    .promo-banner {
+        padding: 8px 10px;
+        font-size: 0.6rem;
+    }
+
+    body {
+        padding-top: 62px;
+    }
+
+    nav {
+        top: 62px;
+    }
+}
