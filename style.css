@@ -988,6 +988,34 @@ footer {
 }
 .social-btn:hover { border-color: var(--green); color: var(--green); background: rgba(61,163,74,0.1); }
 
+.promo-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: var(--lime);
+  color: var(--black);
+  text-align: center;
+  padding: 10px 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.promo-banner a {
+  color: var(--black);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-left: 12px;
+  transition: opacity 0.2s;
+}
+
+.promo-banner a:hover {
+  opacity: 0.6;
+}
+
 /* ── FLYING BADGES ── */
 .floating-badges {
     position: absolute;
