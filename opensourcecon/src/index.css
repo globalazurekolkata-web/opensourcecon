@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Base Styles ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #0B1020;
+  background-color: #FAFBFC;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Grid Background ===== */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ===== Section Tag ===== */
+.section-tag {
+  @apply inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase px-3 py-1.5 rounded-full border;
+  color: #52D237;
+  border-color: #D1F5C4;
+  background: #F0FDE8;
+}
+
+/* ===== Green Accent Dot ===== */
+.green-dot {
+  @apply w-2 h-2 rounded-full bg-brand-green;
+}
+
+/* ===== Card Base ===== */
+.card {
+  @apply bg-white rounded-card border border-card-border shadow-sm;
+}
+
+/* ===== Button Base ===== */
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200;
+  background: #52D237;
+  color: #0B1020;
+}
+.btn-primary:hover {
+  background: #47C02F;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(82, 210, 55, 0.3);
+}
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200 border border-gray-200 bg-white text-dark;
+}
+.btn-secondary:hover {
+  background: #F8F9FA;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* ===== Timeline ===== */
+.timeline-line {
+  @apply absolute left-[7px] top-3 bottom-0 w-0.5 bg-brand-green/30;
+}
+
+.timeline-dot {
+  @apply w-4 h-4 rounded-full border-2 border-brand-green bg-white flex-shrink-0 relative z-10;
+}
+
+.timeline-dot-filled {
+  @apply w-4 h-4 rounded-full bg-brand-green flex-shrink-0 relative z-10;
+}
+
+/* ===== FAQ Accordion ===== */
+.faq-item {
+  @apply border-b border-gray-100 py-5 cursor-pointer;
+}
+
+.faq-item:last-child {
+  @apply border-b-0;
+}
+
+/* ===== Floating Decorations ===== */
+.connector-dot {
+  @apply absolute w-1.5 h-1.5 rounded-full bg-brand-green/40;
+}
+
+.connector-line {
+  @apply absolute bg-brand-green/15;
+}
+
+/* ===== Scroll Snap ===== */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* ===== Topic Card Rotations ===== */
+.topic-card-1 { transform: rotate(-2deg); }
+.topic-card-2 { transform: rotate(1.5deg); }
+.topic-card-3 { transform: rotate(-1deg); }
+.topic-card-4 { transform: rotate(2deg); }
+.topic-card-5 { transform: rotate(-1.5deg); }
+.topic-card-6 { transform: rotate(1deg); }
+.topic-card-7 { transform: rotate(-2.5deg); }
+.topic-card-8 { transform: rotate(1.8deg); }
+.topic-card-9 { transform: rotate(-0.5deg); }
+.topic-card-10 { transform: rotate(2.2deg); }
+.topic-card-11 { transform: rotate(-1.8deg); }
+
+.topic-card-1:hover,
+.topic-card-2:hover,
+.topic-card-3:hover,
+.topic-card-4:hover,
+.topic-card-5:hover,
+.topic-card-6:hover,
+.topic-card-7:hover,
+.topic-card-8:hover,
+.topic-card-9:hover,
+.topic-card-10:hover,
+.topic-card-11:hover {
+  transform: rotate(0deg) scale(1.05) !important;
+}
+
+/* ===== Diagonal Pattern for CTA ===== */
+.diagonal-pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(255,255,255,0.05) 20px,
+    rgba(255,255,255,0.05) 40px
+  );
+}
+
+/* ===== Stats Strip ===== */
+.stats-strip {
+  @apply flex flex-wrap items-center justify-between gap-4 py-6 px-8 rounded-2xl;
+  background: linear-gradient(135deg, #F0FDE8 0%, #E8FBDE 50%, #DFFBD1 100%);
+}
