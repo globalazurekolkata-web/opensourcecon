@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -19,6 +20,7 @@ export default {
       fontFamily: {
         heading: ['"Inter Tight"', '"Inter"', 'sans-serif'],
         body: ['"Inter"', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       maxWidth: {
         container: '1180px',

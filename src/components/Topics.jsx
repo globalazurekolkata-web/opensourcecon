@@ -88,12 +88,12 @@ export default function Topics() {
             <span className="green-dot" />
             TOPICS
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight mb-6">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight mb-6 text-dark dark:text-white">
             Let's talk about
             <br />
             what <span className="text-brand-green">matters.</span>
           </h2>
-          <p className="text-gray-secondary text-lg leading-relaxed">
+          <p className="text-gray-secondary dark:text-gray-400 text-lg leading-relaxed">
             From cutting-edge tech to community stories, explore the topics shaping the future of open source.
           </p>
         </div>
@@ -112,27 +112,17 @@ export default function Topics() {
           </div>
 
           {/* Topic Cards - Scattered Layout */}
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+          <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
             {topics.map((topic) => (
               <div
                 key={topic.title}
-                className={`card p-4 w-[160px] md:w-[180px] cursor-pointer transition-all duration-300 hover:shadow-lg ${topic.rotation}`}
+                className={`cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 ${topic.rotation} w-[165px] md:w-[185px] rounded-2xl overflow-hidden`}
               >
-                <div
-                  className="w-10 h-10 rounded-xl mb-3 flex items-center justify-center"
-                  style={{ backgroundColor: topic.color + '15' }}
-                >
-                  <div
-                    className="w-5 h-5 rounded-lg"
-                    style={{ backgroundColor: topic.color }}
-                  />
-                </div>
-                <h4 className="font-heading font-bold text-sm mb-0.5 leading-snug">
-                  {topic.title}
-                </h4>
-                <p className="text-gray-secondary text-[11px] leading-relaxed">
-                  {topic.subtitle}
-                </p>
+                <img
+                  src={topic.img}
+                  alt={topic.title}
+                  className="w-full h-auto object-contain pointer-events-none"
+                />
               </div>
             ))}
           </div>

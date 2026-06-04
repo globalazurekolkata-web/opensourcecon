@@ -118,7 +118,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-600">
-            © 2025 OpenSourceCon Kolkata. Made with ❤️ for the open source community.
+            © 2026 OpenSourceCon Kolkata. Made with ❤️ for the open source community.
           </p>
           <div className="flex gap-4">
             <a href="#" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">

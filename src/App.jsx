@@ -9,6 +9,7 @@ import Sponsors from './components/Sponsors';
 import AnnouncementCTA from './components/AnnouncementCTA';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
+import RevealOnScroll from './components/RevealOnScroll';
 
 export default function App() {
   return (
@@ -26,14 +27,14 @@ export default function App() {
 
       <main className="relative z-10">
         <Hero />
-        <About />
-        <Schedule />
-        <Speakers />
-        <Topics />
-        <Team />
-        <Sponsors />
-        <AnnouncementCTA />
-        <FAQ />
+        <RevealOnScroll><About /></RevealOnScroll>
+        <RevealOnScroll><Schedule /></RevealOnScroll>
+        <RevealOnScroll><Speakers /></RevealOnScroll>
+        <RevealOnScroll><Topics /></RevealOnScroll>
+        <RevealOnScroll><Team /></RevealOnScroll>
+        <RevealOnScroll><Sponsors /></RevealOnScroll>
+        <RevealOnScroll><AnnouncementCTA /></RevealOnScroll>
+        <RevealOnScroll><FAQ /></RevealOnScroll>
       </main>
 
       <Footer />

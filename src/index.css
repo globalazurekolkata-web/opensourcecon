@@ -13,6 +13,12 @@ body {
   background-color: #FAFBFC;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  color: #FAFBFC;
+  background-color: #080C16;
 }
 
 /* ===== Grid Background ===== */
@@ -23,12 +29,23 @@ body {
   background-size: 64px 64px;
 }
 
+.dark .grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+}
+
 /* ===== Section Tag ===== */
 .section-tag {
   @apply inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase px-3 py-1.5 rounded-full border;
   color: #52D237;
   border-color: #D1F5C4;
   background: #F0FDE8;
+}
+
+.dark .section-tag {
+  background: rgba(82, 210, 55, 0.08);
+  border-color: rgba(82, 210, 55, 0.2);
 }
 
 /* ===== Green Accent Dot ===== */
@@ -38,7 +55,13 @@ body {
 
 /* ===== Card Base ===== */
 .card {
-  @apply bg-white rounded-card border border-card-border shadow-sm;
+  @apply bg-white rounded-card border border-card-border shadow-sm transition-all duration-300;
+}
+
+.dark .card {
+  background-color: #131C31;
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 /* ===== Button Base ===== */
@@ -62,6 +85,16 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
+.dark .btn-secondary {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #FAFBFC;
+}
+.dark .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
 /* ===== Timeline ===== */
 .timeline-line {
   @apply absolute left-[7px] top-3 bottom-0 w-0.5 bg-brand-green/30;
@@ -71,6 +104,10 @@ body {
   @apply w-4 h-4 rounded-full border-2 border-brand-green bg-white flex-shrink-0 relative z-10;
 }
 
+.dark .timeline-dot {
+  background-color: #080C16;
+}
+
 .timeline-dot-filled {
   @apply w-4 h-4 rounded-full bg-brand-green flex-shrink-0 relative z-10;
 }
@@ -78,6 +115,10 @@ body {
 /* ===== FAQ Accordion ===== */
 .faq-item {
   @apply border-b border-gray-100 py-5 cursor-pointer;
+}
+
+.dark .faq-item {
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
 .faq-item:last-child {
@@ -157,4 +198,21 @@ body {
 .stats-strip {
   @apply flex flex-wrap items-center justify-between gap-4 py-6 px-8 rounded-2xl;
   background: linear-gradient(135deg, #F0FDE8 0%, #E8FBDE 50%, #DFFBD1 100%);
+}
+
+/* ===== View Transitions (Circular Wipe Theme Toggle) ===== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ===== Terminal Cursor Blink ===== */
+@keyframes terminal-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.terminal-cursor {
+  animation: terminal-blink 1s step-end infinite;
 }
