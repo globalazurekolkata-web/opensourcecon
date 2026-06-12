@@ -1,5 +1,6 @@
 import { X, Sparkles } from 'lucide-react';
 import { useState } from 'react';
+import { openKonfHub } from '../utils/konfhub';
 
 export default function PromoBanner() {
   const [visible, setVisible] = useState(true);
@@ -12,14 +13,12 @@ export default function PromoBanner() {
         <Sparkles size={16} className="flex-shrink-0 animate-pulse" />
         <span>
           🎉 Community Discount is Live!{' '}
-          <a
-            href="https://opensourcecon.in/core.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-2 hover:no-underline font-bold"
+          <button
+            onClick={openKonfHub}
+            className="underline underline-offset-2 hover:no-underline font-bold bg-transparent border-none p-0 inline cursor-pointer text-dark hover:text-dark/80"
           >
             Register Now With Discount →
-          </a>
+          </button>
         </span>
         <button
           onClick={() => setVisible(false)}

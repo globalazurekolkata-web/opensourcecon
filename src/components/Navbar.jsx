@@ -1,32 +1,84 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Moon, Sun } from 'lucide-react';
-
-const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Schedule', href: '#schedule' },
-  { label: 'Speakers', href: '#speakers' },
-  { label: 'Topics', href: '#topics' },
-  { label: 'Team', href: '#team' },
-  { label: 'Sponsors', href: '#sponsors' },
-  { label: 'Venue', href: '#venue' },
-  { label: 'FAQ', href: '#faq' },
-];
-
-function openKonfHub(e) {
-  e.preventDefault();
-  const kBtn = document.querySelector('#konfhub-widget-trigger button, #konfhub-widget-trigger a');
-  if (kBtn) kBtn.click();
-}
+import { openKonfHub } from '../utils/konfhub';
+import { navLinks } from '../data/navLinks';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dark, setDark] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const mobileMenuRef = useRef(null);
 
   useEffect(() => {
     const isDark = document.documentElement.classList.contains('dark');
     setDark(isDark);
   }, []);
+
+  // Track active section on scroll
+  useEffect(() => {
+    const sections = ['home', 'about', 'schedule', 'speakers', 'topics', 'team', 'sponsors', 'venue', 'faq'];
+    const observerOptions = {
+      root: null,
+      rootMargin: '-30% 0px -50% 0px',
+      threshold: 0,
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+
+  // Trap focus in mobile menu
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const focusable = mobileMenuRef.current?.querySelectorAll(
+      'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusable || focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    first.focus();
+
+    const handleKeyDown = (e) => {
+      if (e.key !== 'Tab') return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          last.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === last) {
+          first.focus();
+          e.preventDefault();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileOpen]);
 
   const toggleTheme = (e) => {
     const isDark = document.documentElement.classList.contains('dark');
@@ -72,7 +124,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-dark/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5">
+    <nav className="relative w-full bg-white dark:bg-dark/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5">
       <div className="max-w-container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -89,15 +141,23 @@ export default function Navbar() {
 
           {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-dark dark:hover:text-white transition-colors rounded-lg hover:bg-gray-50 dark:hover:bg-white/5"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const linkId = link.href.replace('#', '');
+              const isActive = activeSection === linkId;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={`px-3 py-2 text-sm font-medium transition-all rounded-lg ${
+                    isActive
+                      ? 'text-brand-green font-semibold bg-brand-green/5'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-dark dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
 
           {/* Right Side */}
@@ -128,18 +188,26 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white dark:bg-dark border-t border-gray-100 dark:border-white/5 shadow-lg">
+        <div ref={mobileMenuRef} className="lg:hidden bg-white dark:bg-dark border-t border-gray-100 dark:border-white/5 shadow-lg">
           <div className="px-6 py-4 space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-dark dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const linkId = link.href.replace('#', '');
+              const isActive = activeSection === linkId;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`block px-4 py-3 text-sm font-medium rounded-xl transition-all ${
+                    isActive
+                      ? 'text-brand-green font-bold bg-brand-green/5'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-dark dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
             <button
               onClick={(e) => { setMobileOpen(false); openKonfHub(e); }}
               className="block w-full text-center btn-primary mt-3 py-3"

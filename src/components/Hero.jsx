@@ -1,6 +1,6 @@
 import { ArrowRight, CalendarDays, MapPin, Clock, Users } from 'lucide-react';
 import CountUp from './CountUp';
-import { useEffect, useRef } from 'react';
+import { openKonfHub } from '../utils/konfhub';
 
 const floatingBadges = [
   { text: '#OpenSource', left: '8%', top: '30%', duration: '12s', delay: '0s' },
@@ -11,24 +11,19 @@ const floatingBadges = [
   { text: 'Git', left: '5%', top: '55%', duration: '13s', delay: '5s' },
 ];
 
-function openKonfHub(e) {
-  e.preventDefault();
-  const kBtn = document.querySelector('#konfhub-widget-trigger button, #konfhub-widget-trigger a');
-  if (kBtn) kBtn.click();
-}
-
 export default function Hero() {
   return (
     <section id="home" className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden min-h-[90vh] flex items-center">
       {/* Animated gradient orbs */}
-      <div className="hero-orb hero-orb-1" />
-      <div className="hero-orb hero-orb-2" />
+      <div className="hero-orb hero-orb-1" aria-hidden="true" />
+      <div className="hero-orb hero-orb-2" aria-hidden="true" />
 
       {/* Floating tech badges */}
       {floatingBadges.map((badge) => (
         <div
           key={badge.text}
           className="floating-badge hidden lg:block"
+          aria-hidden="true"
           style={{
             left: badge.left,
             top: badge.top,

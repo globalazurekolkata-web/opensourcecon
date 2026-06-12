@@ -1,82 +1,4 @@
-const topics = [
-  {
-    title: 'AI & Open Source',
-    subtitle: 'Models, datasets & ethics',
-    img: '/images/AI & Open Source (HOT)_margin.png',
-    rotation: 'topic-card-1',
-    color: '#FF6B6B',
-  },
-  {
-    title: 'DevOps & Automation',
-    subtitle: 'CI/CD, GitOps & IaC',
-    img: '/images/DevOps & Automation_margin.png',
-    rotation: 'topic-card-2',
-    color: '#4ECDC4',
-  },
-  {
-    title: 'Linux & Systems',
-    subtitle: 'Kernel, distros & more',
-    img: '/images/Linux & Systems_margin.png',
-    rotation: 'topic-card-3',
-    color: '#FFB347',
-  },
-  {
-    title: 'Security & Privacy',
-    subtitle: 'CVEs, SBOM & trust',
-    img: '/images/Security & Privacy_margin.png',
-    rotation: 'topic-card-4',
-    color: '#9B59B6',
-  },
-  {
-    title: 'Cloud Native',
-    subtitle: 'K8s, containers & mesh',
-    img: '/images/Cloud Native.png',
-    rotation: 'topic-card-5',
-    color: '#3498DB',
-  },
-  {
-    title: 'Observability',
-    subtitle: 'Logs, metrics & traces',
-    img: '/images/Observability_margin.png',
-    rotation: 'topic-card-6',
-    color: '#1ABC9C',
-  },
-  {
-    title: 'Open Source Careers',
-    subtitle: 'Jobs, growth & paths',
-    img: '/images/Open Source Careers.png',
-    rotation: 'topic-card-7',
-    color: '#E74C3C',
-  },
-  {
-    title: 'Sustainability in Tech',
-    subtitle: 'Green computing & ethics',
-    img: '/images/Sustainability in Tech_margin.png',
-    rotation: 'topic-card-8',
-    color: '#27AE60',
-  },
-  {
-    title: 'Community Building',
-    subtitle: 'Governance & inclusion',
-    img: '/images/Community Building_margin.png',
-    rotation: 'topic-card-9',
-    color: '#F39C12',
-  },
-  {
-    title: 'Web Performance',
-    subtitle: 'Core web vitals & edge',
-    img: '/images/Web Performance_margin.png',
-    rotation: 'topic-card-10',
-    color: '#2ECC71',
-  },
-  {
-    title: 'AI Agents & LLMs',
-    subtitle: 'RAG, fine-tuning & agents',
-    img: '/images/AI Agents & LLMs_margin.png',
-    rotation: 'topic-card-11',
-    color: '#8E44AD',
-  },
-];
+import { topics } from '../data/topics';
 
 export default function Topics() {
   return (
@@ -122,6 +44,7 @@ export default function Topics() {
                   src={topic.img}
                   alt={topic.title}
                   className="w-full h-auto object-contain pointer-events-none"
+                  loading="lazy"
                 />
               </div>
             ))}

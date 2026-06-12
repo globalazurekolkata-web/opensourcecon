@@ -1,59 +1,11 @@
 import { useState } from 'react';
 import { Download, ArrowRight, CalendarDays } from 'lucide-react';
-
-const tabs = [
-  { name: 'Morning', time: '09:00 AM - 12:30 PM' },
-  { name: 'Afternoon', time: '01:30 PM - 05:00 PM' },
-  { name: 'Evening', time: '05:00 PM - 08:30 PM' },
-];
-
-const scheduleData = {
-  Morning: [
-    { time: '09:00 AM', title: 'Registration & Welcome Tea', type: 'break' },
-    { time: '10:00 AM', title: 'Opening Keynote', type: 'talk' },
-    { time: '11:00 AM', title: 'Panel Discussion', type: 'panel' },
-    { time: '12:00 PM', title: 'Lightning Talks', type: 'talk' },
-    { time: '12:30 PM', title: 'Lunch Break', type: 'break' },
-  ],
-  Afternoon: [
-    { time: '01:30 PM', title: 'Workshop Track A: Kubernetes 101', type: 'workshop' },
-    { time: '01:30 PM', title: 'Workshop Track B: Contributing to OSS', type: 'workshop' },
-    { time: '03:00 PM', title: 'Tech Talks', type: 'talk' },
-    { time: '04:00 PM', title: 'Community Showcase', type: 'panel' },
-    { time: '04:45 PM', title: 'Tea Break', type: 'break' },
-  ],
-  Evening: [
-    { time: '05:00 PM', title: 'Closing Keynote', type: 'talk' },
-    { time: '06:00 PM', title: 'Awards & Recognition', type: 'panel' },
-    { time: '06:30 PM', title: 'Networking & After Party', type: 'break' },
-  ],
-};
-
-const highlights = [
-  {
-    num: '01',
-    title: 'Keynotes & Panels',
-    desc: 'Hear from industry leaders and learn about the future of open source.'
-  },
-  {
-    num: '02',
-    title: 'Hands-on Workshops',
-    desc: 'Dive deep into technical sessions led by core maintainers.'
-  },
-  {
-    num: '03',
-    title: 'Networking',
-    desc: 'Connect with community members and build relationships.'
-  },
-  {
-    num: '04',
-    title: 'After Party',
-    desc: 'Celebrate the day with music, food, and like-minded developers.'
-  }
-];
+import { scheduleTabs, scheduleData, scheduleHighlights } from '../data/schedule';
+import { openKonfHub } from '../utils/konfhub';
 
 export default function Schedule() {
   const [activeTab, setActiveTab] = useState('Morning');
+  const [showNotice, setShowNotice] = useState(false);
 
   return (
     <section id="schedule" className="py-20 lg:py-28 relative">
@@ -80,7 +32,7 @@ export default function Schedule() {
 
             {/* Highlights */}
             <div className="space-y-6">
-              {highlights.map(({ num, title, desc }) => (
+              {scheduleHighlights.map(({ num, title, desc }) => (
                 <div key={num} className="flex gap-4">
                   <div className="w-10 h-10 rounded-full border border-brand-green/30 text-brand-green flex items-center justify-center font-mono font-bold text-sm flex-shrink-0 bg-brand-green/5">
                     {num}
@@ -93,7 +45,7 @@ export default function Schedule() {
               ))}
             </div>
 
-            <button className="btn-secondary text-sm">
+            <button onClick={() => setShowNotice(true)} className="btn-secondary text-sm">
               <Download size={16} />
               Download Full Schedule
             </button>
@@ -101,10 +53,10 @@ export default function Schedule() {
 
           {/* Right - Schedule Card */}
           <div className="lg:col-span-7 lg:mt-[180px]">
-            <div className="card p-0 overflow-hidden">
+            <div className="card p-0 overflow-hidden relative">
               {/* Tabs */}
               <div className="flex border-b border-gray-100">
-                {tabs.map((tab) => (
+                {scheduleTabs.map((tab) => (
                   <button
                     key={tab.name}
                     onClick={() => setActiveTab(tab.name)}
@@ -152,13 +104,44 @@ export default function Schedule() {
                 <div>
                   <p className="text-sm font-semibold text-dark dark:text-white">More sessions, more learning.</p>
                 </div>
-                <a
-                  href="#schedule"
-                  className="text-sm font-semibold text-brand-green hover:text-brand-green-dark flex items-center gap-1 transition-colors"
+                <button
+                  onClick={() => setShowNotice(true)}
+                  className="text-sm font-semibold text-brand-green hover:text-brand-green-dark flex items-center gap-1 transition-colors bg-transparent border-none cursor-pointer"
                 >
                   View Full Schedule <ArrowRight size={14} />
-                </a>
+                </button>
               </div>
+
+              {/* Sleek Overlay Notice */}
+              {showNotice && (
+                <div className="absolute inset-0 bg-dark/95 backdrop-blur-sm z-20 flex items-center justify-center p-6 text-center animate-fade-up">
+                  <div className="max-w-md space-y-5 p-4">
+                    <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center mx-auto text-brand-green">
+                      <CalendarDays size={24} />
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="font-heading text-xl font-bold text-white">Full Schedule Coming Soon!</h3>
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        We are putting the final touches on our speaker lineups and workshops. Register now on KonfHub to receive the complete schedule directly in your inbox.
+                      </p>
+                    </div>
+                    <div className="flex justify-center gap-3">
+                      <button
+                        onClick={(e) => { setShowNotice(false); openKonfHub(e); }}
+                        className="btn-primary text-xs py-2.5 px-4"
+                      >
+                        Register on KonfHub
+                      </button>
+                      <button
+                        onClick={() => setShowNotice(false)}
+                        className="btn-secondary text-xs py-2.5 px-4 text-white hover:text-brand-green border-white/10 bg-transparent"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Standalone FAQ/Calendar Banner */}
