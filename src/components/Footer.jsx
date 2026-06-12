@@ -14,7 +14,13 @@ export default function Footer() {
   const [activeModal, setActiveModal] = useState(null); // null, 'coc', 'privacy'
 
   return (
-    <footer className="bg-dark text-white pt-20 pb-10 border-t border-white/[0.06] relative overflow-hidden">
+    <footer className="bg-dark text-white pt-20 pb-10 relative overflow-hidden">
+      {/* Premium top border gradient line */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent z-10" />
+
+      {/* Subtle tech grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.006)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.006)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none z-0" />
+
       {/* Subtle ambient green glow orbs */}
       <div className="absolute w-[350px] h-[350px] rounded-full bg-brand-green/5 blur-[120px] pointer-events-none -bottom-48 -left-48 z-0" />
       <div className="absolute w-[250px] h-[250px] rounded-full bg-brand-green/[0.03] blur-[100px] pointer-events-none -top-24 -right-24 z-0" />
@@ -81,24 +87,31 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* Large Background Wordmark */}
+        <div className="py-6 md:py-10 select-none pointer-events-none text-center overflow-hidden">
+          <h2 className="font-heading font-black text-[9vw] tracking-tight px-4 text-transparent bg-clip-text bg-gradient-to-b from-brand-green/[0.1] via-white/[0.04] to-transparent uppercase leading-none">
+            OpenSourceCon
+          </h2>
+        </div>
+
         {/* Divider */}
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent mb-8" />
 
         {/* Copyright and Bottom Links */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-500 font-body">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pr-0 md:pr-16">
+          <p className="text-xs text-gray-500 font-body font-bold">
             © 2026 Open Source Con Kolkata
           </p>
           <div className="flex gap-6">
             <button
               onClick={() => setActiveModal('coc')}
-              className="text-xs text-gray-500 hover:text-white transition-colors duration-300 bg-transparent border-0 cursor-pointer p-0 focus:outline-none"
+              className="text-xs text-gray-500 hover:text-brand-green transition-colors duration-300 bg-transparent border-0 cursor-pointer p-0 focus:outline-none"
             >
               Code of Conduct
             </button>
             <button
               onClick={() => setActiveModal('privacy')}
-              className="text-xs text-gray-500 hover:text-white transition-colors duration-300 bg-transparent border-0 cursor-pointer p-0 focus:outline-none"
+              className="text-xs text-gray-500 hover:text-brand-green transition-colors duration-300 bg-transparent border-0 cursor-pointer p-0 focus:outline-none"
             >
               Privacy Policy
             </button>
@@ -109,7 +122,7 @@ export default function Footer() {
       {/* Modal Popup */}
       {activeModal && (
         <div 
-          className="fixed inset-0 bg-dark/80 backdrop-blur-md z-[100] flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 bg-dark/85 backdrop-blur-md z-[100] flex items-center justify-center p-4 animate-fade-in"
           onClick={() => setActiveModal(null)}
         >
           <div 
