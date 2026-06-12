@@ -8,7 +8,7 @@ export default function PromoBanner() {
   if (!visible) return null;
 
   return (
-    <div className="relative z-[60] w-full bg-brand-green-light/30 dark:bg-dark text-dark dark:text-white border-b border-brand-green/10 dark:border-brand-green/15 transition-colors duration-300">
+    <div className="relative z-[60] w-full bg-brand-green-light dark:bg-dark text-dark dark:text-white border-b border-brand-green/10 dark:border-brand-green/15 transition-colors duration-300">
       <div className="max-w-full mx-auto px-6 md:px-12 lg:px-16 py-2.5 flex items-center justify-center gap-3 text-xs md:text-sm">
         {/* Launch Pill */}
         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider uppercase bg-brand-green/10 text-brand-green border border-brand-green/20 flex-shrink-0">
