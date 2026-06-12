@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Moon, Sun, ArrowRight, Calendar, MapPin } from 'lucide-react';
+import { Moon, Sun, ArrowRight, Calendar, MapPin } from 'lucide-react';
 import { openKonfHub } from '../utils/konfhub';
 import { navLinks } from '../data/navLinks';
 
@@ -144,7 +144,7 @@ export default function Navbar() {
           : 'bg-transparent border-b border-transparent dark:border-transparent'
       }`}
     >
-      <div className="max-w-full mx-auto px-6 md:px-12 lg:px-16">
+      <div className="max-w-full mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-1 flex-shrink-0">
@@ -158,12 +158,12 @@ export default function Navbar() {
             <img
               src="/images/logo text.png"
               alt="OpenSourceCon"
-              className="h-7 lg:h-[38px] -ml-2 w-auto object-contain dark:hidden"
+              className="h-7 lg:h-[38px] -ml-1.5 sm:-ml-2 w-auto object-contain dark:hidden"
             />
             <img
               src="/images/logo text dark.png"
               alt="OpenSourceCon"
-              className="h-7 lg:h-[38px] -ml-2 w-auto object-contain hidden dark:block"
+              className="h-7 lg:h-[38px] -ml-1.5 sm:-ml-2 w-auto object-contain hidden dark:block"
             />
           </a>
 
@@ -199,7 +199,7 @@ export default function Navbar() {
           </div>
 
           {/* Right Side */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={toggleTheme}
               className="w-10 h-10 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
@@ -211,14 +211,24 @@ export default function Navbar() {
               onClick={openKonfHub}
               className="hidden md:inline-flex btn-primary text-sm py-2.5 px-5"
             >
-              Register Now →
+              Register Now
             </button>
             <button
-              className="lg:hidden w-10 h-10 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5"
+              className="lg:hidden w-10 h-10 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 focus:outline-none transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              <div className="relative w-5 h-4">
+                <span className={`absolute left-0 right-0 h-[2px] bg-current rounded-full transition-all duration-300 ${
+                  mobileOpen ? 'top-2 rotate-45' : 'top-0.5'
+                }`} />
+                <span className={`absolute left-0 right-0 h-[2px] bg-current rounded-full transition-all duration-300 top-2 ${
+                  mobileOpen ? 'opacity-0 scale-x-0' : 'opacity-100'
+                }`} />
+                <span className={`absolute left-0 right-0 h-[2px] bg-current rounded-full transition-all duration-300 ${
+                  mobileOpen ? 'top-2 -rotate-45' : 'top-3.5'
+                }`} />
+              </div>
             </button>
           </div>
         </div>
