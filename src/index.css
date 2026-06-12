@@ -28,18 +28,20 @@ body {
 /* ===== Grid Background ===== */
 .grid-bg {
   background-image:
+    linear-gradient(to bottom, #FAFBFC 100px, transparent 180px),
     linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 64px 64px;
-  /* Mask out the top 160px of the grid background to fade lines under the transparent navbar */
-  mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1) 160px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1) 160px);
+  background-size: 100% 180px, 64px 64px, 64px 64px;
+  background-repeat: no-repeat, repeat, repeat;
 }
 
 .dark .grid-bg {
   background-image:
+    linear-gradient(to bottom, #080C16 100px, transparent 180px),
     linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 180px, 64px 64px, 64px 64px;
+  background-repeat: no-repeat, repeat, repeat;
 }
 
 /* ===== Section Tag ===== */
