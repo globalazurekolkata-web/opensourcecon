@@ -1,4 +1,4 @@
-import { ArrowRight, Globe, MessageSquare, Code2, BookOpen } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 /* Simple inline SVG social icons since lucide-react v1 dropped brand icons */
 const GithubIcon = () => (
@@ -14,25 +14,29 @@ const InstagramIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
 );
 
+function openKonfHub(e) {
+  e.preventDefault();
+  const kBtn = document.querySelector('#konfhub-widget-trigger button, #konfhub-widget-trigger a');
+  if (kBtn) kBtn.click();
+}
+
 const footerLinks = {
-  Links: [
-    { label: 'Home', href: '#home' },
+  Event: [
     { label: 'About', href: '#about' },
     { label: 'Schedule', href: '#schedule' },
     { label: 'Speakers', href: '#speakers' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Topics', href: '#topics' },
+    { label: 'Venue', href: '#venue' },
   ],
   'Get Involved': [
-    { label: 'Register', href: '#register' },
-    { label: 'Become a Speaker', href: '#' },
-    { label: 'Become a Sponsor', href: '#' },
+    { label: 'Register Now', href: '#', onClick: openKonfHub },
+    { label: 'Submit a Talk', href: 'https://forms.gle/tFUzkFuCyb1heshu9', external: true },
+    { label: 'Become a Sponsor', href: 'https://drive.google.com/file/d/1RVrIZV0d6UskRM9k62cOlUU1A3J2pBg4/view?usp=sharing', external: true },
+    { label: 'Community Partners', href: 'https://forms.gle/Kr6y4FFjtyH1mxaW8', external: true },
     { label: 'Volunteer', href: '#' },
   ],
-  Connect: [
-    { label: 'Twitter / X', href: '#' },
-    { label: 'Discord', href: '#' },
-    { label: 'GitHub', href: '#' },
-    { label: 'Email Us', href: '#' },
+  Contact: [
+    { label: 'hello@opensourcecon.in', href: 'mailto:hello@opensourcecon.in' },
   ],
 };
 
@@ -51,15 +55,14 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
-              <span className="font-heading text-xl font-extrabold text-white tracking-tight">
-                OpenSource
-              </span>
-              <span className="font-heading text-xl font-extrabold text-brand-green tracking-tight">
-                Con
-              </span>
+              <img
+                src="/images/logo text.png"
+                alt="OpenSourceCon"
+                className="h-7 object-contain invert"
+              />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              Kolkata's premier open source conference, bringing together developers, creators, and innovators for a day of learning, sharing, and collaboration.
+              Bengal's community-driven open source conference. By the people, for the people. Built on the foundations of collaboration, transparency, and the free exchange of knowledge.
             </p>
             <div className="flex gap-3 pt-2">
               {socials.map(({ Icon, href, label }) => (
@@ -84,6 +87,9 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
+                      onClick={link.onClick}
+                      target={link.external ? '_blank' : undefined}
+                      rel={link.external ? 'noopener noreferrer' : undefined}
                       className="text-sm text-gray-500 hover:text-white transition-colors"
                     >
                       {link.label}
@@ -100,12 +106,12 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
             <div className="flex-1">
               <h4 className="font-heading font-bold text-sm mb-1">Stay in the loop</h4>
-              <p className="text-gray-500 text-xs">Get updates about OpenSourceCon Kolkata.</p>
+              <p className="text-gray-500 text-xs">Get updates about OpenSourceCon Kolkata — no spam, only what matters.</p>
             </div>
             <div className="flex gap-2 w-full md:w-auto">
               <input
                 type="email"
-                placeholder="Your email"
+                placeholder="your@email.com"
                 className="flex-1 md:w-56 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-brand-green/50"
               />
               <button className="px-5 py-2.5 rounded-xl bg-brand-green text-dark text-sm font-semibold hover:bg-brand-green-dark transition-colors flex items-center gap-1">
@@ -118,7 +124,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-600">
-            © 2026 OpenSourceCon Kolkata. Made with ❤️ for the open source community.
+            © 2026 Open Source Con Kolkata. Made with ❤️ and open source.
           </p>
           <div className="flex gap-4">
             <a href="#" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">

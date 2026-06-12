@@ -9,7 +9,15 @@ const navLinks = [
   { label: 'Topics', href: '#topics' },
   { label: 'Team', href: '#team' },
   { label: 'Sponsors', href: '#sponsors' },
+  { label: 'Venue', href: '#venue' },
+  { label: 'FAQ', href: '#faq' },
 ];
+
+function openKonfHub(e) {
+  e.preventDefault();
+  const kBtn = document.querySelector('#konfhub-widget-trigger button, #konfhub-widget-trigger a');
+  if (kBtn) kBtn.click();
+}
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -69,14 +77,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2.5 flex-shrink-0">
-            <div className="flex flex-col leading-[0.9] select-none">
-              <span className="font-heading text-[15px] font-extrabold text-dark dark:text-white tracking-tight">
-                OpenSource
-              </span>
-              <span className="font-heading text-[15px] font-extrabold text-brand-green tracking-tight">
-                Con
-              </span>
-            </div>
+            <img
+              src="/images/logo text.png"
+              alt="OpenSourceCon"
+              className="h-7 object-contain dark:invert"
+            />
             <span className="text-[10px] text-gray-secondary dark:text-gray-400 font-semibold leading-none border-l border-gray-200 dark:border-white/10 pl-2.5 self-center py-1 hidden sm:block">
               Kolkata '26
             </span>
@@ -104,12 +109,12 @@ export default function Navbar() {
             >
               {dark ? <Sun size={16} /> : <Moon size={16} />}
             </button>
-            <a
-              href="#register"
+            <button
+              onClick={openKonfHub}
               className="hidden sm:inline-flex btn-primary text-sm py-2.5 px-5"
             >
               Register Now →
-            </a>
+            </button>
             <button
               className="lg:hidden w-9 h-9 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -135,13 +140,12 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#register"
-              onClick={() => setMobileOpen(false)}
+            <button
+              onClick={(e) => { setMobileOpen(false); openKonfHub(e); }}
               className="block w-full text-center btn-primary mt-3 py-3"
             >
               Register Now →
-            </a>
+            </button>
           </div>
         </div>
       )}

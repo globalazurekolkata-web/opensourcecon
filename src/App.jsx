@@ -1,3 +1,4 @@
+import PromoBanner from './components/PromoBanner';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -6,6 +7,8 @@ import Speakers from './components/Speakers';
 import Topics from './components/Topics';
 import Team from './components/Team';
 import Sponsors from './components/Sponsors';
+import CommunityPartners from './components/CommunityPartners';
+import Venue from './components/Venue';
 import AnnouncementCTA from './components/AnnouncementCTA';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
@@ -33,6 +36,8 @@ export default function App() {
         <RevealOnScroll><Topics /></RevealOnScroll>
         <RevealOnScroll><Team /></RevealOnScroll>
         <RevealOnScroll><Sponsors /></RevealOnScroll>
+        <RevealOnScroll><CommunityPartners /></RevealOnScroll>
+        <RevealOnScroll><Venue /></RevealOnScroll>
         <RevealOnScroll><AnnouncementCTA /></RevealOnScroll>
         <RevealOnScroll><FAQ /></RevealOnScroll>
       </main>

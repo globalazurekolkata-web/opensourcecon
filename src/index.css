@@ -24,15 +24,15 @@ body {
 /* ===== Grid Background ===== */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
 .dark .grid-bg {
   background-image:
-    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
 }
 
 /* ===== Section Tag ===== */
@@ -70,6 +70,7 @@ body {
   background: #52D237;
   color: #0B1020;
 }
+
 .btn-primary:hover {
   background: #47C02F;
   transform: translateY(-2px);
@@ -79,10 +80,11 @@ body {
 .btn-secondary {
   @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200 border border-gray-200 bg-white text-dark;
 }
+
 .btn-secondary:hover {
   background: #F8F9FA;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .dark .btn-secondary {
@@ -90,9 +92,10 @@ body {
   border-color: rgba(255, 255, 255, 0.08);
   color: #FAFBFC;
 }
+
 .dark .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== Timeline ===== */
@@ -145,29 +148,64 @@ body {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #D1D5DB;
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #9CA3AF;
 }
 
 /* ===== Topic Card Rotations ===== */
-.topic-card-1 { transform: rotate(-2deg); }
-.topic-card-2 { transform: rotate(1.5deg); }
-.topic-card-3 { transform: rotate(-1deg); }
-.topic-card-4 { transform: rotate(2deg); }
-.topic-card-5 { transform: rotate(-1.5deg); }
-.topic-card-6 { transform: rotate(1deg); }
-.topic-card-7 { transform: rotate(-2.5deg); }
-.topic-card-8 { transform: rotate(1.8deg); }
-.topic-card-9 { transform: rotate(-0.5deg); }
-.topic-card-10 { transform: rotate(2.2deg); }
-.topic-card-11 { transform: rotate(-1.8deg); }
+.topic-card-1 {
+  transform: rotate(-2deg);
+}
+
+.topic-card-2 {
+  transform: rotate(1.5deg);
+}
+
+.topic-card-3 {
+  transform: rotate(-1deg);
+}
+
+.topic-card-4 {
+  transform: rotate(2deg);
+}
+
+.topic-card-5 {
+  transform: rotate(-1.5deg);
+}
+
+.topic-card-6 {
+  transform: rotate(1deg);
+}
+
+.topic-card-7 {
+  transform: rotate(-2.5deg);
+}
+
+.topic-card-8 {
+  transform: rotate(1.8deg);
+}
+
+.topic-card-9 {
+  transform: rotate(-0.5deg);
+}
+
+.topic-card-10 {
+  transform: rotate(2.2deg);
+}
+
+.topic-card-11 {
+  transform: rotate(-1.8deg);
+}
 
 .topic-card-1:hover,
 .topic-card-2:hover,
@@ -185,13 +223,11 @@ body {
 
 /* ===== Diagonal Pattern for CTA ===== */
 .diagonal-pattern {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 20px,
-    rgba(255,255,255,0.05) 20px,
-    rgba(255,255,255,0.05) 40px
-  );
+  background-image: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 20px,
+      rgba(255, 255, 255, 0.05) 20px,
+      rgba(255, 255, 255, 0.05) 40px);
 }
 
 /* ===== Stats Strip ===== */
@@ -209,10 +245,165 @@ body {
 
 /* ===== Terminal Cursor Blink ===== */
 @keyframes terminal-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .terminal-cursor {
   animation: terminal-blink 1s step-end infinite;
+}
+
+/* ===== Hero Gradient Orbs ===== */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-orb-1 {
+  width: 500px;
+  height: 500px;
+  background: rgba(82, 210, 55, 0.12);
+  top: -100px;
+  right: -100px;
+  animation: hero-orb-float 8s ease-in-out infinite alternate;
+}
+
+.hero-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(82, 210, 55, 0.08);
+  bottom: -80px;
+  left: -80px;
+  animation: hero-orb-float 10s ease-in-out infinite alternate-reverse;
+}
+
+.dark .hero-orb-1 {
+  background: rgba(82, 210, 55, 0.06);
+}
+
+.dark .hero-orb-2 {
+  background: rgba(82, 210, 55, 0.04);
+}
+
+@keyframes hero-orb-float {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(30px, -20px) scale(1.1);
+  }
+}
+
+/* ===== Hero Ring Spin ===== */
+.hero-ring-spin {
+  animation: ring-spin 25s linear infinite;
+}
+
+.hero-ring-spin-reverse {
+  animation: ring-spin 20s linear infinite reverse;
+}
+
+@keyframes ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Floating Tech Badges ===== */
+.floating-badge {
+  position: absolute;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #52D237;
+  background: rgba(82, 210, 55, 0.06);
+  border: 1px solid rgba(82, 210, 55, 0.15);
+  pointer-events: none;
+  z-index: 1;
+  animation: float-badge 12s ease-in-out infinite alternate;
+  backdrop-filter: blur(8px);
+}
+
+.dark .floating-badge {
+  background: rgba(82, 210, 55, 0.04);
+  border-color: rgba(82, 210, 55, 0.1);
+}
+
+@keyframes float-badge {
+  0% {
+    transform: translateY(0px) rotate(-2deg);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(1deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(5px) rotate(-1deg);
+    opacity: 0.6;
+  }
+}
+
+/* ===== Venue Pin Bounce ===== */
+.venue-pin-bounce {
+  animation: pin-bounce 2s ease-in-out infinite;
+}
+
+.venue-pin-shadow {
+  animation: pin-shadow 2s ease-in-out infinite;
+}
+
+@keyframes pin-bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pin-shadow {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(0.6);
+    opacity: 0.15;
+  }
+}
+
+/* ===== Sponsor Slot Cards ===== */
+.sponsor-slot-card {
+  transition: all 0.3s ease;
+}
+
+.sponsor-slot-card:hover {
+  transform: translateY(-2px);
 }

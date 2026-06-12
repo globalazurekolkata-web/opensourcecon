@@ -1,22 +1,43 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, FileText, Plus } from 'lucide-react';
 
-const titleSponsor = {
-  name: 'GitHub',
-  tagline: 'Where developers build the future.',
-  logo: '/images/image 5.png',
-};
-
-const poweredBy = [
-  { name: 'Google Cloud', logo: '/images/image 6.png' },
-  { name: 'AWS', logo: null },
-  { name: 'Microsoft', logo: null },
-  { name: 'JetBrains', logo: null },
+const tiers = [
+  {
+    name: 'Diamond Sponsor',
+    label: 'DIAMOND',
+    size: 'large',
+    color: 'from-blue-50 to-purple-50 dark:from-blue-500/5 dark:to-purple-500/5',
+    borderColor: 'border-blue-200 dark:border-blue-500/20',
+  },
+  {
+    name: 'Gold Sponsor',
+    label: 'GOLD',
+    size: 'medium',
+    color: 'from-amber-50 to-yellow-50 dark:from-amber-500/5 dark:to-yellow-500/5',
+    borderColor: 'border-amber-200 dark:border-amber-500/20',
+  },
+  {
+    name: 'Gold Sponsor',
+    label: 'GOLD',
+    size: 'medium',
+    color: 'from-amber-50 to-yellow-50 dark:from-amber-500/5 dark:to-yellow-500/5',
+    borderColor: 'border-amber-200 dark:border-amber-500/20',
+  },
+  {
+    name: 'Gold Sponsor',
+    label: 'GOLD',
+    size: 'medium',
+    color: 'from-amber-50 to-yellow-50 dark:from-amber-500/5 dark:to-yellow-500/5',
+    borderColor: 'border-amber-200 dark:border-amber-500/20',
+  },
 ];
 
-const otherSponsors = [
-  { name: 'FOSS United', logo: null },
-  { name: 'Open Source India', logo: null },
-  { name: 'GDG Kolkata', logo: null },
+const smallTiers = [
+  { name: 'Silver', label: 'SILVER', color: 'border-gray-300 dark:border-gray-500/20' },
+  { name: 'Silver', label: 'SILVER', color: 'border-gray-300 dark:border-gray-500/20' },
+  { name: 'Silver', label: 'SILVER', color: 'border-gray-300 dark:border-gray-500/20' },
+  { name: 'Bronze', label: 'BRONZE', color: 'border-orange-200 dark:border-orange-500/20' },
+  { name: 'Bronze', label: 'BRONZE', color: 'border-orange-200 dark:border-orange-500/20' },
+  { name: 'Bronze', label: 'BRONZE', color: 'border-orange-200 dark:border-orange-500/20' },
 ];
 
 export default function Sponsors() {
@@ -27,69 +48,63 @@ export default function Sponsors() {
         <div className="mb-16 max-w-2xl">
           <div className="section-tag mb-6">
             <span className="green-dot" />
-            OUR SPONSORS
+            SPONSORS
           </div>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight mb-6 text-dark dark:text-white">
-            Together, we power
+            Backed by those who
             <br />
-            <span className="text-brand-green">open source.</span>
+            believe in{' '}
+            <span className="text-brand-green">open source</span>
           </h2>
           <p className="text-gray-secondary dark:text-gray-400 text-lg leading-relaxed">
-            We're grateful to our amazing sponsors and partners who help make this incredible gathering possible.
+            Sponsorship opportunities are open. Join us in making Bengal's biggest open source event a reality.
           </p>
         </div>
 
-        {/* Title Sponsor */}
-        <div className="mb-12">
-          <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-6">
-            TITLE SPONSOR
-          </p>
-          <div className="card max-w-sm p-8 hover:shadow-md transition-shadow">
-            <div className="flex mb-4">
-              {titleSponsor.logo ? (
-                <img src={titleSponsor.logo} alt={titleSponsor.name} className="h-8 object-contain dark:invert" />
-              ) : null}
+        {/* Diamond Tier */}
+        <div className="mb-8">
+          <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">DIAMOND</p>
+          <div className="sponsor-slot-card bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-500/5 dark:to-purple-500/5 border border-blue-200 dark:border-blue-500/20 rounded-2xl p-10 flex flex-col items-center justify-center text-center min-h-[140px] hover:shadow-md transition-all group cursor-pointer">
+            <div className="w-12 h-12 rounded-full border-2 border-dashed border-blue-300 dark:border-blue-500/30 flex items-center justify-center mb-3 group-hover:border-brand-green group-hover:bg-brand-green/10 transition-colors">
+              <Plus size={20} className="text-blue-300 dark:text-blue-500/50 group-hover:text-brand-green transition-colors" />
             </div>
-            <h3 className="font-heading font-extrabold text-3xl mb-2 text-dark dark:text-white">{titleSponsor.name}</h3>
-            <p className="text-gray-secondary dark:text-gray-400 text-sm">{titleSponsor.tagline}</p>
+            <span className="text-sm font-semibold text-gray-400 group-hover:text-dark dark:group-hover:text-white transition-colors">
+              Your Company Here
+            </span>
           </div>
         </div>
 
-        {/* Powered By */}
-        <div className="mb-12">
-          <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-6">
-            POWERED BY
-          </p>
-          <div className="flex flex-wrap gap-4">
-            {poweredBy.map((sponsor) => (
+        {/* Gold Tier */}
+        <div className="mb-8">
+          <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">GOLD</p>
+          <div className="grid grid-cols-3 gap-4">
+            {[1, 2, 3].map((i) => (
               <div
-                key={sponsor.name}
-                className="card py-4 px-6 min-w-[150px] flex items-center gap-3 hover:shadow-md transition-shadow"
+                key={i}
+                className="sponsor-slot-card bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-500/5 dark:to-yellow-500/5 border border-amber-200 dark:border-amber-500/20 rounded-2xl p-8 flex flex-col items-center justify-center text-center min-h-[100px] hover:shadow-md transition-all group cursor-pointer"
               >
-                {sponsor.logo ? (
-                  <img src={sponsor.logo} alt={sponsor.name} className="h-5 object-contain dark:invert" />
-                ) : (
-                  <div className="w-5 h-5 rounded bg-gray-200 dark:bg-white/10 flex-shrink-0" />
-                )}
-                <span className="font-heading font-bold text-sm text-dark dark:text-white">{sponsor.name}</span>
+                <div className="w-10 h-10 rounded-full border-2 border-dashed border-amber-300 dark:border-amber-500/30 flex items-center justify-center mb-2 group-hover:border-brand-green group-hover:bg-brand-green/10 transition-colors">
+                  <Plus size={16} className="text-amber-300 dark:text-amber-500/50 group-hover:text-brand-green transition-colors" />
+                </div>
+                <span className="text-xs font-semibold text-gray-400 group-hover:text-dark dark:group-hover:text-white transition-colors">Gold Sponsor</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Other Sponsors */}
+        {/* Silver + Bronze Tier */}
         <div className="mb-16">
-          <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-6">
-            SUPPORTED BY
-          </p>
-          <div className="flex flex-wrap gap-4">
-            {otherSponsors.map((sponsor) => (
+          <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">SILVER & BRONZE</p>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+            {smallTiers.map((tier, i) => (
               <div
-                key={sponsor.name}
-                className="card py-4 px-6 min-w-[150px] flex items-center gap-3 hover:shadow-md transition-shadow"
+                key={i}
+                className={`sponsor-slot-card border ${tier.color} rounded-xl p-4 flex flex-col items-center justify-center text-center min-h-[80px] hover:shadow-sm transition-all group cursor-pointer bg-gray-50/50 dark:bg-white/[0.02]`}
               >
-                <div className="w-5 h-5 rounded bg-gray-200 dark:bg-white/10 flex-shrink-0" />
-                <span className="font-heading font-bold text-sm text-dark dark:text-white">{sponsor.name}</span>
+                <div className="w-8 h-8 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center mb-1.5 group-hover:border-brand-green transition-colors">
+                  <Plus size={12} className="text-gray-300 dark:text-gray-600 group-hover:text-brand-green transition-colors" />
+                </div>
+                <span className="text-[10px] font-semibold text-gray-400">{tier.name}</span>
               </div>
             ))}
           </div>
@@ -99,14 +114,20 @@ export default function Sponsors() {
         <div className="card p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-gray-50 to-white dark:from-[#131C31] dark:to-[#131C31]/40">
           <div>
             <h3 className="font-heading font-bold text-lg md:text-xl mb-1 text-dark dark:text-white">
-              Want to be a part of our journey?
+              Become a Sponsor
             </h3>
             <p className="text-gray-secondary dark:text-gray-400 text-sm">
-              Partner with us and reach thousands of passionate developers.
+              Reach 800+ developers, CTOs, businesses and tech leaders in Bengal. Multiple tiers starting from ₹25,000.
             </p>
           </div>
-          <a href="#register" className="btn-primary text-sm py-2.5 px-5 flex-shrink-0">
-            Become a Sponsor <ArrowRight size={14} />
+          <a
+            href="https://drive.google.com/file/d/1RVrIZV0d6UskRM9k62cOlUU1A3J2pBg4/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary text-sm py-2.5 px-5 flex-shrink-0"
+          >
+            <FileText size={16} />
+            Sponsorship Deck Is Live <ArrowRight size={14} />
           </a>
         </div>
       </div>

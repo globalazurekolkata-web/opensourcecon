@@ -10,7 +10,7 @@ const features = [
 ];
 
 const stats = [
-  { icon: Users, target: 300, suffix: '+', label: 'Attendees' },
+  { icon: Users, target: 800, suffix: '+', label: 'Attendees' },
   { icon: Mic2, target: 40, suffix: '+', label: 'Speakers' },
   { icon: Network, target: 10, suffix: '+', label: 'Communities' },
   { icon: Calendar, target: 1, suffix: ' Day', label: 'Of Learning' },

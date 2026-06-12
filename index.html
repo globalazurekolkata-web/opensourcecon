@@ -4,9 +4,14 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="OpenSourceCon Kolkata — Where Kolkata meets open source. Join developers, maintainers, students, and innovators for a day of talks, workshops, networking, and collaboration." />
+    <meta name="description" content="Open Source Con Kolkata 2026 — Bengal's first dedicated open source conference. A full-day celebration of community, code, and collaboration. 5th December 2026, Kolkata." />
     <meta name="theme-color" content="#52D237" />
-    <title>OpenSourceCon Kolkata 2026 — Open Source Conference</title>
+    <meta name="keywords" content="open source, conference, Kolkata, Bengal, FOSS, Linux, Kubernetes, developers, community, 2026" />
+    <meta property="og:title" content="Open Source Con Kolkata 2026" />
+    <meta property="og:description" content="Bengal's first dedicated open source conference. Join 800+ developers for a day of talks, workshops, and collaboration." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://opensourcecon.in" />
+    <title>Open Source Con Kolkata 2026 — Bengal's Open Source Conference</title>
     <script>
       if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
@@ -21,5 +26,10 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- KonfHub Registration Widget (hidden, triggered by Register Now buttons) -->
+    <div id="konfhub-widget-trigger" style="position:fixed;bottom:20px;left:-300px;z-index:9999;">
+      <script src="https://widget.konfhub.com/widget.js" button_id="btn_d1721416a361"></script>
+    </div>
   </body>
 </html>
