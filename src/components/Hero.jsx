@@ -14,7 +14,7 @@ const floatingBadges = [
 
 export default function Hero() {
   return (
-    <section id="home" className="relative pt-40 pb-20 md:pt-44 lg:pt-48 lg:pb-28 overflow-hidden min-h-[90vh] flex items-center">
+    <section id="home" className="relative pt-40 pb-20 md:pt-44 lg:pt-48 lg:pb-28 overflow-hidden min-h-screen flex items-center">
       {/* Animated gradient orbs */}
       <div className="hero-orb hero-orb-1" aria-hidden="true" />
       <div className="hero-orb hero-orb-2" aria-hidden="true" />
@@ -57,7 +57,7 @@ export default function Hero() {
               <div className="flex flex-col gap-1 p-3.5 rounded-2xl bg-white/50 dark:bg-white/[0.02] backdrop-blur-md border border-gray-100 dark:border-white/5 hover:border-brand-green/20 hover:shadow-md hover:shadow-brand-green/2 transition-all duration-300 group">
                 <MapPin size={16} className="text-brand-green group-hover:scale-110 transition-transform duration-300" />
                 <span className="text-[10px] text-gray-secondary dark:text-gray-400 font-semibold uppercase tracking-wider mt-1.5">Venue</span>
-                <span className="text-xs font-extrabold text-dark dark:text-white mt-0.5">Kolkata, WB</span>
+                <span className="text-xs font-extrabold text-dark dark:text-white mt-0.5">Kolkata</span>
               </div>
             </div>
 
@@ -67,18 +67,18 @@ export default function Hero() {
                 Register Now <ArrowRight size={18} />
               </button>
               <a
-                href="https://forms.gle/tFUzkFuCyb1heshu9"
+                href="https://forms.fillout.com/t/2sKNq3RM68us"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary text-base py-3.5 px-7"
               >
-                Submit Talk
+                Become a Sponsor
               </a>
             </div>
           </div>
 
           {/* Right Visual - Redesigned Network Orbit & Floating Previews */}
-          <div className="relative flex items-center justify-center lg:justify-end">
+          <div className="hidden lg:flex relative items-center justify-end">
             {/* Glowing background aura */}
             <div className="absolute w-[300px] h-[300px] rounded-full bg-brand-green/10 dark:bg-brand-green/5 blur-3xl pointer-events-none z-0" />
 
@@ -147,15 +147,20 @@ export default function Hero() {
 
               {/* 3D Floating Glass Cards */}
               {/* Speaker CFP Badge */}
-              <div className="absolute -top-[5%] -left-[10%] p-3 rounded-2xl bg-white/70 dark:bg-[#131C31]/70 backdrop-blur-md border border-gray-200/50 dark:border-white/10 shadow-xl flex items-center gap-2.5 animate-float-slow max-w-[170px] pointer-events-auto hover:border-brand-green/40 transition-all duration-300">
+              <a 
+                href="https://forms.fillout.com/t/2sKNq3RM68us"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute -top-[5%] -left-[10%] p-3 rounded-2xl bg-white/70 dark:bg-[#131C31]/70 backdrop-blur-md border border-gray-200/50 dark:border-white/10 shadow-xl flex items-center gap-2.5 animate-float-slow max-w-[170px] pointer-events-auto hover:border-brand-green/40 transition-all duration-300"
+              >
                 <div className="w-7 h-7 rounded-xl bg-brand-green/10 flex items-center justify-center font-bold text-xs text-brand-green">
-                  📢
+                  🤝
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[9px] text-gray-secondary dark:text-gray-400 font-semibold uppercase tracking-wider leading-none">CFP Open</p>
-                  <p className="text-xs font-extrabold text-dark dark:text-white truncate mt-1">Submit Talk →</p>
+                  <p className="text-[9px] text-gray-secondary dark:text-gray-400 font-semibold uppercase tracking-wider leading-none">Sponsors</p>
+                  <p className="text-xs font-extrabold text-dark dark:text-white truncate mt-1">Sponsor OSCI</p>
                 </div>
-              </div>
+              </a>
 
               {/* Attendee Registrations Badge */}
               <div className="absolute -bottom-[5%] -right-[5%] p-3 rounded-2xl bg-white/70 dark:bg-[#131C31]/70 backdrop-blur-md border border-gray-200/50 dark:border-white/10 shadow-xl flex items-center gap-2.5 animate-float-reverse max-w-[170px] pointer-events-auto hover:border-brand-green/40 transition-all duration-300">
