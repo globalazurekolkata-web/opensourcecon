@@ -28,15 +28,20 @@ body {
 /* ===== Grid Background ===== */
 .grid-bg {
   background-image:
+    linear-gradient(to bottom, #FAFBFC 100px, transparent 180px),
     linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 64px 64px;
+  background-size: 100% 180px, 64px 64px, 64px 64px;
+  background-repeat: no-repeat, repeat, repeat;
 }
 
 .dark .grid-bg {
   background-image:
+    linear-gradient(to bottom, #080C16 100px, transparent 180px),
     linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 180px, 64px 64px, 64px 64px;
+  background-repeat: no-repeat, repeat, repeat;
 }
 
 /* ===== Section Tag ===== */

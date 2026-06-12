@@ -17,7 +17,9 @@ import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
-    <div className="grid-bg min-h-screen relative">
+    <div className="min-h-screen relative">
+      {/* Grid background layer with top fade-out */}
+      <div className="grid-bg absolute inset-0 pointer-events-none z-0" />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-brand-green focus:text-dark focus:font-semibold focus:rounded-xl focus:shadow-lg focus:outline-none"
