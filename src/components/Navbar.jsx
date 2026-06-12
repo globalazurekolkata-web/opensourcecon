@@ -134,9 +134,6 @@ export default function Navbar() {
               alt="OpenSourceCon"
               className="h-7 object-contain dark:invert"
             />
-            <span className="text-[10px] text-gray-secondary dark:text-gray-400 font-semibold leading-none border-l border-gray-200 dark:border-white/10 pl-2.5 self-center py-1 hidden sm:block">
-              Kolkata '26
-            </span>
           </a>
 
           {/* Desktop Nav Links */}
