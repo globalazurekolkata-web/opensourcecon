@@ -27,18 +27,18 @@ export default function Footer() {
               <img
                 src="/images/logo.png"
                 alt="OpenSourceCon Logo"
-                className="h-10 w-auto object-contain select-none"
+                className="h-12 lg:h-14 w-auto object-contain select-none"
               />
               <img
                 src="/images/logo text dark.png"
                 alt="OpenSourceCon"
-                className="h-8 w-auto object-contain select-none"
+                className="h-[34px] lg:h-[38px] w-auto object-contain select-none"
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm font-body">
               Bengal's community-driven open source conference. By the people, for the people. Built on the foundations of collaboration, transparency, and the free exchange of knowledge.
             </p>
-            <div className="flex gap-3 pt-2">
+            <div className="flex gap-5 pt-2">
               {socialLinks.map(({ iconName, href, label }) => {
                 const Icon = iconMap[iconName];
                 return (
@@ -48,9 +48,9 @@ export default function Footer() {
                     aria-label={label}
                     target={href !== '#' ? '_blank' : undefined}
                     rel={href !== '#' ? 'noopener noreferrer' : undefined}
-                    className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-gray-400 hover:bg-brand-green hover:text-dark hover:border-brand-green hover:scale-105 hover:shadow-lg hover:shadow-brand-green/20 transition-all duration-300"
+                    className="text-gray-400 hover:text-brand-green hover:scale-110 transition-all duration-300 flex items-center justify-center"
                   >
-                    {Icon && <Icon className="w-4 h-4" />}
+                    {Icon && <Icon size={20} />}
                   </a>
                 );
               })}
