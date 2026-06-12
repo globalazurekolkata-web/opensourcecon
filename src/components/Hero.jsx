@@ -58,7 +58,9 @@ export default function Hero() {
                 <br />
                 Meets
                 <br />
-                <span className="text-brand-green">Open Source</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-green via-[#86EF4D] to-[#3DB82A] bg-200% animate-gradient-shift">
+                  Open Source
+                </span>
               </h1>
             </div>
 
@@ -67,19 +69,22 @@ export default function Hero() {
               Bengal's first dedicated open source conference. A full-day celebration of community, code, and collaboration — built by the people, for the people.
             </p>
 
-            {/* Event meta */}
-            <div className="flex flex-wrap gap-4 text-sm">
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                <CalendarDays size={14} className="text-brand-green" />
-                <span className="font-semibold text-dark dark:text-white">5th Dec 2026</span>
+            {/* Event meta grid */}
+            <div className="grid grid-cols-3 gap-3 md:gap-4 max-w-md">
+              <div className="flex flex-col gap-1 p-3.5 rounded-2xl bg-white/50 dark:bg-white/[0.02] backdrop-blur-md border border-gray-100 dark:border-white/5 hover:border-brand-green/20 hover:shadow-md hover:shadow-brand-green/2 transition-all duration-300 group">
+                <CalendarDays size={16} className="text-brand-green group-hover:scale-110 transition-transform duration-300" />
+                <span className="text-[10px] text-gray-secondary dark:text-gray-400 font-semibold uppercase tracking-wider mt-1.5">Date</span>
+                <span className="text-xs font-extrabold text-dark dark:text-white mt-0.5">5th Dec 2026</span>
               </div>
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                <Clock size={14} className="text-brand-green" />
-                <span className="font-semibold text-dark dark:text-white">Full Day</span>
+              <div className="flex flex-col gap-1 p-3.5 rounded-2xl bg-white/50 dark:bg-white/[0.02] backdrop-blur-md border border-gray-100 dark:border-white/5 hover:border-brand-green/20 hover:shadow-md hover:shadow-brand-green/2 transition-all duration-300 group">
+                <Clock size={16} className="text-brand-green group-hover:scale-110 transition-transform duration-300" />
+                <span className="text-[10px] text-gray-secondary dark:text-gray-400 font-semibold uppercase tracking-wider mt-1.5">Duration</span>
+                <span className="text-xs font-extrabold text-dark dark:text-white mt-0.5">Full Day</span>
               </div>
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                <MapPin size={14} className="text-brand-green" />
-                <span className="font-semibold text-dark dark:text-white">Kolkata, WB</span>
+              <div className="flex flex-col gap-1 p-3.5 rounded-2xl bg-white/50 dark:bg-white/[0.02] backdrop-blur-md border border-gray-100 dark:border-white/5 hover:border-brand-green/20 hover:shadow-md hover:shadow-brand-green/2 transition-all duration-300 group">
+                <MapPin size={16} className="text-brand-green group-hover:scale-110 transition-transform duration-300" />
+                <span className="text-[10px] text-gray-secondary dark:text-gray-400 font-semibold uppercase tracking-wider mt-1.5">Venue</span>
+                <span className="text-xs font-extrabold text-dark dark:text-white mt-0.5">Kolkata, WB</span>
               </div>
             </div>
 
@@ -122,9 +127,12 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Visual - Network Orbit */}
+          {/* Right Visual - Redesigned Network Orbit & Floating Previews */}
           <div className="relative flex items-center justify-center lg:justify-end">
-            <div className="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px]">
+            {/* Glowing background aura */}
+            <div className="absolute w-[300px] h-[300px] rounded-full bg-brand-green/10 dark:bg-brand-green/5 blur-3xl pointer-events-none z-0" />
+
+            <div className="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px] z-10">
               {/* Outer ring */}
               <div className="absolute inset-0 rounded-full border border-gray-200 dark:border-white/5 hero-ring-spin" />
               {/* Middle ring */}
@@ -132,10 +140,10 @@ export default function Hero() {
               {/* Inner ring */}
               <div className="absolute inset-16 rounded-full border border-gray-200/50 dark:border-white/5" />
 
-              {/* Center circle */}
+              {/* Center pulsing cyber-core */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-white dark:bg-[#131C31] flex items-center justify-center shadow-lg border border-gray-100/50 dark:border-white/10">
-                  <div className="w-18 h-18 md:w-20 md:h-20 rounded-full bg-brand-green flex items-center justify-center shadow-inner">
+                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-white dark:bg-[#131C31] flex items-center justify-center shadow-xl border border-gray-100/50 dark:border-white/10">
+                  <div className="w-18 h-18 md:w-20 md:h-20 rounded-full bg-brand-green flex items-center justify-center shadow-lg hover:rotate-180 transition-transform duration-700">
                     <span className="text-white text-2xl md:text-3xl font-mono font-extrabold">&lt;/&gt;</span>
                   </div>
                 </div>
@@ -143,48 +151,39 @@ export default function Hero() {
 
               {/* Orbital nodes */}
               {/* Top */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 hover:scale-110 transition-transform cursor-pointer">
                 <div className="w-10 h-10 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#52D237" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
                 </div>
               </div>
               {/* Right */}
-              <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1">
+              <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1 hover:scale-110 transition-transform cursor-pointer">
                 <div className="w-10 h-10 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#52D237" strokeWidth="2"><circle cx="12" cy="12" r="3" /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" /></svg>
                 </div>
               </div>
               {/* Bottom */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 hover:scale-110 transition-transform cursor-pointer">
                 <div className="w-10 h-10 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#52D237" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /></svg>
                 </div>
               </div>
               {/* Left */}
-              <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1">
+              <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1 hover:scale-110 transition-transform cursor-pointer">
                 <div className="w-10 h-10 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#52D237" strokeWidth="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" /></svg>
                 </div>
               </div>
+
               {/* Accent dots */}
               <div className="absolute top-[12%] right-[12%]">
                 <div className="w-8 h-8 rounded-full bg-brand-green/10 border border-brand-green/30 flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-brand-green" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-brand-green animate-ping" />
                 </div>
               </div>
               <div className="absolute bottom-[12%] left-[12%]">
                 <div className="w-8 h-8 rounded-full bg-brand-green/10 border border-brand-green/30 flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-brand-green" />
-                </div>
-              </div>
-              <div className="absolute top-[20%] left-[8%]">
-                <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-gray-400" />
-                </div>
-              </div>
-              <div className="absolute bottom-[20%] right-[8%]">
-                <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-gray-400" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-brand-green animate-ping" />
                 </div>
               </div>
 
@@ -195,6 +194,29 @@ export default function Hero() {
                 <line x1="200" y1="345" x2="200" y2="250" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
                 <line x1="55" y1="200" x2="150" y2="200" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
               </svg>
+
+              {/* 3D Floating Glass Cards */}
+              {/* Speaker CFP Badge */}
+              <div className="absolute -top-[5%] -left-[10%] p-3 rounded-2xl bg-white/70 dark:bg-[#131C31]/70 backdrop-blur-md border border-gray-200/50 dark:border-white/10 shadow-xl flex items-center gap-2.5 animate-float-slow max-w-[170px] pointer-events-auto hover:border-brand-green/40 transition-all duration-300">
+                <div className="w-7 h-7 rounded-xl bg-brand-green/10 flex items-center justify-center font-bold text-xs text-brand-green">
+                  📢
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[9px] text-gray-secondary dark:text-gray-400 font-semibold uppercase tracking-wider leading-none">CFP Open</p>
+                  <p className="text-xs font-extrabold text-dark dark:text-white truncate mt-1">Submit Talk →</p>
+                </div>
+              </div>
+
+              {/* Attendee Registrations Badge */}
+              <div className="absolute -bottom-[5%] -right-[5%] p-3 rounded-2xl bg-white/70 dark:bg-[#131C31]/70 backdrop-blur-md border border-gray-200/50 dark:border-white/10 shadow-xl flex items-center gap-2.5 animate-float-reverse max-w-[170px] pointer-events-auto hover:border-brand-green/40 transition-all duration-300">
+                <div className="w-7 h-7 rounded-xl bg-brand-green/10 flex items-center justify-center font-bold text-xs text-brand-green">
+                  🚀
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[9px] text-gray-secondary dark:text-gray-400 font-semibold uppercase tracking-wider leading-none">Attendees</p>
+                  <p className="text-xs font-extrabold text-dark dark:text-white truncate mt-1">800+ Expected</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
