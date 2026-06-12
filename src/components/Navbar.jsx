@@ -139,7 +139,12 @@ export default function Navbar() {
             <img
               src="/images/logo text.png"
               alt="OpenSourceCon"
-              className="h-[38px] -ml-2 w-auto object-contain dark:invert"
+              className="h-[38px] -ml-2 w-auto object-contain dark:hidden"
+            />
+            <img
+              src="/images/logo text dark.png"
+              alt="OpenSourceCon"
+              className="h-[38px] -ml-2 w-auto object-contain hidden dark:block"
             />
           </a>
 

@@ -51,9 +51,9 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
               <img
-                src="/images/logo text.png"
+                src="/images/logo text dark.png"
                 alt="OpenSourceCon"
-                className="h-7 object-contain invert"
+                className="h-[30px] object-contain"
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
