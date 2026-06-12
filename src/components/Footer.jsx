@@ -1,4 +1,5 @@
-import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, Loader2, Check } from 'lucide-react';
 import { openKonfHub } from '../utils/konfhub';
 import { GithubIcon, TwitterIcon, LinkedinIcon, InstagramIcon } from './icons/SocialIcons';
 import { footerLinks, socialLinks } from '../data/footer';
@@ -11,6 +12,37 @@ const iconMap = {
 };
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState(''); // '', 'loading', 'success', 'error'
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setMessage('');
+
+    if (!email) {
+      setStatus('error');
+      setMessage('Please enter your email.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setStatus('error');
+      setMessage('Please enter a valid email address.');
+      return;
+    }
+
+    setStatus('loading');
+    
+    // Simulate API request
+    setTimeout(() => {
+      setStatus('success');
+      setMessage('Subscribed successfully! 🎉');
+      setEmail('');
+    }, 1500);
+  };
+
   return (
     <footer className="bg-dark text-white pt-16 pb-8">
       <div className="max-w-container mx-auto px-6 lg:px-8">
@@ -76,16 +108,37 @@ export default function Footer() {
               <h4 className="font-heading font-bold text-sm mb-1">Stay in the loop</h4>
               <p className="text-gray-500 text-xs">Get updates about OpenSourceCon Kolkata — no spam, only what matters.</p>
             </div>
-            <div className="flex gap-2 w-full md:w-auto">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="flex-1 md:w-56 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-brand-green/50"
-              />
-              <button className="px-5 py-2.5 rounded-xl bg-brand-green text-dark text-sm font-semibold hover:bg-brand-green-dark transition-colors flex items-center gap-1">
-                Subscribe <ArrowRight size={14} />
-              </button>
-            </div>
+            <form onSubmit={handleSubmit} className="w-full md:w-auto space-y-2">
+              <div className="flex gap-2 w-full md:w-auto">
+                <input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  disabled={status === 'loading'}
+                  className="flex-1 md:w-56 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-brand-green/50 disabled:opacity-50 transition-all"
+                />
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="px-5 py-2.5 rounded-xl bg-brand-green text-dark text-sm font-semibold hover:bg-brand-green-dark transition-colors flex items-center justify-center gap-1.5 disabled:bg-brand-green/80 min-w-[110px]"
+                >
+                  {status === 'loading' ? (
+                    <Loader2 size={14} className="animate-spin" />
+                  ) : status === 'success' ? (
+                    <Check size={14} />
+                  ) : (
+                    <ArrowRight size={14} />
+                  )}
+                  {status === 'loading' ? 'Subbing...' : status === 'success' ? 'Subbed!' : 'Subscribe'}
+                </button>
+              </div>
+              {message && (
+                <p className={`text-xs ${status === 'error' ? 'text-red-400' : 'text-brand-green'} animate-fade-up`}>
+                  {message}
+                </p>
+              )}
+            </form>
           </div>
         </div>
 
