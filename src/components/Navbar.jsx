@@ -128,18 +128,18 @@ export default function Navbar() {
       <div className="max-w-container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 flex-shrink-0 group/logo">
+          <a href="#home" className="flex items-center gap-3.5 flex-shrink-0 group/logo">
             <div className="relative flex items-center justify-center">
               <img
                 src="/images/logo.png"
                 alt="OpenSourceCon Logo"
-                className="h-10 w-auto object-contain transition-transform duration-300 group-hover/logo:scale-110"
+                className="h-14 w-auto object-contain transition-transform duration-300 group-hover/logo:scale-105"
               />
             </div>
             <img
               src="/images/logo text.png"
               alt="OpenSourceCon"
-              className="h-8 w-auto object-contain dark:invert transition-all duration-300"
+              className="h-[38px] w-auto object-contain dark:invert transition-all duration-300"
             />
           </a>
 
@@ -158,15 +158,17 @@ export default function Navbar() {
                       : 'text-gray-600 dark:text-gray-400 hover:text-dark dark:hover:text-white'
                   }`}
                 >
-                  <span className="relative z-10">{link.label}</span>
-                  {/* Underline indicator */}
-                  <span
-                    className={`absolute bottom-0 left-4 right-4 h-[3px] rounded-full transition-all duration-300 ease-out origin-center ${
-                      isActive
-                        ? 'bg-brand-green scale-x-100 opacity-100'
-                        : 'bg-brand-green/30 scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'
-                    }`}
-                  />
+                  <span className="relative py-1.5">
+                    {link.label}
+                    {/* Underline indicator */}
+                    <span
+                      className={`absolute bottom-0 left-0 right-0 h-[3px] rounded-full transition-all duration-300 ease-out origin-center ${
+                        isActive
+                          ? 'bg-brand-green scale-x-100 opacity-100'
+                          : 'bg-brand-green/30 scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'
+                      }`}
+                    />
+                  </span>
                 </a>
               );
             })}
