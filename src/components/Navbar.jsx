@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X, Moon, Sun, ArrowRight, Calendar, MapPin } from 'lucide-react';
 import { openKonfHub } from '../utils/konfhub';
 import { navLinks } from '../data/navLinks';
 
@@ -152,18 +152,18 @@ export default function Navbar() {
               <img
                 src="/images/logo.png"
                 alt="OpenSourceCon Logo"
-                className="h-14 w-auto object-contain"
+                className="h-11 lg:h-14 w-auto object-contain"
               />
             </div>
             <img
               src="/images/logo text.png"
               alt="OpenSourceCon"
-              className="h-[38px] -ml-2 w-auto object-contain dark:hidden"
+              className="h-7 lg:h-[38px] -ml-2 w-auto object-contain dark:hidden"
             />
             <img
               src="/images/logo text dark.png"
               alt="OpenSourceCon"
-              className="h-[38px] -ml-2 w-auto object-contain hidden dark:block"
+              className="h-7 lg:h-[38px] -ml-2 w-auto object-contain hidden dark:block"
             />
           </a>
 
@@ -224,40 +224,80 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div ref={mobileMenuRef} className="lg:hidden bg-white dark:bg-dark border-t border-gray-100 dark:border-white/5 shadow-lg">
-          <div className="px-6 py-4 space-y-1">
-            {navLinks.map((link) => {
+      {/* Mobile Menu Dropdown Overlay */}
+      <div
+        ref={mobileMenuRef}
+        className={`lg:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-dark/95 backdrop-blur-xl border-t border-gray-100 dark:border-white/5 shadow-2xl transition-all duration-300 ease-out origin-top max-h-[calc(100vh-80px)] overflow-y-auto ${
+          mobileOpen
+            ? 'opacity-100 scale-y-100 pointer-events-auto'
+            : 'opacity-0 scale-y-95 pointer-events-none'
+        }`}
+      >
+        <div className="px-6 py-6 space-y-6">
+          {/* Primary Nav Links */}
+          <div className="space-y-2">
+            {navLinks.map((link, i) => {
               const linkId = link.href.replace('#', '');
               const isActive = activeSection === linkId;
+              const numStr = String(i + 1).padStart(2, '0');
               return (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`relative block py-3 text-sm font-medium rounded-xl transition-all duration-300 ${
+                  className={`group relative flex items-center justify-between py-3 px-4 rounded-xl transition-all duration-200 ${
                     isActive
-                      ? 'text-brand-green font-bold bg-brand-green/5 pl-7 pr-4'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-dark dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5 pl-4 pr-4'
+                      ? 'bg-brand-green/10 text-brand-green font-bold pl-5'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 pl-4'
                   }`}
                 >
-                  {isActive && (
-                    <span className="absolute left-2.5 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-brand-green rounded-full" />
-                  )}
-                  {link.label}
+                  <div className="flex items-center gap-3">
+                    <span className={`text-[10px] font-mono font-semibold tracking-wider ${
+                      isActive ? 'text-brand-green' : 'text-gray-400 dark:text-gray-500'
+                    }`}>
+                      {numStr}
+                    </span>
+                    <span className="text-sm font-semibold tracking-tight">{link.label}</span>
+                  </div>
+                  <ArrowRight
+                    size={14}
+                    className={`transition-all duration-200 ${
+                      isActive
+                        ? 'opacity-100 translate-x-0'
+                        : 'opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0'
+                    }`}
+                  />
                 </a>
               );
             })}
+          </div>
+
+          {/* Registration CTA */}
+          <div className="pt-2">
             <button
               onClick={(e) => { setMobileOpen(false); openKonfHub(e); }}
-              className="block w-full text-center btn-primary mt-3 py-3"
+              className="w-full flex items-center justify-center gap-2 btn-primary py-3.5 shadow-lg shadow-brand-green/10"
             >
-              Register Now →
+              <span>Register Now</span>
+              <ArrowRight size={16} />
             </button>
           </div>
+
+          {/* Event Details & Footer */}
+          <div className="pt-4 border-t border-gray-100 dark:border-white/5 space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                <Calendar size={14} className="text-brand-green flex-shrink-0" />
+                <span className="font-semibold text-dark dark:text-white/80">5th Dec 2026</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                <MapPin size={14} className="text-brand-green flex-shrink-0" />
+                <span className="font-semibold text-dark dark:text-white/80">Kolkata, India</span>
+              </div>
+            </div>
+          </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
