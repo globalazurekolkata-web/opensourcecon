@@ -14,7 +14,7 @@ const floatingBadges = [
 
 export default function Hero() {
   return (
-    <section id="home" className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden min-h-[90vh] flex items-center">
+    <section id="home" className="relative pt-40 pb-20 md:pt-44 lg:pt-48 lg:pb-28 overflow-hidden min-h-[90vh] flex items-center">
       {/* Animated gradient orbs */}
       <div className="hero-orb hero-orb-1" aria-hidden="true" />
       <div className="hero-orb hero-orb-2" aria-hidden="true" />

@@ -209,7 +209,7 @@ export default function Navbar() {
             </button>
             <button
               onClick={openKonfHub}
-              className="hidden sm:inline-flex btn-primary text-sm py-2.5 px-5"
+              className="hidden md:inline-flex btn-primary text-sm py-2.5 px-5"
             >
               Register Now →
             </button>
