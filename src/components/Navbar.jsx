@@ -7,11 +7,24 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dark, setDark] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
   const mobileMenuRef = useRef(null);
 
   useEffect(() => {
     const isDark = document.documentElement.classList.contains('dark');
     setDark(isDark);
+  }, []);
+
+  // Track page scroll to apply transparency/translucency
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Track active section on scroll
@@ -124,7 +137,13 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="relative w-full bg-white dark:bg-dark/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5">
+    <nav
+      className={`relative w-full transition-all duration-300 ${
+        scrolled || mobileOpen
+          ? 'bg-white/80 dark:bg-dark/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 shadow-sm'
+          : 'bg-transparent border-b border-transparent dark:border-transparent'
+      }`}
+    >
       <div className="max-w-full mx-auto px-6 md:px-12 lg:px-16">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
