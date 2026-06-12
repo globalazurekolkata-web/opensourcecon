@@ -152,18 +152,18 @@ export default function Navbar() {
               <img
                 src="/images/logo.png"
                 alt="OpenSourceCon Logo"
-                className="h-14 w-auto object-contain"
+                className="h-11 lg:h-14 w-auto object-contain"
               />
             </div>
             <img
               src="/images/logo text.png"
               alt="OpenSourceCon"
-              className="h-[38px] -ml-2 w-auto object-contain dark:hidden"
+              className="h-7 lg:h-[38px] -ml-2 w-auto object-contain dark:hidden"
             />
             <img
               src="/images/logo text dark.png"
               alt="OpenSourceCon"
-              className="h-[38px] -ml-2 w-auto object-contain hidden dark:block"
+              className="h-7 lg:h-[38px] -ml-2 w-auto object-contain hidden dark:block"
             />
           </a>
 
@@ -226,7 +226,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div ref={mobileMenuRef} className="lg:hidden bg-white dark:bg-dark border-t border-gray-100 dark:border-white/5 shadow-lg">
+        <div ref={mobileMenuRef} className="lg:hidden bg-white dark:bg-dark border-t border-gray-100 dark:border-white/5 shadow-lg max-h-[calc(100vh-120px)] overflow-y-auto">
           <div className="px-6 py-4 space-y-1">
             {navLinks.map((link) => {
               const linkId = link.href.replace('#', '');
