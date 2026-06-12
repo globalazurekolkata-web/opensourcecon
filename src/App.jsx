@@ -13,6 +13,7 @@ import AnnouncementCTA from './components/AnnouncementCTA';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import RevealOnScroll from './components/RevealOnScroll';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
@@ -53,6 +54,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }

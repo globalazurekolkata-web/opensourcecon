@@ -1,6 +1,7 @@
 import { ArrowRight, CalendarDays, MapPin, Clock, Users } from 'lucide-react';
 import CountUp from './CountUp';
 import { openKonfHub } from '../utils/konfhub';
+import CountdownTimer from './CountdownTimer';
 
 const floatingBadges = [
   { text: '#OpenSource', left: '8%', top: '30%', duration: '12s', delay: '0s' },
@@ -80,6 +81,11 @@ export default function Hero() {
                 <MapPin size={14} className="text-brand-green" />
                 <span className="font-semibold text-dark dark:text-white">Kolkata, WB</span>
               </div>
+            </div>
+
+            {/* Countdown Timer */}
+            <div className="pt-2">
+              <CountdownTimer />
             </div>
 
             {/* Buttons */}
@@ -192,6 +198,14 @@ export default function Hero() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="scroll-indicator-container hidden md:flex" aria-hidden="true">
+        <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-gray-secondary dark:text-gray-400">
+          Explore
+        </span>
+        <div className="scroll-line-indicator" />
       </div>
     </section>
   );
