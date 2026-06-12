@@ -125,7 +125,7 @@ export default function Navbar() {
 
   return (
     <nav className="relative w-full bg-white dark:bg-dark/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5">
-      <div className="max-w-container mx-auto px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-6 md:px-12 lg:px-16">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-1 flex-shrink-0 group/logo">
