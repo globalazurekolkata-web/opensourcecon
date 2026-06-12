@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Loader2, Check } from 'lucide-react';
-import { openKonfHub } from '../utils/konfhub';
+import { X } from 'lucide-react';
 import { GithubIcon, TwitterIcon, LinkedinIcon, InstagramIcon } from './icons/SocialIcons';
 import { footerLinks, socialLinks } from '../data/footer';
 
@@ -12,36 +11,7 @@ const iconMap = {
 };
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState(''); // '', 'loading', 'success', 'error'
-  const [message, setMessage] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setMessage('');
-
-    if (!email) {
-      setStatus('error');
-      setMessage('Please enter your email.');
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setStatus('error');
-      setMessage('Please enter a valid email address.');
-      return;
-    }
-
-    setStatus('loading');
-    
-    // Simulate API request
-    setTimeout(() => {
-      setStatus('success');
-      setMessage('Subscribed successfully! 🎉');
-      setEmail('');
-    }, 1500);
-  };
+  const [activeModal, setActiveModal] = useState(null); // null, 'coc', 'privacy'
 
   return (
     <footer className="bg-dark text-white pt-20 pb-10 border-t border-white/[0.06] relative overflow-hidden">
@@ -90,7 +60,7 @@ export default function Footer() {
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title} className="space-y-4">
-              <h4 className="font-heading font-bold text-xs tracking-wider text-gray-300 uppercase">{title}</h4>
+              <h4 className="font-mono font-bold text-[11px] tracking-widest text-brand-green/90 uppercase">{title}</h4>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
@@ -111,61 +81,6 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Newsletter Glassmorphic Card */}
-        <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-md p-8 lg:p-10 mb-12">
-          {/* Inner glowing radial pattern */}
-          <div className="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-brand-green/[0.03] blur-[60px] pointer-events-none" />
-          
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div className="space-y-2">
-              <span className="text-[10px] font-mono font-bold tracking-widest text-brand-green uppercase">
-                Stay Connected
-              </span>
-              <h3 className="font-heading text-xl md:text-2xl font-bold text-white tracking-tight">
-                Stay in the loop
-              </h3>
-              <p className="text-gray-400 text-sm max-w-md leading-relaxed">
-                Get updates about OpenSourceCon Kolkata — no spam, only what matters.
-              </p>
-            </div>
-            
-            <div className="w-full lg:max-w-md space-y-3">
-              <form onSubmit={handleSubmit} className="relative flex items-center w-full">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  disabled={status === 'loading'}
-                  className="w-full pl-4 pr-32 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-brand-green/50 focus:bg-white/[0.06] focus:ring-1 focus:ring-brand-green/20 disabled:opacity-50 transition-all duration-300"
-                  required
-                />
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="absolute right-1.5 top-1.5 bottom-1.5 px-5 rounded-lg bg-brand-green text-dark text-xs font-semibold hover:bg-brand-green-dark transition-all duration-200 flex items-center justify-center gap-1.5 disabled:bg-brand-green/80"
-                >
-                  {status === 'loading' ? (
-                    <Loader2 size={12} className="animate-spin" />
-                  ) : status === 'success' ? (
-                    <Check size={12} />
-                  ) : (
-                    <>
-                      <span>Subscribe</span>
-                      <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
-                    </>
-                  )}
-                </button>
-              </form>
-              {message && (
-                <p className={`text-xs ${status === 'error' ? 'text-red-400' : 'text-brand-green'} px-1 animate-fade-up`}>
-                  {message}
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-
         {/* Divider */}
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent mb-8" />
 
@@ -175,15 +90,126 @@ export default function Footer() {
             © 2026 Open Source Con Kolkata
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors duration-300">
+            <button
+              onClick={() => setActiveModal('coc')}
+              className="text-xs text-gray-500 hover:text-white transition-colors duration-300 bg-transparent border-0 cursor-pointer p-0 focus:outline-none"
+            >
               Code of Conduct
-            </a>
-            <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors duration-300">
+            </button>
+            <button
+              onClick={() => setActiveModal('privacy')}
+              className="text-xs text-gray-500 hover:text-white transition-colors duration-300 bg-transparent border-0 cursor-pointer p-0 focus:outline-none"
+            >
               Privacy Policy
-            </a>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Modal Popup */}
+      {activeModal && (
+        <div 
+          className="fixed inset-0 bg-dark/80 backdrop-blur-md z-[100] flex items-center justify-center p-4 animate-fade-in"
+          onClick={() => setActiveModal(null)}
+        >
+          <div 
+            className="bg-[#0b1020] border border-white/10 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl relative overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Glow orb inside modal */}
+            <div className="absolute w-[200px] h-[200px] rounded-full bg-brand-green/10 blur-[60px] pointer-events-none -top-10 -left-10" />
+
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 relative z-10">
+              <h3 className="font-heading font-bold text-lg text-white">
+                {activeModal === 'coc' ? 'Code of Conduct' : 'Privacy Policy'}
+              </h3>
+              <button 
+                onClick={() => setActiveModal(null)}
+                className="text-gray-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/5"
+                aria-label="Close modal"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto px-6 py-6 text-gray-300 text-sm space-y-5 leading-relaxed font-body relative z-10 scrollbar-thin">
+              {activeModal === 'coc' ? (
+                <>
+                  <section className="space-y-2">
+                    <h4 className="text-white font-semibold font-heading text-base">Importance</h4>
+                    <p>
+                      We believe in the value and importance of an environment where everyone feels welcome and safe. 
+                      This Code of Conduct explains what type of behaviour is expected from members who will be a part of 
+                      OpenSourceCon Kolkata events. All attendees, sponsors, speakers, and volunteers are required to follow this 
+                      code of conduct. These are non-negotiable and we expect cooperation from all the participants.
+                    </p>
+                  </section>
+                  <section className="space-y-2">
+                    <h4 className="text-white font-semibold font-heading text-base">Expected Behaviour</h4>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>You will behave in a way as to create a safe and supportive environment for all event participants.</li>
+                      <li>You will not engage in disruptive behaviour or speech or otherwise interfere with the event or other individuals’ participation.</li>
+                      <li>You will not harass anyone based on gender, gender identity, sexual orientation, disability, race, age, religion, or technology choices.</li>
+                      <li>Sexualised language and imagery is not appropriate for any event, including talks, workshops, and online media.</li>
+                    </ul>
+                  </section>
+                  <section className="space-y-2">
+                    <h4 className="text-white font-semibold font-heading text-base">Consequences</h4>
+                    <p>
+                      If any breach or misconduct comes to our notice, participants engaging in misconduct will be sanctioned or 
+                      expelled from the event immediately without a refund at the discretion of the organizers. 
+                      If you are being harassed or notice someone else being harassed, please contact one of the organizers immediately.
+                    </p>
+                  </section>
+                </>
+              ) : (
+                <>
+                  <section className="space-y-2">
+                    <h4 className="text-white font-semibold font-heading text-base">Information We Collect</h4>
+                    <p>
+                      When you register for OpenSourceCon Kolkata, we collect personal information such as your name, email address, 
+                      company name, designation, and other professional details. This collection is done primarily via the KonfHub registration widget.
+                    </p>
+                  </section>
+                  <section className="space-y-2">
+                    <h4 className="text-white font-semibold font-heading text-base">How We Use Information</h4>
+                    <p>
+                      We use the information we collect to manage your registration, issue entry tickets, send updates about the conference, 
+                      facilitate speaker interactions, and ensure a smooth event check-in experience. We will never sell your personal data.
+                    </p>
+                  </section>
+                  <section className="space-y-2">
+                    <h4 className="text-white font-semibold font-heading text-base">GDPR Compliance & Data Protection</h4>
+                    <p>
+                      In partnership with KonfHub, we adhere to high standards of data privacy and security. The platform implements 
+                      appropriate technical and organizational measures to safeguard your personal data from unauthorized access or disclosure.
+                    </p>
+                  </section>
+                  <section className="space-y-2">
+                    <h4 className="text-white font-semibold font-heading text-base">Your Rights</h4>
+                    <p>
+                      You have the right to request access to, correction of, or deletion of the personal data we hold about you. 
+                      For any privacy concerns, you can contact us at <a href="mailto:hello@opensourcecon.in" className="text-brand-green hover:underline">hello@opensourcecon.in</a>.
+                    </p>
+                  </section>
+                </>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="px-6 py-4 border-t border-white/5 flex justify-end relative z-10 bg-dark/20">
+              <button 
+                onClick={() => setActiveModal(null)}
+                className="px-5 py-2 rounded-xl bg-brand-green text-dark text-xs font-semibold hover:bg-brand-green-dark transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }
