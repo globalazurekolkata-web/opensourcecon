@@ -128,7 +128,7 @@ export default function Navbar() {
       <div className="max-w-container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3.5 flex-shrink-0 group/logo">
+          <a href="#home" className="flex items-center gap-1 flex-shrink-0 group/logo">
             <div className="relative flex items-center justify-center">
               <img
                 src="/images/logo.png"
@@ -139,7 +139,7 @@ export default function Navbar() {
             <img
               src="/images/logo text.png"
               alt="OpenSourceCon"
-              className="h-[38px] w-auto object-contain dark:invert transition-all duration-300"
+              className="h-[38px] -ml-2 w-auto object-contain dark:invert transition-all duration-300"
             />
           </a>
 
