@@ -19,40 +19,13 @@ export default function Hero() {
       <div className="hero-orb hero-orb-1" aria-hidden="true" />
       <div className="hero-orb hero-orb-2" aria-hidden="true" />
 
-      {/* Floating tech badges */}
-      {floatingBadges.map((badge) => (
-        <div
-          key={badge.text}
-          className="floating-badge hidden lg:block"
-          aria-hidden="true"
-          style={{
-            left: badge.left,
-            top: badge.top,
-            animationDuration: badge.duration,
-            animationDelay: badge.delay,
-          }}
-        >
-          {badge.text}
-        </div>
-      ))}
-
       <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="space-y-8">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full border border-brand-green/30 bg-brand-green/5 text-brand-green">
-              <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
-              🇮🇳 Kolkata, India · 2026
-            </div>
 
             {/* Logo & Heading */}
             <div className="space-y-4">
-              <img
-                src="/images/logo.png"
-                alt="OpenSourceCon"
-                className="w-20 h-20 md:w-24 md:h-24 dark:invert"
-              />
               <h1 className="font-heading text-5xl md:text-6xl lg:text-[68px] font-extrabold leading-[1.05] tracking-tight text-dark dark:text-white">
                 Where Kolkata
                 <br />
@@ -88,11 +61,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Countdown Timer */}
-            <div className="pt-2">
-              <CountdownTimer />
-            </div>
-
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
               <button onClick={openKonfHub} className="btn-primary text-base py-3.5 px-7">
@@ -106,24 +74,6 @@ export default function Hero() {
               >
                 Submit Talk
               </a>
-            </div>
-
-            {/* Stats */}
-            <div className="flex flex-wrap gap-8 pt-4">
-              <div className="flex items-center gap-2 text-dark dark:text-white">
-                <Users size={18} className="text-brand-green" />
-                <CountUp target={800} suffix="+" className="font-heading font-bold text-lg" />
-                <span className="text-gray-secondary dark:text-gray-400 text-sm">Attendees</span>
-              </div>
-              <div className="flex items-center gap-2 text-dark dark:text-white">
-                <CalendarDays size={18} className="text-brand-green" />
-                <span className="font-heading font-bold text-lg">1</span>
-                <span className="text-gray-secondary dark:text-gray-400 text-sm">Full Day</span>
-              </div>
-              <div className="flex items-center gap-2 text-dark dark:text-white">
-                <MapPin size={18} className="text-brand-green" />
-                <span className="font-heading font-bold text-lg">In-Person</span>
-              </div>
             </div>
           </div>
 
@@ -220,14 +170,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="scroll-indicator-container hidden md:flex" aria-hidden="true">
-        <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-gray-secondary dark:text-gray-400">
-          Explore
-        </span>
-        <div className="scroll-line-indicator" />
       </div>
     </section>
   );
