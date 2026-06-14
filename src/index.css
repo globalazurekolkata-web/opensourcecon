@@ -126,7 +126,7 @@ body {
 
 /* ===== FAQ Accordion ===== */
 .faq-item {
-  @apply border-b border-gray-100 py-5 cursor-pointer;
+  @apply border-b border-gray-100 cursor-pointer;
 }
 
 .dark .faq-item {

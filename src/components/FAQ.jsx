@@ -10,7 +10,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-20 lg:py-28 relative">
+    <section id="faq" className="py-6 lg:py-10 relative">
       <div className="max-w-container mx-auto px-6 lg:px-8">
         <div className="max-w-3xl">
           {/* Header */}
