@@ -21,16 +21,63 @@ export default function Venue() {
         <div className="card overflow-hidden">
           <div className="grid md:grid-cols-2 gap-0">
             {/* Map Visual */}
-            <div className="relative min-h-[300px] md:min-h-[400px] bg-gradient-to-br from-[#F0FDE8] to-[#E8FBDE] dark:from-[#132A13]/30 dark:to-[#0B1020] flex items-center justify-center overflow-hidden">
-              {/* Grid overlay */}
-              <div className="absolute inset-0 opacity-30" style={{
-                backgroundImage: 'linear-gradient(rgba(82,210,55,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(82,210,55,0.15) 1px, transparent 1px)',
-                backgroundSize: '40px 40px',
+            <div className="relative min-h-[340px] md:min-h-[440px] bg-gradient-to-br from-[#FAFCF9] to-[#F3FBF0] dark:from-[#080D08] dark:to-[#0B1020] flex items-center justify-center overflow-hidden border-b md:border-b-0 md:border-r border-gray-100 dark:border-white/5">
+              {/* Subtle ambient light glow */}
+              <div className="absolute w-[200px] h-[200px] rounded-full bg-brand-green/10 dark:bg-brand-green/5 blur-[50px] pointer-events-none top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+
+              {/* Minimalist Grid overlay */}
+              <div className="absolute inset-0 opacity-25 dark:opacity-10" style={{
+                backgroundImage: 'linear-gradient(rgba(82,210,55,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(82,210,55,0.08) 1px, transparent 1px)',
+                backgroundSize: '32px 32px',
               }} />
 
-              {/* Animated pin */}
-              <div className="relative z-10 flex flex-col items-center">
-                <div className="venue-pin-bounce">
+              {/* Custom Vector Map Illustration (SVG) */}
+              <svg className="absolute inset-0 w-full h-full text-brand-green/[0.06] dark:text-brand-green/[0.03] pointer-events-none" viewBox="0 0 400 400" preserveAspectRatio="none">
+                {/* Stylized Hooghly River */}
+                <path
+                  d="M 120,-10 C 140,90 70,180 150,280 C 190,340 130,400 160,460"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="20"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M 120,-10 C 140,90 70,180 150,280 C 190,340 130,400 160,460"
+                  fill="none"
+                  stroke="#52D237"
+                  strokeWidth="1.5"
+                  className="opacity-10 dark:opacity-5"
+                />
+
+                {/* Stylized Road Network */}
+                <path d="M 0,80 L 400,100" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M 0,220 C 120,240 240,190 400,240" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M 0,330 L 400,310" stroke="currentColor" strokeWidth="1.5" />
+                
+                <path d="M 280,-10 L 240,410" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M 330,-10 L 360,410" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M 190,-10 C 210,140 160,280 230,410" fill="none" stroke="currentColor" strokeWidth="1.5" />
+              </svg>
+
+              {/* Map Markers & Labels */}
+              {/* Sector V Marker */}
+              <div className="absolute top-[28%] left-[72%] flex items-center gap-1.5 select-none">
+                <div className="w-1.5 h-1.5 rounded-full bg-brand-green/60" />
+                <span className="text-[10px] font-mono font-medium tracking-wide text-gray-400 dark:text-gray-500">Sector V</span>
+              </div>
+
+              {/* New Town Marker */}
+              <div className="absolute bottom-[32%] left-[48%] flex items-center gap-1.5 select-none">
+                <div className="w-1.5 h-1.5 rounded-full bg-brand-green/60" />
+                <span className="text-[10px] font-mono font-medium tracking-wide text-gray-400 dark:text-gray-500">New Town</span>
+              </div>
+
+              {/* Central Scouting Pulsing Ring & Bouncing Pin */}
+              <div className="absolute top-[42%] left-[62%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center z-10">
+                <div className="absolute w-24 h-24 rounded-full bg-brand-green/10 border border-brand-green/20 animate-ping pointer-events-none" style={{ animationDuration: '3s' }} />
+                <div className="absolute w-12 h-12 rounded-full bg-brand-green/20 border border-brand-green/30 animate-ping pointer-events-none" style={{ animationDuration: '2s' }} />
+                
+                <div className="venue-pin-bounce relative z-10">
                   <div className="w-16 h-16 rounded-full bg-brand-green/20 flex items-center justify-center">
                     <div className="w-10 h-10 rounded-full bg-brand-green flex items-center justify-center shadow-lg shadow-brand-green/30">
                       <MapPin size={22} className="text-white" />
@@ -39,10 +86,6 @@ export default function Venue() {
                 </div>
                 <div className="w-3 h-3 rounded-full bg-brand-green/30 mt-2 venue-pin-shadow" />
               </div>
-
-              {/* Decorative circles */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full border border-brand-green/10" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-brand-green/5" />
             </div>
 
             {/* Info */}
@@ -73,7 +116,7 @@ export default function Venue() {
                   <div className="w-9 h-9 rounded-xl bg-brand-green/10 flex items-center justify-center flex-shrink-0">
                     <Clock size={16} className="text-brand-green" />
                   </div>
-                  <span className="text-sm font-medium text-dark dark:text-white">All-day event (09:00 – 18:00)</span>
+                  <span className="text-sm font-medium text-dark dark:text-white">All-day event</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-xl bg-brand-green/10 flex items-center justify-center flex-shrink-0">
