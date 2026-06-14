@@ -29,22 +29,24 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 xl:gap-16 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="flex items-center gap-3">
-              <img
-                src="/images/logo.png"
-                alt="OpenSourceCon Logo"
-                className="h-12 lg:h-14 w-auto object-contain select-none"
-              />
-              <img
-                src="/images/logo text dark.png"
-                alt="OpenSourceCon"
-                className="h-[34px] lg:h-[38px] w-auto object-contain select-none"
-              />
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <img
+                  src="/images/logo.png"
+                  alt="OpenSourceCon Logo"
+                  className="h-12 lg:h-14 w-auto object-contain select-none"
+                />
+                <img
+                  src="/images/logo text dark.png"
+                  alt="OpenSourceCon"
+                  className="h-[42px] lg:h-[48px] w-auto object-contain select-none"
+                />
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-sm font-body">
+                Bengal's community-driven open source conference. By the people, for the people. Built on the foundations of collaboration, transparency, and the free exchange of knowledge.
+              </p>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-sm font-body">
-              Bengal's community-driven open source conference. By the people, for the people. Built on the foundations of collaboration, transparency, and the free exchange of knowledge.
-            </p>
-            <div className="flex gap-5 pt-2">
+            <div className="flex gap-5 pt-1">
               {socialLinks.map(({ iconName, href, label }) => {
                 const Icon = iconMap[iconName];
                 return (
