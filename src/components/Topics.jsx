@@ -70,10 +70,10 @@ export default function Topics() {
               <span className="green-dot" />
               THE TOPICS
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark">
-              Let's talk about what
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.4]! tracking-tight text-dark">
+              <span className="font-medium">Let's talk about what</span>
               <br />
-              <span className="text-brand-green uppercase">MATTERS</span>
+              <span className="text-gradient uppercase font-bold">MATTERS</span>
             </h2>
           </div>
           <div className="md:col-span-5">

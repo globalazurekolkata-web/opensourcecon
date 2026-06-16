@@ -1,39 +1,45 @@
-import { Users, Mic2, Network, Calendar, Sparkles } from 'lucide-react';
+import { RiGroupLine, RiMicLine, RiGlobalLine, RiCalendarLine, RiSparklingLine, RiBookOpenLine, RiCodeSSlashLine, RiShareForwardLine, RiHandHeartLine } from 'react-icons/ri';
 import CountUp from './CountUp';
 
 const features = [
-  { label: 'Learn', desc: 'Gain insights from maintainers & industry leaders' },
-  { label: 'Learn', desc: 'Gain insights from maintainers & industry leaders' }, // Duplicated in design
-  { label: 'Share', desc: 'Tell your story and inspire the community' },
-  { label: 'Impact', desc: 'Contribute to projects that matter globally' },
+  { label: 'Learn', desc: 'Gain insights from maintainers & industry leaders', icon: RiBookOpenLine },
+  { label: 'Build', desc: 'Create projects and collaborate in hands-on workshops', icon: RiCodeSSlashLine },
+  { label: 'Share', desc: 'Tell your story and inspire the community', icon: RiShareForwardLine },
+  { label: 'Impact', desc: 'Contribute to projects that matter globally', icon: RiHandHeartLine },
 ];
 
 const stats = [
-  { icon: Users, target: 500, suffix: '+', label: 'Attendees' },
-  { icon: Mic2, target: 50, suffix: '+', label: 'Speakers' },
-  { icon: Network, target: 10, suffix: '+', label: 'Communities' },
-  { icon: Calendar, target: 1, suffix: ' Day', label: 'of learning' },
-  { icon: Sparkles, target: 100, suffix: '+', label: 'Opportunities' },
+  { icon: RiGroupLine, target: 500, suffix: '+', label: 'Attendees' },
+  { icon: RiMicLine, target: 50, suffix: '+', label: 'Speakers' },
+  { icon: RiGlobalLine, target: 10, suffix: '+', label: 'Communities' },
+  { icon: RiCalendarLine, target: 1, suffix: ' Day', label: 'of learning' },
+  { icon: RiSparklingLine, target: 100, suffix: '+', label: 'Opportunities' },
 ];
 
 export default function About() {
   return (
     <section id="about" className="relative flex flex-col pt-0 mt-[-1px]">
       {/* Dark background top half */}
-      <div className="w-full bg-gradient-to-b from-[#142611] to-black pt-20 pb-40 px-6 lg:px-8 relative z-0">
+      <div className="w-full bg-gradient-to-b from-darkBg to-black pt-16 pb-32 md:pt-20 md:pb-40 px-4 sm:px-6 lg:px-8 relative z-0">
         
-        {/* Stats Strip - positioned to overlap the top edge */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl px-4">
-          <div className="bg-white rounded-[2rem] shadow-2xl flex flex-wrap items-center justify-between gap-4 py-8 px-10 border border-gray-100/50">
+        {/* Stats Strip - positioned to overlap the top edge responsively */}
+        <div className="relative -mt-24 sm:-mt-28 md:-mt-32 mb-10 md:mb-16 w-full max-w-container mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <div className="bg-white rounded-xl md:rounded-[2rem] shadow-2xl flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-y-8 gap-x-4 py-8 px-6 md:py-12 md:px-10 border border-gray-100/50">
             {stats.map((stat, i) => {
               const Icon = stat.icon;
               return (
-                <div key={i} className="text-center px-2 flex-1 min-w-[120px] flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full bg-brand-green/20 flex items-center justify-center mb-3 text-brand-green">
-                    <Icon size={18} />
+                <div
+                  key={i}
+                  className={`text-center px-4 flex-1 min-w-[130px] sm:min-w-[160px] lg:min-w-0 flex flex-col items-center ${
+                    i < stats.length - 1 ? 'lg:border-r border-gray-100 lg:border-gray-500/20 dark:border-white/10' : ''
+                  }`}
+                >
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full custom-gradient flex items-center justify-center mb-3 sm:mb-4 text-white">
+                    <Icon size={18} className="sm:hidden" />
+                    <Icon size={20} className="hidden sm:block" />
                   </div>
-                  <CountUp target={stat.target} suffix={stat.suffix} className="font-heading font-extrabold text-2xl lg:text-3xl text-dark" />
-                  <div className="text-gray-500 text-xs mt-1 font-medium">{stat.label}</div>
+                  <CountUp target={stat.target} suffix={stat.suffix} className="font-heading font-bold text-xl sm:text-2xl lg:text-3xl text-dark" />
+                  <div className="text-gray-400 text-[10px] sm:text-xs md:text-sm mt-1 font-medium">{stat.label}</div>
                 </div>
               );
             })}
@@ -41,20 +47,20 @@ export default function About() {
         </div>
 
         {/* About Heading (Centered, White text) */}
-        <div className="text-center max-w-3xl mx-auto mt-16 space-y-6">
-          <div className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-1.5 rounded-full border border-brand-green/40 text-white bg-transparent">
+        <div className="text-center max-w-3xl mx-auto mt-24 md:mt-16 mb-14 md:mb-12 space-y-4 sm:space-y-6">
+          <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium px-5 py-1.5 sm:px-6 sm:py-2 rounded-full border border-brand-green/40 text-white bg-transparent">
             About the Event
           </div>
 
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-white">
-            A Community. An Idea.
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.3]! md:leading-[1.4]! tracking-tight text-white">
+            <span className="font-medium">A Community. An Idea.</span>
             <br />
-            <span className="text-brand-green uppercase tracking-wide">INFINITE IMPACT.</span>
+            <span className="text-gradient uppercase tracking-wide font-bold">INFINITE IMPACT.</span>
           </h2>
           
-          <div className="w-16 h-1 bg-brand-green mx-auto rounded-full mt-6 opacity-80" />
+          <div className="w-12 h-1 md:w-16 bg-brand-green mx-auto rounded-full mt-4 md:mt-6 opacity-80" />
 
-          <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-6">
+          <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-4 md:mt-6 px-4">
             The Open Source Conference Kolkata is more than an event — it's a celebration of collaboration, knowledge sharing, and building a stronger open source ecosystem together.
           </p>
         </div>
@@ -64,20 +70,24 @@ export default function About() {
       <div className="relative z-10 w-full bg-white">
         <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
         
-        <div className="max-w-container mx-auto px-6 lg:px-8 -mt-20 pb-20 relative z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 flex flex-col items-start transition-transform hover:-translate-y-1"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-brand-green/10 flex items-center justify-center mb-6">
-                  <div className="w-5 h-5 bg-brand-green text-white rounded-full flex items-center justify-center text-xs font-bold font-serif italic">i</div>
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 -mt-20 md:-mt-20 pb-16 md:pb-20 relative z-10">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {features.map((feature, idx) => {
+              const CardIcon = feature.icon;
+              return (
+                <div
+                  key={idx}
+                  className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-500/15 flex flex-col items-center text-center sm:items-start sm:text-left transition-transform hover:-translate-y-1"
+                >
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl custom-gradient flex items-center justify-center mb-4 sm:mb-6 text-white shadow-sm">
+                    <CardIcon size={18} className="sm:hidden" />
+                    <CardIcon size={20} className="hidden sm:block" />
+                  </div>
+                  <h4 className="font-heading font-bold text-base sm:text-lg mb-2 text-dark">{feature.label}</h4>
+                  <p className="text-gray-secondary text-xs sm:text-sm leading-relaxed">{feature.desc}</p>
                 </div>
-                <h4 className="font-heading font-bold text-lg mb-2 text-dark">{feature.label}</h4>
-                <p className="text-gray-secondary text-sm leading-relaxed">{feature.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

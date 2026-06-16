@@ -138,10 +138,10 @@ export default function Schedule() {
             TIMELINE
           </div>
           
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark">
-            A full day of
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.4]! tracking-tight text-dark">
+            <span className="font-medium">A full day of</span>
             <br />
-            <span className="text-brand-green uppercase">OPEN EVERYTHING.</span>
+            <span className="text-gradient uppercase font-bold">OPEN EVERYTHING.</span>
           </h2>
           
           <p className="text-gray-secondary text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -259,7 +259,7 @@ export default function Schedule() {
           </div>
           <button
             onClick={openKonfHub}
-            className="btn-primary text-sm py-3 px-6 rounded-xl flex items-center gap-2 bg-dark text-white hover:bg-dark/95"
+            className="btn-primary text-sm py-3 px-6 rounded-full flex items-center gap-2 bg-dark text-white hover:bg-dark/95"
             style={{ background: '#111827', color: '#FFFFFF' }}
           >
             Get Tickets

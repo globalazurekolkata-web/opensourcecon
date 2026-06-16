@@ -22,10 +22,10 @@ export default function AnnouncementCTA() {
               Partner Program
             </div>
 
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-[44px] font-extrabold text-dark leading-[1.1] tracking-tight">
-              BUILD WITH US
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-[44px] leading-[1.1] tracking-tight text-dark">
+              <span className="font-medium">BUILD WITH US</span>
               <br />
-              <span className="text-white">JOIN AS REPRESENTATIVE</span>
+              <span className="text-white font-bold">JOIN AS REPRESENTATIVE</span>
             </h2>
             
             <p className="text-dark/80 text-sm md:text-base max-w-md mx-auto leading-relaxed">

@@ -44,7 +44,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-dark text-white pt-20 pb-8 relative overflow-hidden">
+    <footer className="darkBg text-white pt-20 pb-8 relative overflow-hidden">
       <div 
         className="absolute inset-0 opacity-[0.02] pointer-events-none z-0" 
         style={{
@@ -56,15 +56,15 @@ export default function Footer() {
       <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Columns Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16 text-left">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16 text-left">
           
           {/* Brand Info */}
-          <div className="lg:col-span-2 space-y-5">
+          <div className="col-span-2 lg:col-span-2 space-y-5">
             <div className="flex items-center gap-2">
               <img
-                src="/images/logo text.png"
+                src="/logoWord.png"
                 alt="OpenSourceCon"
-                className="h-7 object-contain invert"
+                className="h-12 object-contain brightness-0 invert"
               />
             </div>
             
@@ -79,7 +79,7 @@ export default function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand-green hover:text-dark transition-all duration-300"
+                  className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand-green hover:text-dark transition-all duration-300"
                 >
                   <Icon />
                 </a>
@@ -88,30 +88,33 @@ export default function Footer() {
           </div>
 
           {/* Dynamic Link Columns */}
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title} className="space-y-4">
-              <h4 className="font-heading font-extrabold text-sm text-gray-300 uppercase tracking-wider">
-                {title}
-              </h4>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-gray-500 hover:text-white transition-colors duration-200"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {Object.entries(footerLinks).map(([title, links]) => {
+            const isContact = title === 'Contact';
+            return (
+              <div key={title} className={`space-y-4 ${isContact ? 'col-span-2 lg:col-span-1' : 'col-span-1'}`}>
+                <h4 className="font-heading font-bold text-sm text-brand-green-dark uppercase tracking-wider">
+                  {title}
+                </h4>
+                <ul className="space-y-3">
+                  {links.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        className="inline-block text-sm text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1.5"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
 
         </div>
 
         {/* Brand Text Background Effect */}
-        <div className="footer-brand-text py-4 select-none pointer-events-none mb-4">
+        <div className="footer-brand-text py-8 select-none pointer-events-none mb-4 bg-gradient-to-b from-gray-200 to-gray-600 bg-clip-text text-transparent ">
           OPENSOURCECON
         </div>
 
