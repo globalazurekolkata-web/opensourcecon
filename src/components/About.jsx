@@ -1,85 +1,94 @@
-import { BookOpen, Share2, Link2, Zap, Users, Mic2, Network, Calendar, Sparkles } from 'lucide-react';
+import { RiGroupLine, RiMicLine, RiGlobalLine, RiCalendarLine, RiSparklingLine, RiBookOpenLine, RiCodeSSlashLine, RiShareForwardLine, RiHandHeartLine } from 'react-icons/ri';
 import CountUp from './CountUp';
-import TiltCard from './TiltCard';
 
 const features = [
-  { icon: BookOpen, label: 'Learn', desc: 'Gain insights from maintainers & industry leaders' },
-  { icon: Share2, label: 'Share', desc: 'Tell your story and inspire the community' },
-  { icon: Link2, label: 'Connect', desc: 'Build connections that outlast the event' },
-  { icon: Zap, label: 'Impact', desc: 'Contribute to projects that matter globally' },
+  { label: 'Learn', desc: 'Gain insights from maintainers & industry leaders', icon: RiBookOpenLine },
+  { label: 'Build', desc: 'Create projects and collaborate in hands-on workshops', icon: RiCodeSSlashLine },
+  { label: 'Share', desc: 'Tell your story and inspire the community', icon: RiShareForwardLine },
+  { label: 'Impact', desc: 'Contribute to projects that matter globally', icon: RiHandHeartLine },
 ];
 
 const stats = [
-  { icon: Users, target: 800, suffix: '+', label: 'Attendees' },
-  { icon: Mic2, target: 40, suffix: '+', label: 'Speakers' },
-  { icon: Network, target: 10, suffix: '+', label: 'Communities' },
-  { icon: Calendar, target: 1, suffix: ' Day', label: 'Of Learning' },
-  { icon: Sparkles, target: 100, suffix: '+', label: 'Opportunities' },
+  { icon: RiGroupLine, target: 500, suffix: '+', label: 'Attendees' },
+  { icon: RiMicLine, target: 50, suffix: '+', label: 'Speakers' },
+  { icon: RiGlobalLine, target: 10, suffix: '+', label: 'Communities' },
+  { icon: RiCalendarLine, target: 1, suffix: ' Day', label: 'of learning' },
+  { icon: RiSparklingLine, target: 100, suffix: '+', label: 'Opportunities' },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="py-20 lg:py-28 relative">
-      <div className="max-w-container mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
-          {/* Left Content */}
-          <div className="space-y-8">
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark dark:text-white">
-              A Community.
-              <br />
-              An Idea.
-              <br />
-              <span className="text-brand-green">Infinite Impact.</span>
-            </h2>
-
-            <p className="text-gray-secondary dark:text-gray-400 text-lg leading-relaxed max-w-lg">
-              Open source is more than code — it's people, collaboration, and the power to create a better future together.
-            </p>
-
-            {/* Feature Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {features.map(({ icon: Icon, label, desc }) => (
-                <TiltCard
-                  key={label}
-                  className="card p-5 hover:shadow-md transition-shadow group"
+    <section id="about" className="relative flex flex-col pt-0 mt-[-1px]">
+      {/* Dark background top half */}
+      <div className="w-full bg-gradient-to-b from-darkBg to-black pt-16 pb-32 md:pt-20 md:pb-40 px-4 sm:px-6 lg:px-8 relative z-0">
+        
+        {/* Stats Strip - positioned to overlap the top edge responsively */}
+        <div className="relative -mt-24 sm:-mt-28 md:-mt-32 mb-10 md:mb-16 w-full max-w-container mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <div className="bg-white rounded-xl md:rounded-[2rem] shadow-2xl flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-y-8 gap-x-4 py-8 px-6 md:py-12 md:px-10 border border-gray-100/50">
+            {stats.map((stat, i) => {
+              const Icon = stat.icon;
+              return (
+                <div
+                  key={i}
+                  className={`text-center px-4 flex-1 min-w-[130px] sm:min-w-[160px] lg:min-w-0 flex flex-col items-center ${
+                    i < stats.length - 1 ? 'lg:border-r border-gray-100 lg:border-gray-500/20 dark:border-white/10' : ''
+                  }`}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-brand-green/10 flex items-center justify-center mb-3 group-hover:bg-brand-green/20 transition-colors">
-                    <Icon size={20} className="text-brand-green" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full custom-gradient flex items-center justify-center mb-3 sm:mb-4 text-white">
+                    <Icon size={18} className="sm:hidden" />
+                    <Icon size={20} className="hidden sm:block" />
                   </div>
-                  <h4 className="font-heading font-bold text-sm mb-1 text-dark dark:text-white">{label}</h4>
-                  <p className="text-gray-secondary dark:text-gray-400 text-xs leading-relaxed">{desc}</p>
-                </TiltCard>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Image */}
-          <div className="relative">
-            <div className="rounded-card overflow-hidden ">
-              <img
-                src="/images/Right Image Area.png"
-                alt="Victoria Memorial, Kolkata"
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
-            </div>
+                  <CountUp target={stat.target} suffix={stat.suffix} className="font-heading font-bold text-xl sm:text-2xl lg:text-3xl text-dark" />
+                  <div className="text-gray-400 text-[10px] sm:text-xs md:text-sm mt-1 font-medium">{stat.label}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* Stats Strip */}
-        <div className="stats-strip mt-16 flex flex-wrap justify-between items-center gap-6 py-8 px-10 rounded-2xl bg-gradient-to-br from-[#F0FDE8] via-[#E8FBDE] to-[#DFFBD1] dark:from-[#132A13]/20 dark:via-[#1A3A1A]/10 dark:to-transparent dark:border dark:border-brand-green/20">
-          {stats.map((stat, i) => {
-            const Icon = stat.icon;
-            return (
-              <div key={i} className="text-center px-4 py-2 flex-1 min-w-[140px] flex flex-col items-center group">
-                <div className="w-12 h-12 rounded-full bg-white dark:bg-[#131C31] flex items-center justify-center shadow-sm mb-3 group-hover:scale-110 transition-transform duration-200 border dark:border-white/5">
-                  <Icon size={20} className="text-brand-green" />
+        {/* About Heading (Centered, White text) */}
+        <div className="text-center max-w-3xl mx-auto mt-24 md:mt-16 mb-14 md:mb-12 space-y-4 sm:space-y-6">
+          <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium px-5 py-1.5 sm:px-6 sm:py-2 rounded-full border border-brand-green/40 text-white bg-transparent">
+            About the Event
+          </div>
+
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.3]! md:leading-[1.4]! tracking-tight text-white">
+            <span className="font-medium">A Community. An Idea.</span>
+            <br />
+            <span className="text-gradient uppercase tracking-wide font-bold">INFINITE IMPACT.</span>
+          </h2>
+          
+          <div className="w-12 h-1 md:w-16 bg-brand-green mx-auto rounded-full mt-4 md:mt-6 opacity-80" />
+
+          <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-4 md:mt-6 px-4">
+            The Open Source Conference Kolkata is more than an event — it's a celebration of collaboration, knowledge sharing, and building a stronger open source ecosystem together.
+          </p>
+        </div>
+      </div>
+
+      {/* Feature Cards Grid overlapping the dark/light boundary */}
+      <div className="relative z-10 w-full bg-white">
+        <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
+        
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 -mt-20 md:-mt-20 pb-16 md:pb-20 relative z-10">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {features.map((feature, idx) => {
+              const CardIcon = feature.icon;
+              return (
+                <div
+                  key={idx}
+                  className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-500/15 flex flex-col items-center text-center sm:items-start sm:text-left transition-transform hover:-translate-y-1"
+                >
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl custom-gradient flex items-center justify-center mb-4 sm:mb-6 text-white shadow-sm">
+                    <CardIcon size={18} className="sm:hidden" />
+                    <CardIcon size={20} className="hidden sm:block" />
+                  </div>
+                  <h4 className="font-heading font-bold text-base sm:text-lg mb-2 text-dark">{feature.label}</h4>
+                  <p className="text-gray-secondary text-xs sm:text-sm leading-relaxed">{feature.desc}</p>
                 </div>
-                <CountUp target={stat.target} suffix={stat.suffix} className="font-heading font-extrabold text-2xl md:text-3xl text-dark dark:text-white" />
-                <div className="text-gray-secondary dark:text-gray-400 text-sm mt-1 font-medium">{stat.label}</div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

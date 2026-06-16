@@ -40,7 +40,7 @@ opensource-convention/
 We use tailored tokens for visual consistency:
 - **Brand Green**: `#52D237` (`bg-brand-green`, `text-brand-green`)
 - **Dark Background**: `#080C16` (used in dark mode)
-- **Typography**: Inter (Body), Inter Tight (Headings), JetBrains Mono (Mono elements)
+- **Typography**: Mona Sans (Body & Headings), JetBrains Mono (Mono elements)
 
 ### Custom CSS Classes (`index.css`)
 - `.section-tag` — Pills marking section labels (e.g. `SCHEDULE`, `TOPICS`).

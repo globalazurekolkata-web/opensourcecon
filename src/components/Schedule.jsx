@@ -1,166 +1,302 @@
 import { useState } from 'react';
-import { Download, ArrowRight, CalendarDays } from 'lucide-react';
-import { scheduleTabs, scheduleData, scheduleHighlights } from '../data/schedule';
-import { openKonfHub } from '../utils/konfhub';
+import { Calendar, Users, Cpu, Clock, MapPin } from 'lucide-react';
+
+const conferenceSchedule = {
+  DevOps: [
+    {
+      time: '09:30 AM - 10:15 AM',
+      speaker: 'Kunal Kushwaha',
+      role: 'Founder, WeMakeDevs',
+      image: '/images/team/KunalD.png',
+      title: 'Scaling Open Source Communities',
+      hall: 'Hall A'
+    },
+    {
+      time: '10:30 AM - 11:15 AM',
+      speaker: 'Sayantan Bhattacharyya',
+      role: 'Lead Developer @ Atlassian',
+      image: '/images/team/SayantanK.jpeg',
+      title: 'GitOps in Enterprise Infrastructure',
+      hall: 'Hall A'
+    },
+    {
+      time: '11:30 AM - 12:15 PM',
+      speaker: 'Kazi Haque',
+      role: 'DevOps Architect',
+      image: '/images/team/KaziH.jpeg',
+      title: 'CI/CD Automation & Security at Scale',
+      hall: 'Hall A'
+    }
+  ],
+  'Web & App': [
+    {
+      time: '09:30 AM - 10:15 AM',
+      speaker: 'Sohom Roy',
+      role: 'Frontend Engineer @ Razorpay',
+      image: '/images/team/SohomC.jpeg',
+      title: 'The Future of Web with React Server Components',
+      hall: 'Hall B'
+    },
+    {
+      time: '10:30 AM - 11:15 AM',
+      speaker: 'Shivam Nandi',
+      role: 'UX Developer @ Tink',
+      image: '/images/team/ShivamN.jpeg',
+      title: 'Designing Accessible & Interactive User Interfaces',
+      hall: 'Hall B'
+    },
+    {
+      time: '11:30 AM - 12:15 PM',
+      speaker: 'Anubhav Ghosh',
+      role: 'UI Architect',
+      image: '/images/1715421516599.jpeg',
+      title: 'Modern CSS Architectures & Tailwind v4',
+      hall: 'Hall B'
+    }
+  ],
+  Web3: [
+    {
+      time: '09:30 AM - 10:15 AM',
+      speaker: 'Pabitra Banerjee',
+      role: 'Web3 Core Developer',
+      image: '/images/1706691741517.jpeg',
+      title: 'Smart Contract Security & Auditing Patterns',
+      hall: 'Hall C'
+    },
+    {
+      time: '10:30 AM - 11:15 AM',
+      speaker: 'Siddharth Roy',
+      role: 'Ethereum Researcher',
+      image: '',
+      title: 'Scaling Ethereum Layer-2 Solutions',
+      hall: 'Hall C'
+    },
+    {
+      time: '11:30 AM - 12:15 PM',
+      speaker: 'Ritika Sen',
+      role: 'DeFi Protocol Developer',
+      image: '',
+      title: 'Building Decentralized Autonomous Organizations',
+      hall: 'Hall C'
+    }
+  ]
+};
+
+const workshopsSchedule = {
+  DevOps: [
+    {
+      time: '02:00 PM - 03:30 PM',
+      speaker: 'Kunal Kushwaha',
+      role: 'Founder, WeMakeDevs',
+      image: '/images/team/KunalD.png',
+      title: 'Hands-on Kubernetes for Beginners',
+      hall: 'Lab 1'
+    }
+  ],
+  'Web & App': [
+    {
+      time: '02:00 PM - 03:30 PM',
+      speaker: 'Sohom Roy',
+      role: 'Frontend Engineer @ Razorpay',
+      image: '/images/team/SohomC.jpeg',
+      title: 'Building Premium UIs with Tailwind',
+      hall: 'Lab 2'
+    }
+  ],
+  Web3: [
+    {
+      time: '02:00 PM - 03:30 PM',
+      speaker: 'Pabitra Banerjee',
+      role: 'Web3 Core Developer',
+      image: '/images/1706691741517.jpeg',
+      title: 'Writing and Deploying Smart Contracts',
+      hall: 'Lab 3'
+    }
+  ]
+};
 
 export default function Schedule() {
-  const [activeTab, setActiveTab] = useState('Morning');
-  const [showNotice, setShowNotice] = useState(false);
+  const [scheduleType, setScheduleType] = useState('conference'); // 'conference' or 'workshops'
+  const currentSchedule = scheduleType === 'conference' ? conferenceSchedule : workshopsSchedule;
+
+  function openKonfHub(e) {
+    e.preventDefault();
+    const kBtn = document.querySelector('#konfhub-widget-trigger button, #konfhub-widget-trigger a');
+    if (kBtn) kBtn.click();
+  }
 
   return (
-    <section id="schedule" className="py-20 lg:py-28 relative">
-      <div className="max-w-container mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          {/* Left Content */}
-          <div className="space-y-8 lg:col-span-5">
-            <div className="section-tag">
-              <span className="green-dot" />
-              SCHEDULE
-            </div>
+    <section id="schedule" className="py-20 lg:py-28 relative bg-white overflow-hidden">
+      <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
+      
+      <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-6 mb-16">
+          <div className="section-tag inline-flex items-center gap-1.5 mx-auto">
+            <span className="green-dot" />
+            TIMELINE
+          </div>
+          
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.4]! tracking-tight text-dark">
+            <span className="font-medium">A full day of</span>
+            <br />
+            <span className="text-gradient uppercase font-bold">OPEN EVERYTHING.</span>
+          </h2>
+          
+          <p className="text-gray-secondary text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            The event is structured into multiple tracks to cater to different skill levels and domains. Choose the path that interests you.
+          </p>
 
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark dark:text-white">
-              A full day of
-              <br />
-              <span className="text-brand-green">open</span>
-              <br />
-              everything.
-            </h2>
-
-            <p className="text-gray-secondary dark:text-gray-400 text-lg leading-relaxed max-w-md">
-              From inspiring keynotes to hands-on workshops and everything in between, there's something for everyone throughout the day.
-            </p>
-
-            {/* Highlights */}
-            <div className="space-y-6">
-              {scheduleHighlights.map(({ num, title, desc }) => (
-                <div key={num} className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full border border-brand-green/30 text-brand-green flex items-center justify-center font-mono font-bold text-sm flex-shrink-0 bg-brand-green/5">
-                    {num}
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-heading font-bold text-base text-dark dark:text-white">{title}</h4>
-                    <p className="text-gray-secondary dark:text-gray-400 text-sm leading-relaxed max-w-sm">{desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <button onClick={() => setShowNotice(true)} className="btn-secondary text-sm">
-              <Download size={16} />
-              Download Full Schedule
+          {/* Toggle Switch */}
+          <div className="inline-flex p-1.5 bg-gray-100 rounded-full border border-gray-200 mt-4">
+            <button
+              onClick={() => setScheduleType('conference')}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                scheduleType === 'conference'
+                  ? 'bg-dark text-white shadow-md'
+                  : 'text-gray-500 hover:text-dark'
+              }`}
+            >
+              Conference Schedule
+            </button>
+            <button
+              onClick={() => setScheduleType('workshops')}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                scheduleType === 'workshops'
+                  ? 'bg-dark text-white shadow-md'
+                  : 'text-gray-500 hover:text-dark'
+              }`}
+            >
+              Workshops
             </button>
           </div>
+        </div>
 
-          {/* Right - Schedule Card */}
-          <div className="lg:col-span-7 lg:mt-[180px]">
-            <div className="card p-0 overflow-hidden relative">
-              {/* Tabs */}
-              <div className="flex border-b border-gray-100">
-                {scheduleTabs.map((tab) => (
-                  <button
-                    key={tab.name}
-                    onClick={() => setActiveTab(tab.name)}
-                    className={`flex-1 py-4 px-2 text-center transition-colors relative flex flex-col items-center gap-1 ${
-                      activeTab === tab.name
-                        ? 'text-brand-green'
-                        : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
-                    }`}
+        {/* Tracks Timeline Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {Object.entries(currentSchedule).map(([trackName, sessions]) => (
+            <div key={trackName} className="space-y-6">
+              {/* Track Title */}
+              <div className="flex items-center gap-3 pb-3 border-b border-gray-100">
+                <span className="w-2.5 h-2.5 rounded-full bg-brand-green" />
+                <h3 className="font-heading font-extrabold text-xl text-dark uppercase tracking-wide">
+                  {trackName}
+                </h3>
+              </div>
+
+              {/* Sessions */}
+              <div className="space-y-5">
+                {sessions.map((session, i) => (
+                  <div
+                    key={i}
+                    className="card p-6 bg-white border border-gray-150 rounded-[24px] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between min-h-[200px]"
                   >
-                    <span className="text-sm font-semibold">{tab.name}</span>
-                    <span className="text-[10px] font-mono text-gray-secondary dark:text-gray-400">{tab.time}</span>
-                    {activeTab === tab.name && (
-                      <span className="absolute bottom-0 left-1/6 right-1/6 h-0.5 bg-brand-green rounded-full w-2/3 mx-auto" />
-                    )}
-                  </button>
-                ))}
-              </div>
-
-              {/* Timeline Items */}
-              <div className="p-6 space-y-0">
-                <div className="relative">
-                  <div className="timeline-line" />
-                  {scheduleData[activeTab].map((item, i) => (
-                    <div key={i} className="flex gap-4 pb-6 last:pb-0 relative">
-                      {item.type === 'break' ? (
-                        <div className="timeline-dot" />
-                      ) : (
-                        <div className="timeline-dot-filled" />
-                      )}
-                      <div className="flex items-center gap-4 flex-1 min-w-0">
-                        <span className="text-sm font-mono font-semibold text-gray-secondary dark:text-gray-400 w-20 flex-shrink-0">
-                          {item.time}
-                        </span>
-                        <span className="text-sm font-medium text-dark dark:text-white truncate">
-                          {item.title}
-                        </span>
+                    <div className="space-y-4">
+                      {/* Time */}
+                      <div className="flex items-center gap-2 text-xs font-mono font-bold text-brand-green">
+                        <Clock size={13} />
+                        {session.time}
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* Bottom Banner */}
-              <div className="bg-brand-green/5 dark:bg-brand-green/10 border-t border-brand-green/10 dark:border-brand-green/20 px-6 py-4 flex items-center justify-between flex-wrap gap-3">
-                <div>
-                  <p className="text-sm font-semibold text-dark dark:text-white">More sessions, more learning.</p>
-                </div>
-                <button
-                  onClick={() => setShowNotice(true)}
-                  className="text-sm font-semibold text-brand-green hover:text-brand-green-dark flex items-center gap-1 transition-colors bg-transparent border-none cursor-pointer"
-                >
-                  View Full Schedule <ArrowRight size={14} />
-                </button>
-              </div>
+                      {/* Title */}
+                      <h4 className="font-heading font-bold text-base text-dark leading-snug">
+                        {session.title}
+                      </h4>
+                    </div>
 
-              {/* Sleek Overlay Notice */}
-              {showNotice && (
-                <div className="absolute inset-0 bg-dark/95 backdrop-blur-sm z-20 flex items-center justify-center p-6 text-center animate-fade-up">
-                  <div className="max-w-md space-y-5 p-4">
-                    <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center mx-auto text-brand-green">
-                      <CalendarDays size={24} />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="font-heading text-xl font-bold text-white">Full Schedule Coming Soon!</h3>
-                      <p className="text-gray-400 text-sm leading-relaxed">
-                        We are putting the final touches on our speaker lineups and workshops. Register now on KonfHub to receive the complete schedule directly in your inbox.
-                      </p>
-                    </div>
-                    <div className="flex justify-center gap-3">
-                      <button
-                        onClick={(e) => { setShowNotice(false); openKonfHub(e); }}
-                        className="btn-primary text-xs py-2.5 px-4"
-                      >
-                        Register on KonfHub
-                      </button>
-                      <button
-                        onClick={() => setShowNotice(false)}
-                        className="btn-secondary text-xs py-2.5 px-4 text-white hover:text-brand-green border-white/10 bg-transparent"
-                      >
-                        Close
-                      </button>
+                    {/* Speaker & Hall info */}
+                    <div className="flex items-center justify-between gap-4 pt-4 border-t border-gray-50 mt-4">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        {session.image ? (
+                          <img
+                            src={session.image}
+                            alt={session.speaker}
+                            className="w-9 h-9 rounded-full object-cover border border-gray-100 flex-shrink-0"
+                          />
+                        ) : (
+                          <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 flex-shrink-0 border border-gray-100">
+                            <Users size={14} />
+                          </div>
+                        )}
+                        <div className="min-w-0">
+                          <p className="text-xs font-bold text-dark truncate leading-tight">
+                            {session.speaker}
+                          </p>
+                          <p className="text-[10px] text-gray-secondary truncate mt-0.5 leading-none">
+                            {session.role}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Hall Badge */}
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-brand-green/8 border border-brand-green/20 text-brand-green text-[10px] font-bold font-mono">
+                        <MapPin size={10} />
+                        {session.hall}
+                      </span>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-
-            {/* Standalone FAQ/Calendar Banner */}
-            <div className="card mt-6 p-6 flex flex-col sm:flex-row items-center justify-between gap-6 bg-white dark:bg-[#131C31] hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-brand-green/10 flex items-center justify-center flex-shrink-0">
-                  <CalendarDays className="text-brand-green" size={24} />
-                </div>
-                <div className="space-y-0.5">
-                  <h4 className="font-heading font-bold text-base text-dark dark:text-white">Plan your day, learn together.</h4>
-                  <p className="text-gray-secondary dark:text-gray-400 text-sm">Check out our FAQs if you have questions about the schedule.</p>
-                </div>
+                ))}
+                {sessions.length === 0 && (
+                  <div className="text-center py-10 text-gray-400 text-sm">
+                    No sessions scheduled.
+                  </div>
+                )}
               </div>
-              <a href="#faq" className="btn-secondary text-sm py-2.5 px-5 flex-shrink-0 text-brand-green border-brand-green/20 hover:border-brand-green/50">
-                Go to FAQs <ArrowRight size={14} />
-              </a>
+            </div>
+          ))}
+        </div>
+
+        {/* Schedule Bottom Banner */}
+        <div className="text-center py-8 px-6 bg-gray-50 border border-gray-100 rounded-3xl max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 mb-16">
+          <div className="text-left">
+            <h4 className="font-heading font-extrabold text-lg text-dark">
+              Looking for more information?
+            </h4>
+            <p className="text-sm text-gray-secondary mt-1">
+              Find complete lists of speakers, tracks, and details.
+            </p>
+          </div>
+          <button
+            onClick={openKonfHub}
+            className="btn-primary text-sm py-3 px-6 rounded-full flex items-center gap-2 bg-dark text-white hover:bg-dark/95"
+            style={{ background: '#111827', color: '#FFFFFF' }}
+          >
+            Get Tickets
+          </button>
+        </div>
+
+        {/* Floating Stats Badges */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="card p-6 bg-white border border-gray-150 rounded-[20px] flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-brand-green/10 flex items-center justify-center text-brand-green flex-shrink-0">
+              <Calendar size={20} />
+            </div>
+            <div>
+              <h4 className="font-heading font-extrabold text-base text-dark">10+ Tracks & Sessions</h4>
+              <p className="text-xs text-gray-secondary mt-0.5">Spanning DevOps, Web & Web3</p>
+            </div>
+          </div>
+          <div className="card p-6 bg-white border border-gray-150 rounded-[20px] flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-brand-green/10 flex items-center justify-center text-brand-green flex-shrink-0">
+              <Users size={20} />
+            </div>
+            <div>
+              <h4 className="font-heading font-extrabold text-base text-dark">30+ Speakers & Panelists</h4>
+              <p className="text-xs text-gray-secondary mt-0.5">Industry maintainers & founders</p>
+            </div>
+          </div>
+          <div className="card p-6 bg-white border border-gray-150 rounded-[20px] flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-brand-green/10 flex items-center justify-center text-brand-green flex-shrink-0">
+              <Cpu size={20} />
+            </div>
+            <div>
+              <h4 className="font-heading font-extrabold text-base text-dark">3+ Interactive Workshops</h4>
+              <p className="text-xs text-gray-secondary mt-0.5">Hands-on coding labs</p>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

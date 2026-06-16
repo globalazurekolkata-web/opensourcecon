@@ -13,35 +13,24 @@ import AnnouncementCTA from './components/AnnouncementCTA';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import RevealOnScroll from './components/RevealOnScroll';
-import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
-    <div className="min-h-screen relative">
-      {/* Grid background layer with top fade-out */}
-      <div className="grid-bg absolute inset-0 pointer-events-none z-0" />
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-brand-green focus:text-dark focus:font-semibold focus:rounded-xl focus:shadow-lg focus:outline-none"
-      >
-        Skip to content
-      </a>
-
-      {/* Decorative grid dots */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute w-1 h-1 rounded-full bg-brand-green/20 top-[128px] left-[192px]" />
-        <div className="absolute w-1 h-1 rounded-full bg-brand-green/20 top-[320px] right-[256px]" />
-        <div className="absolute w-1 h-1 rounded-full bg-brand-green/20 top-[576px] left-[384px]" />
-        <div className="absolute w-1.5 h-1.5 rounded-full bg-brand-green/15 top-[768px] right-[128px]" />
-        <div className="absolute w-1 h-1 rounded-full bg-brand-green/20 top-[960px] left-[64px]" />
+    <div className="grid-bg min-h-screen relative bg-white">
+      {/* Decorative grid accent dots */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute w-1.5 h-1.5 rounded-full bg-brand-green/12 top-[128px] left-[192px]" />
+        <div className="absolute w-1 h-1 rounded-full bg-brand-green/15 top-[320px] right-[256px]" />
+        <div className="absolute w-1 h-1 rounded-full bg-brand-green/12 top-[576px] left-[384px]" />
+        <div className="absolute w-1.5 h-1.5 rounded-full bg-brand-green/10 top-[768px] right-[128px]" />
+        <div className="absolute w-1 h-1 rounded-full bg-brand-green/12 top-[960px] left-[64px]" />
+        <div className="absolute w-1 h-1 rounded-full bg-brand-green/10 top-[1200px] right-[320px]" />
+        <div className="absolute w-1.5 h-1.5 rounded-full bg-brand-green/8 top-[1500px] left-[200px]" />
       </div>
 
-      <header className="fixed top-0 left-0 right-0 z-50">
-        <PromoBanner />
-        <Navbar />
-      </header>
+      <Navbar />
 
-      <main id="main-content" className="relative z-10">
+      <main className="relative z-10">
         <Hero />
         <RevealOnScroll><About /></RevealOnScroll>
         <RevealOnScroll><Schedule /></RevealOnScroll>
@@ -49,14 +38,13 @@ export default function App() {
         <RevealOnScroll><Topics /></RevealOnScroll>
         <RevealOnScroll><Team /></RevealOnScroll>
         <RevealOnScroll><Sponsors /></RevealOnScroll>
-        <RevealOnScroll><CommunityPartners /></RevealOnScroll>
         <RevealOnScroll><Venue /></RevealOnScroll>
+        <RevealOnScroll><CommunityPartners /></RevealOnScroll>
         <RevealOnScroll><AnnouncementCTA /></RevealOnScroll>
         <RevealOnScroll><FAQ /></RevealOnScroll>
       </main>
 
       <Footer />
-      <ScrollToTop />
     </div>
   );
 }
