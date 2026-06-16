@@ -1,0 +1,42 @@
+export const teamMembers = [
+  {
+    name: 'Sayantan Karmakar',
+    role: 'Platform DevOps Engineer (Kubernetes)',
+    org: 'Motorola Solutions',
+    tag: 'Golden Kubestronaut',
+    photo: '/images/team/SayantanK.jpeg',
+    linkedin: 'https://www.linkedin.com/in/sayantan-karmakar-a87091144/',
+  },
+  {
+    name: 'Soham Chakraborty',
+    role: 'Site Reliability Engineer',
+    org: 'Sematext Group',
+    tag: 'Cloud-native',
+    photo: '/images/team/SohomC.jpeg',
+    linkedin: 'https://www.linkedin.com/in/soham-chakraborty-31136514/',
+  },
+  {
+    name: 'Kunal Das',
+    role: 'Developer Advocate APAC',
+    org: 'CastAI',
+    tag: 'Data platforms',
+    photo: '/images/team/KunalD.png',
+    linkedin: 'https://www.linkedin.com/in/kunaldaskd/',
+  },
+  {
+    name: 'Kazi Haque',
+    role: 'Founder',
+    org: 'Callchimp.ai',
+    tag: 'Zero Trust',
+    photo: '/images/team/KaziH.jpeg',
+    linkedin: 'https://www.linkedin.com/in/haquekazi/',
+  },
+  {
+    name: 'Shivam Nandy',
+    role: 'Co-Founder & CEO',
+    org: 'Chapter',
+    tag: 'Distributed sys.',
+    photo: '/images/team/ShivamN.jpeg',
+    linkedin: 'https://www.linkedin.com/in/shivam-nandy-hyphen/',
+  },
+];

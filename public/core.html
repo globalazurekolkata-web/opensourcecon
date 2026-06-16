@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenSourceCon Kolkata 2026 — Community Discount</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Claim your community discount code for OpenSourceCon Kolkata 2026. India's biggest open source celebration." />
+  <meta name="theme-color" content="#52D237" />
+  <!-- Font system matching the main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Inter+Tight:wght@700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --brand-green: #52D237;
+      --brand-green-dark: #3DB82A;
+      --brand-green-light: #E8FBDE;
+      --dark: #0B1020;
+      --dark-card: #131C31;
+      --gray-secondary: #64748B;
+      --gray-light: #FAFBFC;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--dark);
+      color: var(--gray-light);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(82, 210, 55, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(82, 210, 55, 0.02) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Radial glow orb */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(82, 210, 55, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(50px);
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      width: 90%;
+      padding: 48px 40px;
+      border: 1px solid rgba(82, 210, 55, 0.15);
+      background: rgba(19, 28, 49, 0.85);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(12px);
+      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      text-align: center;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand-green);
+      background: rgba(82, 210, 55, 0.08);
+      border: 1px solid rgba(82, 210, 55, 0.2);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--brand-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--brand-green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.5; }
+    }
+
+    h1 {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    h1 span {
+      color: var(--brand-green);
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #A0AEC0;
+      margin-bottom: 32px;
+    }
+
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--brand-green), transparent);
+      margin: 0 auto 32px;
+    }
+
+    .discount-container {
+      background: rgba(82, 210, 55, 0.03);
+      border: 1px dashed rgba(82, 210, 55, 0.25);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .discount-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #718096;
+      margin-bottom: 12px;
+    }
+
+    .discount-code {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+      background: var(--brand-green);
+      padding: 12px 28px;
+      border-radius: 12px;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(82, 210, 55, 0.2);
+    }
+
+    .discount-code:hover {
+      background: var(--brand-green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(82, 210, 55, 0.3);
+    }
+
+    .discount-code:active {
+      transform: translateY(0);
+    }
+
+    .copied-toast {
+      position: absolute;
+      top: -36px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #fff;
+      color: var(--dark);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .copied-toast::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 8px;
+      height: 8px;
+      background: #fff;
+    }
+
+    .discount-code.copied .copied-toast {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-light);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-home:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .btn-home svg {
+      transition: transform 0.2s ease;
+    }
+
+    .btn-home:hover svg {
+      transform: translateX(-3px);
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="tag">
+      <span class="pulse-dot"></span>
+      Community Partner Discount
+    </div>
+
+    <h1>Open<span>Source</span>Con</h1>
+    <p class="subtitle">
+      Bengal's biggest open source celebration is coming. Use this exclusive partner code during registration on KonfHub to unlock your 10% community discount.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="discount-container">
+      <div class="discount-label">Click to copy code</div>
+      <div class="discount-code" id="discountCode" onclick="copyCode()">
+        OSCIN10OFFKC
+        <div class="copied-toast">Copied to Clipboard!</div>
+      </div>
+    </div>
+
+    <a href="https://opensourcecon.in" class="btn-home">
+      <!-- Back Arrow SVG -->
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to main site
+    </a>
+  </section>
+
+  <script>
+    function copyCode() {
+      navigator.clipboard.writeText('OSCIN10OFFKC').then(function() {
+        const el = document.getElementById('discountCode');
+        el.classList.add('copied');
+        setTimeout(function() {
+          el.classList.remove('copied');
+        }, 1800);
+      }).catch(function() {
+        // Fallback for older browsers
+        const tempInput = document.createElement('input');
+        tempInput.value = 'OSCIN10OFFKC';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        
+        const el = document.getElementById('discountCode');
+        el.classList.add('copied');
+        setTimeout(function() {
+          el.classList.remove('copied');
+        }, 1800);
+      });
+    }
+  </script>
+</body>
+</html>
