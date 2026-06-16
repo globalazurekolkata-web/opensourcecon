@@ -13,10 +13,10 @@ export default function Venue() {
             <span className="green-dot" />
             VENUE
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark">
-            The next destination
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.4]! tracking-tight text-dark">
+            <span className="font-medium">The next destination
             <br />
-            for our <span className="text-brand-green uppercase">STAGE.</span>
+            for our</span> <span className="text-gradient uppercase font-bold">STAGE.</span>
           </h2>
         </div>
 
@@ -59,7 +59,7 @@ export default function Venue() {
                   href="https://maps.google.com/?q=Nazrul+Tirtha+New+Town+Kolkata"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outline text-sm py-3 px-6 rounded-xl flex items-center justify-center gap-2 w-full mt-4"
+                  className="btn-outline text-sm py-3 px-6 rounded-full flex items-center justify-center gap-2 w-full mt-4"
                 >
                   Get Directions <Compass size={16} />
                 </a>

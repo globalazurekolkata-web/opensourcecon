@@ -5,15 +5,17 @@
 /* ===== Base Styles ===== */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Mona Sans', sans-serif;
   color: #111827;
   background-color: #FFFFFF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
 .dark body {
@@ -69,52 +71,76 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
+/* ===== Custom Gradient ===== */
+.custom-gradient {
+  background: linear-gradient(to right, #22C55E 0%, #7ED956 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #22C55E 0%, #7ED956 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* ===== Button Base ===== */
-.btn-primary {
-  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl font-semibold text-sm transition-all duration-200;
-  background: #56D64B;
-  color: #111827;
-}
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-medium text-sm transition-all duration-300;
+    background: linear-gradient(to right, #22C55E 0%, #7ED956 50%, #22C55E 100%);
+    background-size: 200% auto;
+    color: #111827;
+  }
 
-.btn-primary:hover {
-  background: #4BC441;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(86, 214, 75, 0.3);
-}
+  .btn-primary:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+  }
 
-.btn-secondary {
-  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl font-semibold text-sm transition-all duration-200 border bg-white;
-  border-color: #E5E7EB;
-  color: #111827;
-}
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-medium text-sm transition-all duration-200 border bg-white;
+    border-color: #E5E7EB;
+    color: #111827;
+  }
 
-.btn-secondary:hover {
-  background: #F9FAFB;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
+  .btn-secondary:hover {
+    background: #F9FAFB;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
 
-.dark .btn-secondary {
-  background: transparent;
-  border-color: rgba(255, 255, 255, 0.08);
-  color: #F9FAFB;
-}
+  .dark .btn-secondary {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #F9FAFB;
+  }
 
-.dark .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
+  .dark .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
 
-/* Outline button variant */
-.btn-outline {
-  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl font-semibold text-sm transition-all duration-200 border-2 bg-transparent;
-  border-color: #56D64B;
-  color: #56D64B;
-}
+  /* Outline button variant */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-medium text-sm transition-all duration-200 border bg-transparent;
+    border-color: rgba(17, 24, 39, 0.4);
+    color: #111827;
+  }
 
-.btn-outline:hover {
-  background: rgba(86, 214, 75, 0.06);
-  transform: translateY(-2px);
+  .btn-outline:hover {
+    background: rgba(17, 24, 39, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .dark .btn-outline {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #F9FAFB;
+  }
+
+  .dark .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
 }
 
 /* ===== Timeline ===== */
@@ -376,13 +402,22 @@ body {
 
 /* ===== Footer Large Text ===== */
 .footer-brand-text {
-  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-family: 'Mona Sans', sans-serif;
   font-weight: 900;
-  font-size: clamp(3rem, 10vw, 8rem);
+  font-size: 7.2vw;
   line-height: 1;
   letter-spacing: -0.03em;
-  color: rgba(255, 255, 255, 0.04);
   text-align: center;
   user-select: none;
   overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .footer-brand-text {
+    font-size: 8rem;
+  }
+}
+
+.darkBg {
+  background-color: #12180F;
 }

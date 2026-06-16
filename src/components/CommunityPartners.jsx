@@ -25,10 +25,10 @@ export default function CommunityPartners() {
               <span className="green-dot" />
               OUR PARTNERS
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark">
-              Communities that
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.4]! tracking-tight text-dark">
+              <span className="font-medium">Communities that</span>
               <br />
-              <span className="text-brand-green uppercase">POWER Us</span>
+              <span className="text-gradient uppercase font-bold">POWER Us</span>
             </h2>
           </div>
           <div className="md:col-span-5">
@@ -77,7 +77,7 @@ export default function CommunityPartners() {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary text-sm py-3 px-6 rounded-xl flex items-center justify-center gap-2 w-full"
+                className="btn-primary text-sm py-3 px-6 rounded-full flex items-center justify-center gap-2 w-full"
                 >
                   Join Community <ArrowRight size={16} />
                 </a>

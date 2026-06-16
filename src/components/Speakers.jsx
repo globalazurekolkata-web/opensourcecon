@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, User } from 'lucide-react';
+import Button from './Button';
+import { RiArrowRightLine } from 'react-icons/ri';
 
 const speakerSlots = [
   {
@@ -72,10 +74,10 @@ export default function Speakers() {
             SPEAKERS
           </div>
 
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark">
-            Voices of the
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.4]! tracking-tight text-dark">
+            <span className="font-medium">Voices of the</span>
             <br />
-            <span className="text-brand-green uppercase">OPEN SOURCE WORLD</span>
+            <span className="text-gradient uppercase font-bold">OPEN SOURCE WORLD</span>
           </h2>
 
           <p className="text-gray-secondary text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -83,20 +85,24 @@ export default function Speakers() {
           </p>
 
           <div className="flex justify-center gap-4 pt-2">
-            <a
+            <Button
               href="https://forms.gle/tFUzkFuCyb1heshu9"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary text-sm py-3 px-6 rounded-full flex items-center gap-2"
+              variant="primary"
+              className="text-sm py-3 px-6"
+              icon={RiArrowRightLine}
+              iconPosition="right"
             >
-              Apply to Speak <ArrowRight size={16} />
-            </a>
-            <a
+              Apply to Speak
+            </Button>
+            <Button
               href="#schedule"
-              className="btn-secondary text-sm py-3 px-6 rounded-full border-gray-200"
+              variant="secondary"
+              className="text-sm py-3 px-6 border-gray-250"
             >
               View Schedule
-            </a>
+            </Button>
           </div>
         </div>
 

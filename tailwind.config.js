@@ -11,21 +11,25 @@ export default {
         brand: {
           green: '#56D64B',
           'green-light': '#E8FBDE',
-          'green-dark': '#3DBF2E',
+          'green-dark': '#298500',
           'green-glow': 'rgba(86, 214, 75, 0.15)',
         },
         dark: '#111827',
+        darkBg: '#12180F',
         'gray-secondary': '#6B7280',
         'card-border': '#E5E7EB',
         surface: '#FAFFFE',
       },
       fontFamily: {
-        heading: ['"Inter Tight"', '"Inter"', 'sans-serif'],
-        body: ['"Inter"', 'sans-serif'],
+        heading: ['"Mona Sans"', 'sans-serif'],
+        body: ['"Mona Sans"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       maxWidth: {
         container: '1240px',
+      },
+      screens: {
+        xs: '360px',
       },
       borderRadius: {
         card: '24px',

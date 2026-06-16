@@ -1,4 +1,6 @@
 import { Award, Briefcase } from 'lucide-react';
+import Button from './Button';
+import { RiArrowRightLine } from 'react-icons/ri';
 
 export default function Sponsors() {
   return (
@@ -14,10 +16,10 @@ export default function Sponsors() {
             SPONSORS
           </div>
           
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark">
-            Backed by those who believe in
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.4]! tracking-tight text-dark">
+            <span className="font-medium">Backed by those who believe in</span>
             <br />
-            <span className="text-brand-green uppercase">OPEN SOURCE.</span>
+            <span className="text-gradient uppercase font-bold">OPEN SOURCE.</span>
           </h2>
           
           <p className="text-gray-secondary text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -128,14 +130,17 @@ export default function Sponsors() {
               </p>
             </div>
           </div>
-          <a
+          <Button
             href="https://drive.google.com/file/d/1RVrIZV0d6UskRM9k62cOlUU1A3J2pBg4/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary text-sm py-3 px-6 rounded-xl flex items-center gap-2 whitespace-nowrap"
+            variant="primary"
+            className="text-sm py-3 px-6 whitespace-nowrap"
+            icon={RiArrowRightLine}
+            iconPosition="right"
           >
-            Sponsor Us <Award size={16} />
-          </a>
+            Sponsor Us
+          </Button>
         </div>
 
       </div>

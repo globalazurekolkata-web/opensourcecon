@@ -41,10 +41,10 @@ export default function FAQ() {
               FAQ
             </div>
 
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-dark">
-              Got questions?
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.4]! tracking-tight text-dark">
+              <span className="font-medium">Got questions?
               <br />
-              We've got <span className="text-brand-green uppercase">ANSWERS</span>
+              We've got</span> <span className="text-gradient uppercase font-bold">ANSWERS</span>
             </h2>
 
             <p className="text-gray-secondary text-base md:text-lg leading-relaxed max-w-sm">

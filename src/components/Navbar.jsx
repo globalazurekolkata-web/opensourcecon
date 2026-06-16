@@ -1,5 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { 
+  RiLoginBoxLine, 
+  RiArrowRightLine, 
+  RiMenu4Line, 
+  RiCloseLine, 
+  RiGithubFill, 
+  RiTwitterXFill, 
+  RiLinkedinBoxFill, 
+  RiInstagramFill 
+} from 'react-icons/ri';
+import Button from './Button';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -8,6 +18,13 @@ const navLinks = [
   { label: 'Communities', href: '#community' },
   { label: 'Venue', href: '#venue' },
   { label: 'Sponsors', href: '#sponsors' },
+];
+
+const socialLinks = [
+  { Icon: RiGithubFill, href: '#', label: 'GitHub', size: 20 },
+  { Icon: RiTwitterXFill, href: '#', label: 'Twitter', size: 18 },
+  { Icon: RiLinkedinBoxFill, href: '#', label: 'LinkedIn', size: 20 },
+  { Icon: RiInstagramFill, href: '#', label: 'Instagram', size: 20 },
 ];
 
 function openKonfHub(e) {
@@ -28,28 +45,25 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 py-1 transition-all duration-300 ${
         scrolled
           ? 'bg-white/80 dark:bg-dark/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 shadow-soft'
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-container mx-auto px-6 lg:px-8">
+      <div className="max-w-container mx-auto px-6 xl:px-8">
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2.5 flex-shrink-0">
             <img
-              src="/images/logo text.png"
-              alt="OpenSourceCon India"
-              className="h-7 object-contain dark:invert"
+              src="/logoWord.png"
+              alt="OpenSourceCon"
+              className="h-10 object-contain dark:invert"
             />
-            <span className="text-[10px] text-gray-secondary dark:text-gray-400 font-semibold leading-none border-l border-gray-200 dark:border-white/10 pl-2.5 self-center py-1 hidden sm:block">
-              India '26
-            </span>
           </a>
 
           {/* Desktop Nav Links — center */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden xl:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -63,24 +77,30 @@ export default function Navbar() {
 
           {/* Right Side */}
           <div className="flex items-center gap-3">
-            <a
+            <Button
               href="#login"
-              className="hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-dark dark:hover:text-white transition-colors rounded-xl"
+              variant="text"
+              className={`${mobileOpen ? 'hidden' : 'hidden sm:inline-flex'}`}
+              icon={RiLoginBoxLine}
+              iconPosition="left"
             >
               Login
-            </a>
-            <button
+            </Button>
+            <Button
               onClick={openKonfHub}
-              className="hidden sm:inline-flex btn-primary text-sm py-2.5 px-6"
+              variant="primary"
+              className={`${mobileOpen ? 'hidden' : 'hidden md:inline-flex'} py-2.5 px-6`}
+              icon={RiArrowRightLine}
+              iconPosition="right"
             >
               Register Now
-            </button>
+            </Button>
             <button
-              className="lg:hidden w-10 h-10 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+              className="xl:hidden w-12 h-12 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
-              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+              {mobileOpen ? <RiCloseLine size={20} /> : <RiMenu4Line size={20} />}
             </button>
           </div>
         </div>
@@ -88,35 +108,72 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+        className={`xl:hidden absolute top-full left-0 right-0 h-[calc(100dvh-72px)] overflow-y-auto border-b border-gray-100 dark:border-white/5 bg-white/95 dark:bg-dark/95 backdrop-blur-xl transition-all duration-300 ease-in-out origin-top ${
+          mobileOpen
+            ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
+            : 'opacity-0 -translate-y-4 scale-95 pointer-events-none'
         }`}
       >
-        <div className="bg-white dark:bg-dark border-t border-gray-100 dark:border-white/5 shadow-lg">
-          <div className="px-6 py-4 space-y-1">
-            {navLinks.map((link) => (
+        <div className="px-6 py-10 flex flex-col min-h-full justify-between border-t border-gray-100 dark:border-white/5">
+          {/* Navigation Links */}
+          <div className="space-y-1.5 max-w-md mx-auto w-full">
+            {navLinks.map((link, idx) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-dark dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl transition-colors"
+                className="flex items-center justify-between px-5 py-3.5 rounded-xl hover:bg-brand-green/8 dark:hover:bg-brand-green/5 transition-all duration-300 group border border-transparent hover:border-brand-green/10 dark:hover:border-brand-green/10"
               >
-                {link.label}
+                <div className="flex items-center gap-4 group-hover:translate-x-1.5 transition-transform duration-300">
+                  <span className="text-xs font-mono text-brand-green-dark dark:text-brand-green-dark/45">
+                    0{idx + 1}
+                  </span>
+                  <span className="text-lg font-medium text-gray-800 dark:text-gray-200 group-hover:text-brand-green-dark transition-colors">
+                    {link.label}
+                  </span>
+                </div>
+                <RiArrowRightLine className="text-brand-green-dark opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-lg" />
               </a>
             ))}
-            <a
-              href="#login"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-dark dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl transition-colors"
-            >
-              Login
-            </a>
-            <button
-              onClick={(e) => { setMobileOpen(false); openKonfHub(e); }}
-              className="block w-full text-center btn-primary mt-3 py-3"
-            >
-              Register Now
-            </button>
+          </div>
+
+          {/* Action Buttons & Social Footer */}
+          <div className="border-t border-gray-100 dark:border-white/5 space-y-8 max-w-md mx-auto w-full">
+            <div className="flex flex-col gap-3 items-center">
+              <Button
+                href="#login"
+                onClick={() => setMobileOpen(false)}
+                variant="text"
+                className="flex w-full max-w-[300px] justify-center pb-4 pt-6 "
+                icon={RiLoginBoxLine}
+                iconPosition="left"
+              >
+                Login
+              </Button>
+              <Button
+                onClick={(e) => { setMobileOpen(false); openKonfHub(e); }}
+                variant="primary"
+                className="flex w-full max-w-[300px] justify-center py-4"
+                icon={RiArrowRightLine}
+                iconPosition="right"
+              >
+                Register Now
+              </Button>
+            </div>
+            
+            {/* Social Links */}
+            <div className="flex justify-center gap-5">
+              {socialLinks.map(({ Icon, href, label, size }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="w-10 h-10 rounded-full bg-gray-50 dark:bg-white/5 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-brand-green hover:text-white transition-all duration-300 border border-gray-100 dark:border-white/5"
+                >
+                  <Icon size={size} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
