@@ -1,15 +1,4 @@
-import { ArrowRight, CalendarDays, MapPin, Clock, Users } from 'lucide-react';
-import CountUp from './CountUp';
-import { useEffect, useRef } from 'react';
-
-const floatingBadges = [
-  { text: '#OpenSource', left: '8%', top: '30%', duration: '12s', delay: '0s' },
-  { text: 'Linux', left: '80%', top: '45%', duration: '9s', delay: '2s' },
-  { text: 'Kubernetes', left: '20%', top: '65%', duration: '14s', delay: '4s' },
-  { text: 'FOSS', left: '70%', top: '20%', duration: '11s', delay: '1s' },
-  { text: 'Kolkata', left: '50%', top: '75%', duration: '10s', delay: '3s' },
-  { text: 'Git', left: '5%', top: '55%', duration: '13s', delay: '5s' },
-];
+import { ArrowRight } from 'lucide-react';
 
 function openKonfHub(e) {
   e.preventDefault();
@@ -19,184 +8,46 @@ function openKonfHub(e) {
 
 export default function Hero() {
   return (
-    <section id="home" className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden min-h-[90vh] flex items-center">
-      {/* Animated gradient orbs */}
-      <div className="hero-orb hero-orb-1" />
-      <div className="hero-orb hero-orb-2" />
+    <section id="home" className="relative pt-28 lg:pt-36 min-h-[95vh] flex flex-col justify-start overflow-hidden bg-white">
+      {/* Grid overlay for the white part */}
+      <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
 
-      {/* Floating tech badges */}
-      {floatingBadges.map((badge) => (
-        <div
-          key={badge.text}
-          className="floating-badge hidden lg:block"
-          style={{
-            left: badge.left,
-            top: badge.top,
-            animationDuration: badge.duration,
-            animationDelay: badge.delay,
-          }}
-        >
-          {badge.text}
-        </div>
-      ))}
-
-      <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
-          <div className="space-y-8">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full border border-brand-green/30 bg-brand-green/5 text-brand-green">
-              <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
-              🇮🇳 Kolkata, India · 2026
+      {/* Main Content */}
+      <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10 w-full mb-10">
+        <div className="max-w-4xl space-y-6">
+          <h1 className="font-heading text-5xl md:text-6xl lg:text-[72px] font-extrabold leading-[1.05] tracking-tight text-dark flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span className="w-full block">Where Kolkata Meets</span>
+            <span className="text-brand-green uppercase">OPEN SOURCE</span>
+            <div className="inline-flex items-center gap-2 text-sm md:text-base font-semibold px-4 py-2 rounded-full border-2 border-brand-green bg-white text-brand-green shadow-sm mt-2 md:mt-0">
+              <span className="w-4 h-4 flex items-center justify-center">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </span>
+              Date : 5th Dec 2026
             </div>
+          </h1>
 
-            {/* Logo & Heading */}
-            <div className="space-y-4">
-              <img
-                src="/images/logo.png"
-                alt="OpenSourceCon"
-                className="w-20 h-20 md:w-24 md:h-24 dark:invert"
-              />
-              <h1 className="font-heading text-5xl md:text-6xl lg:text-[68px] font-extrabold leading-[1.05] tracking-tight text-dark dark:text-white">
-                Where Kolkata
-                <br />
-                Meets
-                <br />
-                <span className="text-brand-green">Open Source</span>
-              </h1>
-            </div>
+          <p className="text-gray-secondary text-lg leading-relaxed max-w-lg mt-6">
+            Join developers, maintainers, students, and innovators for a day of talks, workshops, networking, and collaboration.
+          </p>
 
-            {/* Description */}
-            <p className="text-gray-secondary dark:text-gray-400 text-lg leading-relaxed max-w-md">
-              Bengal's first dedicated open source conference. A full-day celebration of community, code, and collaboration — built by the people, for the people.
-            </p>
-
-            {/* Event meta */}
-            <div className="flex flex-wrap gap-4 text-sm">
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                <CalendarDays size={14} className="text-brand-green" />
-                <span className="font-semibold text-dark dark:text-white">5th Dec 2026</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                <Clock size={14} className="text-brand-green" />
-                <span className="font-semibold text-dark dark:text-white">Full Day</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                <MapPin size={14} className="text-brand-green" />
-                <span className="font-semibold text-dark dark:text-white">Kolkata, WB</span>
-              </div>
-            </div>
-
-            {/* Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <button onClick={openKonfHub} className="btn-primary text-base py-3.5 px-7">
-                Register Now <ArrowRight size={18} />
-              </button>
-              <a
-                href="https://forms.gle/tFUzkFuCyb1heshu9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary text-base py-3.5 px-7"
-              >
-                Submit Talk
-              </a>
-            </div>
-
-            {/* Stats */}
-            <div className="flex flex-wrap gap-8 pt-4">
-              <div className="flex items-center gap-2 text-dark dark:text-white">
-                <Users size={18} className="text-brand-green" />
-                <CountUp target={800} suffix="+" className="font-heading font-bold text-lg" />
-                <span className="text-gray-secondary dark:text-gray-400 text-sm">Attendees</span>
-              </div>
-              <div className="flex items-center gap-2 text-dark dark:text-white">
-                <CalendarDays size={18} className="text-brand-green" />
-                <span className="font-heading font-bold text-lg">1</span>
-                <span className="text-gray-secondary dark:text-gray-400 text-sm">Full Day</span>
-              </div>
-              <div className="flex items-center gap-2 text-dark dark:text-white">
-                <MapPin size={18} className="text-brand-green" />
-                <span className="font-heading font-bold text-lg">In-Person</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Visual - Network Orbit */}
-          <div className="relative flex items-center justify-center lg:justify-end">
-            <div className="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px]">
-              {/* Outer ring */}
-              <div className="absolute inset-0 rounded-full border border-gray-200 dark:border-white/5 hero-ring-spin" />
-              {/* Middle ring */}
-              <div className="absolute inset-8 rounded-full border border-gray-200/70 dark:border-white/5 hero-ring-spin-reverse" />
-              {/* Inner ring */}
-              <div className="absolute inset-16 rounded-full border border-gray-200/50 dark:border-white/5" />
-
-              {/* Center circle */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-white dark:bg-[#131C31] flex items-center justify-center shadow-lg border border-gray-100/50 dark:border-white/10">
-                  <div className="w-18 h-18 md:w-20 md:h-20 rounded-full bg-brand-green flex items-center justify-center shadow-inner">
-                    <span className="text-white text-2xl md:text-3xl font-mono font-extrabold">&lt;/&gt;</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Orbital nodes */}
-              {/* Top */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1">
-                <div className="w-10 h-10 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#52D237" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
-                </div>
-              </div>
-              {/* Right */}
-              <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1">
-                <div className="w-10 h-10 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#52D237" strokeWidth="2"><circle cx="12" cy="12" r="3" /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" /></svg>
-                </div>
-              </div>
-              {/* Bottom */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1">
-                <div className="w-10 h-10 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#52D237" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /></svg>
-                </div>
-              </div>
-              {/* Left */}
-              <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1">
-                <div className="w-10 h-10 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#52D237" strokeWidth="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" /></svg>
-                </div>
-              </div>
-              {/* Accent dots */}
-              <div className="absolute top-[12%] right-[12%]">
-                <div className="w-8 h-8 rounded-full bg-brand-green/10 border border-brand-green/30 flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-brand-green" />
-                </div>
-              </div>
-              <div className="absolute bottom-[12%] left-[12%]">
-                <div className="w-8 h-8 rounded-full bg-brand-green/10 border border-brand-green/30 flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-brand-green" />
-                </div>
-              </div>
-              <div className="absolute top-[20%] left-[8%]">
-                <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-gray-400" />
-                </div>
-              </div>
-              <div className="absolute bottom-[20%] right-[8%]">
-                <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-gray-400" />
-                </div>
-              </div>
-
-              {/* Connecting lines */}
-              <svg className="absolute inset-0 w-full h-full text-gray-200 dark:text-white/5" viewBox="0 0 400 400" fill="none">
-                <line x1="200" y1="55" x2="200" y2="150" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="345" y1="200" x2="250" y2="200" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="200" y1="345" x2="200" y2="250" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="55" y1="200" x2="150" y2="200" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-              </svg>
-            </div>
+          <div className="flex flex-wrap gap-4 pt-4">
+            <button onClick={openKonfHub} className="btn-primary text-base py-3.5 px-8 rounded-full shadow-lg">
+              Register Now <ArrowRight size={18} />
+            </button>
+            <a href="#sponsors" className="btn-secondary text-base py-3.5 px-8 rounded-full border-gray-200 shadow-sm bg-white">
+              Become a Sponsor
+            </a>
           </div>
         </div>
+      </div>
+
+      {/* Background Image at the bottom spanning full width */}
+      <div className="absolute bottom-0 left-0 w-full z-0 pointer-events-none">
+        <img 
+          src="/images/hero section image.png" 
+          alt="Kolkata Skyline with Howrah Bridge and Victoria Memorial" 
+          className="w-full h-auto block opacity-95" 
+        />
       </div>
     </section>
   );

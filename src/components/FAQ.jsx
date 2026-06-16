@@ -3,84 +3,107 @@ import { Plus, Minus } from 'lucide-react';
 
 const faqs = [
   {
-    q: 'When and where is Open Source Con Kolkata?',
-    a: 'Open Source Con Kolkata is scheduled for 5th December 2026. The exact venue is yet to be announced — it will be in Kolkata, West Bengal. Subscribe to our mailing list or follow us on social media to get notified the moment it\'s revealed!',
+    q: "Is there a registration fee for the conference?",
+    a: "The regular tickets will cost around ₹1000 but we have early bird discounts!"
   },
   {
-    q: 'Is the event paid?',
-    a: 'Open Source Con Kolkata is a paid, community-driven event designed for developers and students to explore open source, attend curated sessions, and network with peers. However, we offer scholarships and free passes for students, underrepresented communities, and active open source contributors. Early bird tickets are also available at a discounted rate.',
+    q: "Will meals be provided?",
+    a: "Yes, lunch and tea/coffee will be provided during the event."
   },
   {
-    q: 'How can I speak at the event?',
-    a: 'We have an open Call for Proposals (CFP). Click the "Submit Your Talk Proposal" button and share your idea. We welcome talks, workshops, and lightning talks on any open source topic.',
+    q: "Can I bring my laptop?",
+    a: "Yes, we encourage you to bring your laptop for the hands-on workshops."
   },
   {
-    q: 'Can my company sponsor the event?',
-    a: 'Absolutely! We have multiple sponsorship tiers available. Sponsors get visibility among 800+ passionate developers, branding opportunities, and the chance to connect with the open source community. Download our sponsorship deck or reach out directly to discuss custom packages.',
+    q: "Do I need to be an expert to attend?",
+    a: "Not at all! We have sessions ranging from beginner to advanced levels. Everyone is welcome."
   },
   {
-    q: 'Can my community partner with Open Source Con Kolkata?',
-    a: 'Yes! We love partnering with local and national tech communities. Community partners get co-promotion, booth space, and more. Reach out to us via our social channels or email at hello@opensourcecon.in.',
-  },
-  {
-    q: 'Is this event beginner-friendly?',
-    a: '100%. We have a dedicated student and beginner track. Whether you\'ve never contributed to open source or you\'re a veteran maintainer, there\'s something for everyone at this conference.',
-  },
+    q: "Are there any travel grants available?",
+    a: "We are working on securing funds for travel grants. Stay tuned to our social media for announcements."
+  }
 ];
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const toggle = (i) => {
-    setOpenIndex(openIndex === i ? null : i);
-  };
+  const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section id="faq" className="py-20 lg:py-28 relative">
-      <div className="max-w-container mx-auto px-6 lg:px-8">
-        <div className="max-w-3xl">
-          {/* Header */}
-          <div className="mb-12">
-            <div className="section-tag mb-6">
+    <section id="faq" className="py-20 lg:py-28 relative bg-white border-t border-gray-100">
+      <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
+      
+      <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left - Heading */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="section-tag w-fit">
               <span className="green-dot" />
               FAQ
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark dark:text-white">
+
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-dark">
               Got questions?
               <br />
-              We've got <span className="text-brand-green">answers</span>
+              We've got <span className="text-brand-green uppercase">ANSWERS</span>
             </h2>
+
+            <p className="text-gray-secondary text-base md:text-lg leading-relaxed max-w-sm">
+              Find answers to common questions about attending the Open Source Conference Kolkata.
+            </p>
+
+            <a 
+              href="mailto:hello@opensourcecon.in" 
+              className="btn-outline text-sm mt-4 inline-flex"
+            >
+              Contact Us
+            </a>
           </div>
 
-          {/* FAQ Items */}
-          <div className="border-t border-gray-100 dark:border-white/5">
-            {faqs.map((faq, i) => (
-              <div key={i} className="faq-item" onClick={() => toggle(i)}>
-                <div className="flex items-start gap-4">
-                  <button
-                    className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors mt-0.5 ${
-                      openIndex === i
-                        ? 'bg-brand-green text-white'
-                        : 'bg-brand-green/10 text-brand-green'
+          {/* Right - Accordion */}
+          <div className="lg:col-span-7">
+            <div className="space-y-4">
+              {faqs.map((faq, idx) => {
+                const isOpen = openIdx === idx;
+                return (
+                  <div 
+                    key={idx}
+                    className={`rounded-[20px] border transition-all duration-300 overflow-hidden ${
+                      isOpen 
+                        ? 'border-brand-green/30 bg-white shadow-md' 
+                        : 'border-gray-250 bg-white/50 hover:bg-white hover:border-brand-green/20'
                     }`}
-                    aria-label={openIndex === i ? 'Collapse' : 'Expand'}
                   >
-                    {openIndex === i ? <Minus size={14} /> : <Plus size={14} />}
-                  </button>
-                  <div className="flex-1">
-                    <h3 className="font-heading font-bold text-base mb-0 text-dark dark:text-white">
-                      {faq.q}
-                    </h3>
-                    {openIndex === i && (
-                      <p className="text-gray-secondary dark:text-gray-400 text-sm leading-relaxed mt-3 animate-fade-up">
-                        {faq.a}
-                      </p>
-                    )}
+                    <button
+                      onClick={() => setOpenIdx(isOpen ? -1 : idx)}
+                      className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+                    >
+                      <span className={`font-heading font-extrabold text-base pr-8 ${isOpen ? 'text-brand-green' : 'text-dark'}`}>
+                        {faq.q}
+                      </span>
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
+                        isOpen ? 'bg-brand-green text-dark' : 'bg-gray-100 text-gray-500'
+                      }`}>
+                        {isOpen ? <Minus size={14} /> : <Plus size={14} />}
+                      </div>
+                    </button>
+                    
+                    <div 
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <div className="px-6 pb-6">
+                        <p className="text-gray-secondary text-sm leading-relaxed pl-3 border-l-2 border-brand-green/20">
+                          {faq.a}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                );
+              })}
+            </div>
           </div>
+          
         </div>
       </div>
     </section>

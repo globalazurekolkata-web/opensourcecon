@@ -7,7 +7,7 @@ export default function PromoBanner() {
   if (!visible) return null;
 
   return (
-    <div className="promo-banner relative z-[60] bg-gradient-to-r from-brand-green via-[#5EE043] to-[#3DB82A] text-dark">
+    <div className="promo-banner relative z-[60] bg-gradient-to-r from-brand-green via-[#5EE043] to-[#3DBF2E] text-dark">
       <div className="max-w-container mx-auto px-6 lg:px-8 py-2.5 flex items-center justify-center gap-3 text-sm font-semibold">
         <Sparkles size={16} className="flex-shrink-0 animate-pulse" />
         <span>

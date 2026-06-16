@@ -1,137 +1,223 @@
-import { ArrowRight, Mic2, Presentation, Award } from 'lucide-react';
-import TiltCard from './TiltCard';
+import { useState } from 'react';
+import { ArrowLeft, ArrowRight, User } from 'lucide-react';
 
 const speakerSlots = [
   {
-    role: 'Keynote Speaker',
-    color: 'bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400',
+    slot: 'SPEAKER SLOT 1',
+    name: 'To Be Announced',
+    role: 'Open Source Maintainer',
+    company: 'Leading Tech Org',
+    bio: 'Specialist in building distributed systems, developer experience, and cloud-native frameworks.',
+    twitter: 'https://twitter.com',
+    linkedin: 'https://linkedin.com'
   },
   {
-    role: 'Technical Talk',
-    color: 'bg-purple-100 text-purple-700 dark:bg-purple-500/10 dark:text-purple-400',
+    slot: 'SPEAKER SLOT 2',
+    name: 'To Be Announced',
+    role: 'Core Contributor',
+    company: 'OSS Foundation',
+    bio: 'Expert in frontend architectures, design systems, and building accessible UI frameworks.',
+    twitter: 'https://twitter.com',
+    linkedin: 'https://linkedin.com'
   },
   {
-    role: 'Workshop Lead',
-    color: 'bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400',
+    slot: 'SPEAKER SLOT 3',
+    name: 'To Be Announced',
+    role: 'DevOps Architect',
+    company: 'Global Scale Inc',
+    bio: 'Deep expertise in Kubernetes automation, secure supply chain, and continuous deployment.',
+    twitter: 'https://twitter.com',
+    linkedin: 'https://linkedin.com'
   },
   {
-    role: 'Lightning Talk',
-    color: 'bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-brand-green',
-  },
+    slot: 'SPEAKER SLOT 4',
+    name: 'To Be Announced',
+    role: 'Web3 Lead Developer',
+    company: 'Decentralized protocol',
+    bio: 'Leading researcher in decentralized infrastructure, blockchain scaling, and smart contracts.',
+    twitter: 'https://twitter.com',
+    linkedin: 'https://linkedin.com'
+  }
 ];
 
 export default function Speakers() {
+  const [startIndex, setStartIndex] = useState(0);
+
+  const nextSlide = () => {
+    if (startIndex + 3 < speakerSlots.length) {
+      setStartIndex(startIndex + 1);
+    } else {
+      setStartIndex(0); // Loop back
+    }
+  };
+
+  const prevSlide = () => {
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 1);
+    } else {
+      setStartIndex(speakerSlots.length - 3); // Loop to end
+    }
+  };
+
   return (
-    <section id="speakers" className="py-20 lg:py-28 relative">
-      <div className="max-w-container mx-auto px-6 lg:px-8">
-        {/* Top Content */}
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start mb-16">
-          {/* Left */}
-          <div className="space-y-6">
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark dark:text-white">
-              Voices of the
-              <br />
-              <span className="text-brand-green">open source</span>
-              <br />
-              world
-            </h2>
-
-            <p className="text-gray-secondary dark:text-gray-400 text-lg leading-relaxed max-w-md">
-              We're curating an exceptional lineup of maintainers, engineers, and community leaders. Speaker announcements coming soon.
-            </p>
-
-            {/* Stats */}
-            <div className="flex gap-8 pt-2">
-              <div>
-                <div className="flex items-center gap-2">
-                  <Mic2 size={18} className="text-brand-green" />
-                  <span className="font-heading font-bold text-xl text-dark dark:text-white">40+</span>
-                </div>
-                <span className="text-gray-secondary dark:text-gray-400 text-sm">Speakers</span>
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <Presentation size={18} className="text-brand-green" />
-                  <span className="font-heading font-bold text-xl text-dark dark:text-white">15+</span>
-                </div>
-                <span className="text-gray-secondary dark:text-gray-400 text-sm">Sessions</span>
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <Award size={18} className="text-brand-green" />
-                  <span className="font-heading font-bold text-xl text-dark dark:text-white">Industry</span>
-                </div>
-                <span className="text-gray-secondary dark:text-gray-400 text-sm">Experts</span>
-              </div>
-            </div>
+    <section id="speakers" className="py-20 lg:py-28 relative bg-white border-t border-gray-100 overflow-hidden">
+      <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
+      
+      <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
+        
+        {/* Centered Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-6 mb-16">
+          <div className="section-tag inline-flex items-center gap-1.5 mx-auto">
+            <span className="green-dot" />
+            SPEAKERS
           </div>
+          
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-dark">
+            Voices of the
+            <br />
+            <span className="text-brand-green uppercase">OPEN SOURCE WORLD</span>
+          </h2>
+          
+          <p className="text-gray-secondary text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            Learn from industry experts, core maintainers, and community leaders who are building the future of open source technologies.
+          </p>
 
-          {/* Right - Speaker Collage */}
-          <div className="relative">
-            <div className="rounded-card overflow-hidden">
-              <img
-                src="/images/Collage Image Area.png"
-                alt="Speaker collage"
-                className="w-full h-auto object-cover"
+          <div className="flex justify-center gap-4 pt-2">
+            <a
+              href="https://forms.gle/tFUzkFuCyb1heshu9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-sm py-3 px-6 rounded-full flex items-center gap-2"
+            >
+              Apply to Speak <ArrowRight size={16} />
+            </a>
+            <a
+              href="#schedule"
+              className="btn-secondary text-sm py-3 px-6 rounded-full border-gray-200"
+            >
+              View Schedule
+            </a>
+          </div>
+        </div>
+
+        {/* 2-Column Split Layout */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Left: Speaker Collage Graphic */}
+          <div className="lg:col-span-5 relative flex items-center justify-center">
+            {/* Soft decorative background orb */}
+            <div className="absolute w-[300px] h-[300px] rounded-full bg-brand-green/5 blur-3xl -z-10" />
+            
+            <div className="relative w-full max-w-[420px] aspect-square rounded-[2rem] border border-gray-150 bg-gradient-to-br from-white to-gray-50/50 shadow-md flex items-center justify-center p-8">
+              <img 
+                src="/images/image 2.png" 
+                alt="Speakers Collage" 
+                className="w-full h-full object-contain filter drop-shadow-lg" 
               />
-            </div>
-          </div>
-        </div>
-
-        {/* TBA Speaker Slots */}
-        <div className="mb-12">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-semibold text-dark dark:text-white">— Speaker Slots</span>
+              
+              {/* Floating micro indicators/badges */}
+              <div className="absolute -top-3 -right-3 px-3.5 py-1.5 rounded-full bg-white border border-gray-100 shadow-sm text-[10px] font-bold text-brand-green flex items-center gap-1.5 animate-bounce">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-ping" />
+                Lineup Unveiling Soon
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {speakerSlots.map((slot, i) => (
-              <TiltCard
-                key={i}
-                className="card p-5 text-center hover:shadow-md transition-all group"
-              >
-                {/* Avatar placeholder */}
-                <div className={`w-16 h-16 rounded-full ${slot.color} mx-auto mb-4 flex items-center justify-center`}>
-                  <span className="text-3xl font-bold">?</span>
+          {/* Right: Speaker Cards Slider */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+              <span className="text-xs font-mono font-bold text-gray-secondary tracking-widest uppercase">
+                SPEAKER SLOTS
+              </span>
+              
+              {/* Slider Controls */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={prevSlide}
+                  className="w-9 h-9 rounded-full border border-gray-200 bg-white flex items-center justify-center text-dark hover:bg-gray-50 transition-colors shadow-sm"
+                  aria-label="Previous speaker"
+                >
+                  <ArrowLeft size={16} />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="w-9 h-9 rounded-full border border-gray-200 bg-white flex items-center justify-center text-dark hover:bg-gray-50 transition-colors shadow-sm"
+                  aria-label="Next speaker"
+                >
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+            </div>
+
+            {/* Carousel Content */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 transition-all duration-300">
+              {speakerSlots.slice(startIndex, startIndex + 3).map((slot, i) => (
+                <div 
+                  key={i}
+                  className="card p-0 bg-white border border-gray-150 rounded-3xl overflow-hidden shadow-sm flex flex-col justify-between group min-h-[380px] hover:-translate-y-1 transition-all duration-300"
+                >
+                  {/* Card Main Info */}
+                  <div className="p-6 space-y-4 text-center">
+                    <span className="inline-block px-2.5 py-1 rounded-full bg-gray-100 border border-gray-150 text-gray-500 text-[9px] font-bold tracking-wider uppercase">
+                      {slot.slot}
+                    </span>
+
+                    {/* Avatar Placeholder */}
+                    <div className="w-16 h-16 rounded-full border border-dashed border-gray-200 bg-gray-50 flex items-center justify-center mx-auto group-hover:border-brand-green/40 group-hover:bg-brand-green/5 transition-colors">
+                      <div className="text-gray-300">
+                        <User size={24} />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <h4 className="font-heading font-extrabold text-base text-dark">
+                        {slot.name}
+                      </h4>
+                      <p className="text-xs font-semibold text-brand-green">
+                        {slot.role}
+                      </p>
+                      <p className="text-[10px] text-gray-secondary font-medium">
+                        {slot.company}
+                      </p>
+                    </div>
+
+                    <p className="text-[11px] text-gray-secondary leading-relaxed pt-2">
+                      {slot.bio}
+                    </p>
+                  </div>
+
+                  {/* Card Social Footer (Green Strip) */}
+                  <div className="bg-brand-green py-3 px-4 flex items-center justify-center gap-3">
+                    <a 
+                      href={slot.twitter}
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-7 h-7 rounded-full bg-dark text-brand-green flex items-center justify-center hover:bg-black transition-colors"
+                      aria-label="Twitter profile"
+                    >
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
+                    </a>
+                    <a 
+                      href={slot.linkedin}
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-7 h-7 rounded-full bg-dark text-brand-green flex items-center justify-center hover:bg-black transition-colors"
+                      aria-label="LinkedIn profile"
+                    >
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+                      </svg>
+                    </a>
+                  </div>
                 </div>
-                <h4 className="font-heading font-bold text-sm mb-0.5 text-dark dark:text-white">TBA</h4>
-                <p className="text-gray-secondary dark:text-gray-400 text-xs mb-1">{slot.role}</p>
-                <p className="text-gray-secondary dark:text-gray-400 text-xs mb-3">Announcement Soon</p>
-                <span className="inline-block text-[10px] font-semibold px-2.5 py-1 rounded-full bg-brand-green/10 text-brand-green">
-                  Coming Soon
-                </span>
-              </TiltCard>
-            ))}
+              ))}
+            </div>
           </div>
+
         </div>
 
-        {/* CFP CTA Banner */}
-        <div className="card bg-gradient-to-r from-gray-50 to-white dark:from-[#131C31] dark:to-[#131C31]/40 p-6 md:p-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
-            <div>
-              <h3 className="font-heading font-bold text-lg md:text-xl mb-1 text-dark dark:text-white">
-                🎤 CFP is Open!
-              </h3>
-              <p className="text-gray-secondary dark:text-gray-400 text-sm">
-                Are you an open source contributor, maintainer, or enthusiast with something to share?
-                <br />
-                We'd love to have you speak at Open Source Con Kolkata.
-              </p>
-            </div>
-            <div className="flex items-center gap-3 flex-shrink-0">
-              <a
-                href="https://forms.gle/tFUzkFuCyb1heshu9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-sm py-2.5 px-5"
-              >
-                Submit Your Talk Proposal <ArrowRight size={14} />
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
