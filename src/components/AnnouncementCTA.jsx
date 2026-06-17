@@ -34,7 +34,7 @@ export default function AnnouncementCTA() {
 
             {/* Application / Email Form */}
             <form 
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => { e.preventDefault(); window.open('https://forms.gle/Kr6y4FFjtyH1mxaW8', '_blank'); }}
               className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-4"
             >
               <div className="flex-1 relative">

@@ -21,10 +21,10 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { Icon: RiGithubFill, href: '#', label: 'GitHub', size: 20 },
-  { Icon: RiTwitterXFill, href: '#', label: 'Twitter', size: 18 },
-  { Icon: RiLinkedinBoxFill, href: '#', label: 'LinkedIn', size: 20 },
-  { Icon: RiInstagramFill, href: '#', label: 'Instagram', size: 20 },
+  { Icon: RiGithubFill, href: 'https://github.com/globalazurekolkata-web/opensourcecon', label: 'GitHub', size: 20 },
+  { Icon: RiTwitterXFill, href: 'https://www.x.com/OpenSourceConIN', label: 'Twitter', size: 18 },
+  { Icon: RiLinkedinBoxFill, href: 'https://www.linkedin.com/company/opensource-con-india', label: 'LinkedIn', size: 20 },
+  { Icon: RiInstagramFill, href: 'https://www.instagram.com/opensourceconindia', label: 'Instagram', size: 20 },
 ];
 
 function openKonfHub(e) {
