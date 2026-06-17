@@ -33,7 +33,7 @@ function openKonfHub(e) {
   if (kBtn) kBtn.click();
 }
 
-export default function Navbar() {
+export default function Navbar({ currentUser, onOpenAuth, onOpenProfile }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -77,15 +77,31 @@ export default function Navbar() {
 
           {/* Right Side */}
           <div className="flex items-center gap-3">
-            <Button
-              href="#login"
-              variant="text"
-              className={`${mobileOpen ? 'hidden' : 'hidden sm:inline-flex'}`}
-              icon={RiLoginBoxLine}
-              iconPosition="left"
-            >
-              Login
-            </Button>
+            {currentUser ? (
+              <button
+                onClick={onOpenProfile}
+                className={`flex items-center gap-2.5 px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-dark dark:hover:text-white transition-all duration-200 hover:bg-gray-50/80 dark:hover:bg-white/5 rounded-xl border border-gray-150 dark:border-white/5 shadow-soft ${mobileOpen ? 'hidden' : 'hidden sm:flex'}`}
+              >
+                <div className="w-6 h-6 rounded-full bg-brand-green/20 text-brand-green-dark dark:text-brand-green flex items-center justify-center font-heading font-extrabold text-[10px] border border-brand-green/30 overflow-hidden">
+                  {currentUser.avatarUrl ? (
+                    <img src={currentUser.avatarUrl} alt={currentUser.name} className="w-full h-full object-cover" />
+                  ) : (
+                    currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2)
+                  )}
+                </div>
+                <span>My Pass</span>
+              </button>
+            ) : (
+              <Button
+                onClick={(e) => { e.preventDefault(); onOpenAuth(); }}
+                variant="text"
+                className={`${mobileOpen ? 'hidden' : 'hidden sm:inline-flex'}`}
+                icon={RiLoginBoxLine}
+                iconPosition="left"
+              >
+                Login
+              </Button>
+            )}
             <Button
               onClick={openKonfHub}
               variant="primary"
@@ -140,16 +156,31 @@ export default function Navbar() {
           {/* Action Buttons & Social Footer */}
           <div className="border-t border-gray-100 dark:border-white/5 space-y-8 max-w-md mx-auto w-full">
             <div className="flex flex-col gap-3 items-center">
-              <Button
-                href="#login"
-                onClick={() => setMobileOpen(false)}
-                variant="text"
-                className="flex w-full max-w-[300px] justify-center pb-4 pt-6 "
-                icon={RiLoginBoxLine}
-                iconPosition="left"
-              >
-                Login
-              </Button>
+              {currentUser ? (
+                <button
+                  onClick={() => { setMobileOpen(false); onOpenProfile(); }}
+                  className="flex items-center justify-center gap-3 w-full max-w-[300px] py-3.5 bg-gray-50 dark:bg-white/5 border border-gray-150 dark:border-white/5 rounded-xl text-dark dark:text-white font-semibold text-sm hover:bg-gray-100 dark:hover:bg-white/10 transition-all mt-6"
+                >
+                  <div className="w-6 h-6 rounded-full bg-brand-green/20 text-brand-green-dark dark:text-brand-green flex items-center justify-center font-heading font-extrabold text-[10px] border border-brand-green/30 overflow-hidden">
+                    {currentUser.avatarUrl ? (
+                      <img src={currentUser.avatarUrl} alt={currentUser.name} className="w-full h-full object-cover" />
+                    ) : (
+                      currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2)
+                    )}
+                  </div>
+                  <span>View My Pass</span>
+                </button>
+              ) : (
+                <Button
+                  onClick={(e) => { e.preventDefault(); setMobileOpen(false); onOpenAuth(); }}
+                  variant="text"
+                  className="flex w-full max-w-[300px] justify-center pb-4 pt-6"
+                  icon={RiLoginBoxLine}
+                  iconPosition="left"
+                >
+                  Login
+                </Button>
+              )}
               <Button
                 onClick={(e) => { setMobileOpen(false); openKonfHub(e); }}
                 variant="primary"
