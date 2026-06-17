@@ -97,7 +97,11 @@ export default function App() {
         )}
 
         {view === 'profile' && (
-          <ProfilePage user={currentUser} onLogout={() => setCurrentUser(null)} />
+          <ProfilePage 
+            user={currentUser} 
+            onLogout={() => setCurrentUser(null)} 
+            onUpdateUser={(updatedUser) => setCurrentUser(updatedUser)}
+          />
         )}
       </main>
 

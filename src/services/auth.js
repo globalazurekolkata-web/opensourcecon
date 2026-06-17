@@ -131,6 +131,52 @@ export const AuthService = {
   },
 
   /**
+   * Update profile details (e.g. Name, Company, Role, social links, custom themes, bookmarks)
+   */
+  updateProfile(email, updatedData) {
+    const cleanEmail = email.toLowerCase().trim();
+    const accounts = getAccounts();
+    const account = accounts[cleanEmail];
+    
+    if (!account) {
+      throw new Error('Account not found.');
+    }
+
+    // Merge ticketInfo/profile updates
+    account.ticketInfo = {
+      ...account.ticketInfo,
+      ...updatedData
+    };
+
+    accounts[cleanEmail] = account;
+    localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(accounts));
+
+    // Update custom ticket list if the ticket exists there
+    const customTickets = getCustomTickets();
+    const customIdx = customTickets.findIndex(t => t.email.toLowerCase() === cleanEmail);
+    if (customIdx !== -1) {
+      customTickets[customIdx] = {
+        ...customTickets[customIdx],
+        ...updatedData
+      };
+      localStorage.setItem(TICKETS_KEY, JSON.stringify(customTickets));
+    }
+
+    // Update current session if the updated user is currently logged in
+    const session = this.getCurrentUser();
+    if (session && session.email.toLowerCase() === cleanEmail) {
+      const updatedSession = {
+        ...session,
+        ...updatedData
+      };
+      localStorage.setItem(SESSION_KEY, JSON.stringify(updatedSession));
+      return updatedSession;
+    }
+
+    return account.ticketInfo;
+  },
+
+  /**
    * Retrieve the current logged-in user session
    */
   getCurrentUser() {
