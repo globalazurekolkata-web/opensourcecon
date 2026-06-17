@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import PromoBanner from './components/PromoBanner';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -13,10 +14,25 @@ import AnnouncementCTA from './components/AnnouncementCTA';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import RevealOnScroll from './components/RevealOnScroll';
+import AuthModal from './components/AuthModal';
+import ProfileModal from './components/ProfileModal';
+import { AuthService } from './services/auth';
 
 export default function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [authOpen, setAuthOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+
+  useEffect(() => {
+    // Check if user is logged in on mount
+    const session = AuthService.getCurrentUser();
+    if (session) {
+      setCurrentUser(session);
+    }
+  }, []);
+
   return (
-    <div className="grid-bg min-h-screen relative bg-white">
+    <div className="grid-bg min-h-screen relative bg-white dark:bg-[#0B1020]">
       {/* Decorative grid accent dots */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute w-1.5 h-1.5 rounded-full bg-brand-green/12 top-[128px] left-[192px]" />
@@ -28,7 +44,11 @@ export default function App() {
         <div className="absolute w-1.5 h-1.5 rounded-full bg-brand-green/8 top-[1500px] left-[200px]" />
       </div>
 
-      <Navbar />
+      <Navbar 
+        currentUser={currentUser} 
+        onOpenAuth={() => setAuthOpen(true)} 
+        onOpenProfile={() => setProfileOpen(true)} 
+      />
 
       <main className="relative z-10">
         <Hero />
@@ -45,6 +65,20 @@ export default function App() {
       </main>
 
       <Footer />
+
+      {/* Login & Signup Modals */}
+      <AuthModal 
+        isOpen={authOpen} 
+        onClose={() => setAuthOpen(false)} 
+        onLoginSuccess={(user) => setCurrentUser(user)} 
+      />
+
+      <ProfileModal 
+        isOpen={profileOpen} 
+        onClose={() => setProfileOpen(false)} 
+        user={currentUser} 
+        onLogout={() => setCurrentUser(null)} 
+      />
     </div>
   );
 }
