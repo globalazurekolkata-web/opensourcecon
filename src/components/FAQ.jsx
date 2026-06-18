@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, X, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const EASE = [0.19, 1, 0.22, 1];
 
 const faqs = [
   {
@@ -53,9 +56,9 @@ export default function FAQ() {
 
             <a 
               href="mailto:hello@opensourcecon.in" 
-              className="btn-outline text-sm mt-4 inline-flex"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 mt-6 rounded-full bg-black text-white font-medium text-[15px] hover:bg-gray-900 transition-colors shadow-sm w-fit"
             >
-              Contact Us
+              Contact US <ArrowRight size={18} />
             </a>
           </div>
 
@@ -67,37 +70,44 @@ export default function FAQ() {
                 return (
                   <div 
                     key={idx}
-                    className={`rounded-[20px] border transition-all duration-300 overflow-hidden ${
-                      isOpen 
-                        ? 'border-brand-green/30 bg-white shadow-md' 
-                        : 'border-gray-250 bg-white/50 hover:bg-white hover:border-brand-green/20'
-                    }`}
+                    className="rounded-2xl border border-gray-100 bg-white transition-all duration-300 overflow-hidden"
                   >
                     <button
                       onClick={() => setOpenIdx(isOpen ? -1 : idx)}
-                      className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+                      className="w-full px-6 py-6 flex items-start gap-4 text-left focus:outline-none hover:bg-gray-50/50"
                     >
-                      <span className={`font-heading font-extrabold text-base pr-8 ${isOpen ? 'text-brand-green' : 'text-dark'}`}>
-                        {faq.q}
-                      </span>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
-                        isOpen ? 'bg-brand-green text-dark' : 'bg-gray-100 text-gray-500'
-                      }`}>
-                        {isOpen ? <Minus size={14} /> : <Plus size={14} />}
+                      <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 bg-brand-green/10 text-[#00823B]">
+                        {isOpen ? <X size={18} strokeWidth={2.5} /> : <Plus size={18} strokeWidth={2.5} />}
+                      </div>
+                      <div className="flex-1 mt-1">
+                        <span className="block font-heading font-semibold text-[18px] text-black tracking-tight">
+                          {faq.q}
+                        </span>
+                        
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.div 
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3, ease: EASE }}
+                              className="overflow-hidden"
+                            >
+                              <div className="pt-4 pb-2">
+                                <motion.p 
+                                  initial={{ y: 20, opacity: 0 }}
+                                  animate={{ y: 0, opacity: 1 }}
+                                  transition={{ duration: 0.4, ease: EASE, delay: 0.05 }}
+                                  className="text-gray-600 text-sm sm:text-base leading-relaxed pr-4"
+                                >
+                                  {faq.a}
+                                </motion.p>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                     </button>
-                    
-                    <div 
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
-                      }`}
-                    >
-                      <div className="px-6 pb-6">
-                        <p className="text-gray-secondary text-sm leading-relaxed pl-3 border-l-2 border-brand-green/20">
-                          {faq.a}
-                        </p>
-                      </div>
-                    </div>
                   </div>
                 );
               })}
