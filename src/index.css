@@ -39,20 +39,22 @@ body {
 
 /* ===== Section Tag (pill label) ===== */
 .section-tag {
-  @apply inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full border;
-  color: #56D64B;
-  border-color: rgba(86, 214, 75, 0.25);
-  background: rgba(86, 214, 75, 0.06);
+  @apply inline-flex items-center gap-1.5 text-[13px] font-bold tracking-wide uppercase px-4 py-2 rounded-full border;
+  color: #00823B;
+  border-color: rgba(0, 130, 59, 0.25);
+  background: rgba(0, 130, 59, 0.08);
 }
 
 .dark .section-tag {
+  color: #56D64B;
   background: rgba(86, 214, 75, 0.08);
   border-color: rgba(86, 214, 75, 0.2);
 }
 
 /* ===== Green Accent Dot ===== */
 .green-dot {
-  @apply w-2 h-2 rounded-full bg-brand-green;
+  @apply w-2 h-2 rounded-full;
+  background-color: currentColor;
 }
 
 /* ===== Card Base ===== */
