@@ -39,7 +39,7 @@ body {
 
 /* ===== Section Tag (pill label) ===== */
 .section-tag {
-  @apply inline-flex items-center gap-1.5 text-[13px] font-bold tracking-wide uppercase px-4 py-2 rounded-full border;
+  @apply inline-flex items-center gap-1.5 text-[12px] font-medium tracking-wide uppercase px-4 py-2 rounded-full border;
   color: #00823B;
   border-color: rgba(0, 130, 59, 0.25);
   background: rgba(0, 130, 59, 0.08);
@@ -61,6 +61,14 @@ body {
 .card {
   @apply bg-white rounded-card border border-card-border transition-all duration-300;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(calc(-50% - 10px)); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }
 
 .card:hover {

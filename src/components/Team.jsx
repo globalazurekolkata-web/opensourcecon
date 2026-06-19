@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 const organizers = [
   {
@@ -45,23 +47,18 @@ const organizers = [
 ];
 
 export default function Team() {
-  const [startIndex, setStartIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: 'start' },
+    [Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })]
+  );
 
-  const nextSlide = () => {
-    if (startIndex + 3 < organizers.length) {
-      setStartIndex(startIndex + 1);
-    } else {
-      setStartIndex(0);
-    }
-  };
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
 
-  const prevSlide = () => {
-    if (startIndex > 0) {
-      setStartIndex(startIndex - 1);
-    } else {
-      setStartIndex(organizers.length - 3);
-    }
-  };
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
   return (
     <section id="team" className="relative bg-gradient-to-b from-[#0a1208] via-[#142611] to-black py-20 lg:py-28 overflow-hidden">
@@ -94,14 +91,14 @@ export default function Team() {
           {/* Slider controls */}
           <div className="flex items-center gap-3 self-start md:self-end">
             <button
-              onClick={prevSlide}
+              onClick={scrollPrev}
               className="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center hover:bg-gray-100 transition-colors shadow-md"
               aria-label="Previous organizer"
             >
               <ChevronLeft size={24} strokeWidth={2.5} />
             </button>
             <button
-              onClick={nextSlide}
+              onClick={scrollNext}
               className="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center hover:bg-gray-100 transition-colors shadow-md"
               aria-label="Next organizer"
             >
@@ -111,12 +108,11 @@ export default function Team() {
         </div>
 
         {/* Carousel Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-container mx-auto">
-          {organizers.slice(startIndex, startIndex + 3).map((person, idx) => (
-            <div 
-              key={idx} 
-              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-white border border-gray-150 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl"
-            >
+        <div className="overflow-hidden py-4 max-w-container mx-auto" ref={emblaRef}>
+          <div className="flex -ml-6">
+            {organizers.map((person, idx) => (
+              <div key={idx} className="flex-[0_0_100%] min-w-0 sm:flex-[0_0_33.333333%] pl-6">
+                <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-white border border-gray-150 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl h-full">
               {/* Top Info Block (White Segment) */}
               <div className="px-6 pt-6 pb-5 bg-white relative z-10 flex justify-between items-start gap-4">
                 <div className="space-y-1">
@@ -178,8 +174,10 @@ export default function Team() {
 
               {/* Absolute Green Background for Bottom Half */}
               <div className="absolute bottom-0 left-0 right-0 h-[45%] custom-gradient z-0" />
-            </div>
-          ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>

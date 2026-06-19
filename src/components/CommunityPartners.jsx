@@ -39,8 +39,47 @@ export default function CommunityPartners() {
         </div>
 
         {/* Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 items-stretch">
           
+          {/* Community Partners Carousel */}
+          <div className="lg:col-span-12 relative w-full overflow-hidden flex py-4"
+               style={{ 
+                 WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
+                 maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)' 
+               }}>
+            <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-5">
+              {[...partners, ...partners].map((partner, i) => (
+                <div 
+                  key={i} 
+                  className="w-[280px] sm:w-[320px] shrink-0 card p-6 bg-white border border-gray-150 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between hover:border-brand-green/40 cursor-pointer group/card relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand-green/10 to-transparent rounded-full -mr-16 -mt-16 transition-transform duration-500 group-hover/card:scale-150" />
+                  
+                  <div className="space-y-4 text-left relative z-10">
+                    <div className="w-12 h-12 rounded-[14px] bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 group-hover/card:bg-brand-green/10 group-hover/card:text-brand-green group-hover/card:border-brand-green/20 transition-all duration-300 shadow-sm">
+                      <Users size={20} strokeWidth={2.5} />
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-heading font-extrabold text-[17px] text-dark group-hover/card:text-brand-green transition-colors">
+                        {partner.name}
+                      </h4>
+                      <p className="text-sm text-gray-500 mt-1 font-medium">
+                        {partner.members}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-center pt-5 mt-5 border-t border-gray-100 text-gray-400 group-hover/card:text-brand-green transition-colors relative z-10">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-400 group-hover/card:text-brand-green/80 transition-colors">View Community</span>
+                    <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover/card:bg-brand-green group-hover/card:text-white transition-all duration-300 shadow-sm">
+                      <ExternalLink size={14} strokeWidth={2.5} />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
           {/* Left: Featured Community Card */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div className="card p-0 bg-white border border-gray-150 rounded-[28px] overflow-hidden shadow-sm flex flex-col h-full hover:shadow-md transition-shadow duration-300">
@@ -85,35 +124,7 @@ export default function CommunityPartners() {
             </div>
           </div>
 
-          {/* Right: Community Grid */}
-          <div className="lg:col-span-7 grid grid-cols-2 gap-4">
-            {partners.map((partner, i) => (
-              <div 
-                key={i} 
-                className="card p-6 bg-white border border-gray-150 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between hover:border-brand-green/30 cursor-pointer group"
-              >
-                <div className="space-y-4 text-left">
-                  {/* Fake Logo Icon */}
-                  <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-brand-green/5 group-hover:text-brand-green transition-colors">
-                    <Users size={18} />
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-heading font-extrabold text-base text-dark group-hover:text-brand-green transition-colors">
-                      {partner.name}
-                    </h4>
-                    <p className="text-xs text-gray-secondary mt-1 font-semibold">
-                      {partner.members}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex justify-end pt-4 mt-4 border-t border-gray-50 text-gray-400 group-hover:text-brand-green transition-colors">
-                  <ExternalLink size={14} />
-                </div>
-              </div>
-            ))}
-          </div>
+  
 
         </div>
 
