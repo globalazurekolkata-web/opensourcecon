@@ -50,6 +50,10 @@ export default {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
         },
+        'marquee': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
         'orbit-reverse': {
           '0%': { transform: 'rotate(360deg)' },
           '100%': { transform: 'rotate(0deg)' },
@@ -65,6 +69,7 @@ export default {
       },
       animation: {
         'fade-up': 'fade-up 0.6s ease-out forwards',
+        'marquee': 'marquee 25s linear infinite',
         'orbit': 'orbit 30s linear infinite',
         'orbit-reverse': 'orbit-reverse 25s linear infinite',
         'float': 'float 6s ease-in-out infinite',
