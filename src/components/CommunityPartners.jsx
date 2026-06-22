@@ -1,4 +1,4 @@
-import { ArrowRight, Users, ExternalLink } from 'lucide-react';
+import { ArrowRight, Users, ExternalLink, Sparkles } from 'lucide-react';
 import Button from './Button';
 
 // Placeholder partner slots until confirmed
@@ -48,7 +48,7 @@ export default function CommunityPartners() {
         </div>
 
         {/* Placeholder Partner Marquee */}
-        <div className="relative w-full overflow-hidden flex py-4 mb-8"
+        <div className="relative w-full overflow-hidden flex py-4 mb-10"
              style={{ 
                WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
                maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' 
@@ -72,7 +72,7 @@ export default function CommunityPartners() {
                   
                   {/* Slot labels */}
                   <div className="leading-tight">
-                    <span className="font-heading font-extrabold text-[12px] text-gray-500 dark:text-gray-450 group-hover:text-dark dark:group-hover:text-white transition-colors block">
+                    <span className="font-heading font-extrabold text-[12px] text-gray-500 dark:text-gray-450 group-hover:text-dark group-hover:text-white transition-colors block">
                       {partner.label}
                     </span>
                     <span className="text-[9px] font-semibold text-gray-400 dark:text-gray-500 block mt-0.5">
@@ -85,85 +85,78 @@ export default function CommunityPartners() {
           </div>
         </div>
 
-        {/* Featured Card and Partner CTA layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mt-8 text-left">
+        {/* Full-width Featured Section (Clean row layout directly on page background) */}
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-start gap-8 my-8">
           
-          {/* Featured Community Card (Col span 7) */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
-            <div className="card p-0 bg-white dark:bg-[#131C31] border border-gray-150 dark:border-white/5 rounded-[28px] overflow-hidden shadow-sm flex flex-col sm:flex-row h-full hover:shadow-md transition-all duration-300">
-              {/* Image Area */}
-              <div className="aspect-[4/3] sm:w-1/2 overflow-hidden bg-gray-150 relative">
-                <img 
-                  src="/images/Left_ Stylized Team Photo.png" 
-                  alt="Kolkata Geeks Group" 
-                  className="w-full h-full object-cover" 
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-green text-dark text-[10px] font-extrabold tracking-wider uppercase shadow-md">
-                    Featured Partner
-                  </span>
-                </div>
-              </div>
+          {/* Enlarged Stylized Image Container */}
+          <div className="relative w-full md:w-[320px] flex-shrink-0 select-none">
+            <img 
+              src="/images/Left_ Stylized Team Photo.png" 
+              alt="Community Networking at OpenSourceCon" 
+              className="w-full h-auto block object-contain" 
+            />
+          </div>
 
-              {/* Info Area */}
-              <div className="p-8 sm:w-1/2 flex flex-col justify-between space-y-6 text-left">
-                <div className="space-y-2">
-                  <h3 className="font-heading text-2xl font-extrabold text-dark dark:text-white">
-                    Kolkata Geeks
-                  </h3>
-                  <p className="text-xs font-semibold text-brand-green flex items-center gap-1">
-                    <Users size={12} />
-                    3.5K+ Active Members
-                  </p>
-                  <p className="text-sm text-gray-secondary dark:text-gray-400 leading-relaxed pt-2">
-                    Kolkata Geeks is one of Bengal's oldest developer communities, promoting technology sharing, web development standards, and open source participation through regular meetups and hackathons.
-                  </p>
-                </div>
-
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary text-sm py-3 px-6 rounded-full flex items-center justify-center gap-2 w-full"
-                >
-                  Join Community <ArrowRight size={16} />
-                </a>
+          {/* Note & Description Area (Right side) - Flowing items naturally with items-start gap-4 */}
+          <div className="flex-grow flex flex-col items-start gap-4 text-left min-w-0">
+            <div className="space-y-1.5">
+              <h3 className="font-heading text-2xl font-black text-dark dark:text-white leading-tight">
+                The Spirit of Open Source in Kolkata
+              </h3>
+              <div className="flex items-center gap-1.5 text-xs text-brand-green font-bold">
+                <Sparkles size={13} />
+                <span>Building Together, Open for All</span>
               </div>
+            </div>
+            
+            <p className="text-sm text-gray-secondary dark:text-gray-400 leading-relaxed">
+              Open source thrives on diverse backgrounds coming together with one mission. In Kolkata, we are fostering a welcoming ecosystem where students, developers, and industry leaders connect, share knowledge, and build the future of software collaboratively through local networking and global contributions.
+            </p>
+
+            <div className="pt-2">
+              <Button
+                href="#about"
+                variant="primary"
+                className="py-3.5 px-8 text-xs font-bold rounded-full !bg-brand-green hover:!bg-brand-green-dark text-dark border-0 transition-all flex items-center justify-center gap-2"
+                icon={ArrowRight}
+                iconPosition="right"
+              >
+                Join the Movement
+              </Button>
             </div>
           </div>
 
-          {/* Partner Registration CTA Box (Col span 5) */}
-          <div id="partner-cta" className="lg:col-span-5 flex flex-col justify-between">
-            <div className="card p-8 bg-gray-50 dark:bg-[#131C31] border border-gray-150 dark:border-white/5 rounded-[28px] shadow-sm flex flex-col justify-between h-full hover:shadow-md transition-shadow duration-300">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-green/10 flex items-center justify-center text-brand-green flex-shrink-0">
-                  <Users size={22} />
-                </div>
-                
-                <h3 className="font-heading text-xl font-extrabold text-dark dark:text-white leading-snug">
-                  Interested in partnering with us?
-                </h3>
-                <p className="text-sm text-gray-secondary dark:text-gray-400 leading-relaxed">
-                  Collaborate with India's largest community-led developer conference. Provide outreach support, register your campus group, or host local satellite meetups.
-                </p>
-              </div>
+        </div>
 
-              <div className="pt-6">
-                <Button
-                  href="https://forms.gle/opensourcecon-partner-register"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="primary"
-                  className="w-full py-4 text-xs font-bold"
-                  icon={ArrowRight}
-                  iconPosition="right"
-                >
-                  Register Your Community
-                </Button>
-              </div>
+        {/* Partnership CTA Banner (Brought below, full width) */}
+        <div id="partner-cta" className="mt-12 py-8 px-8 bg-gray-50 dark:bg-[#131C31] border border-gray-150 dark:border-white/5 rounded-[28px] max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-left min-w-0">
+            <div className="w-12 h-12 rounded-2xl bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0">
+              <Users size={22} />
+            </div>
+            <div className="min-w-0">
+              <h4 className="font-heading font-extrabold text-base text-dark dark:text-white">
+                Interested in partnering with us?
+              </h4>
+              <p className="text-xs text-gray-secondary dark:text-gray-405 mt-1 leading-relaxed max-w-xl">
+                Collaborate with India's largest community-led developer conference. Provide outreach support, register your campus group, or host local satellite meetups.
+              </p>
             </div>
           </div>
 
+          <div className="flex-shrink-0 w-full sm:w-auto">
+            <Button
+              href="https://forms.gle/opensourcecon-partner-register"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="primary"
+              className="w-full sm:w-auto py-3.5 px-6 text-xs font-bold rounded-full !bg-brand-green hover:!bg-brand-green-dark text-dark border-0 transition-all flex items-center justify-center gap-2"
+              icon={ArrowRight}
+              iconPosition="right"
+            >
+              Register Your Community
+            </Button>
+          </div>
         </div>
 
       </div>
