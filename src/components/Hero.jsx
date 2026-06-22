@@ -40,7 +40,7 @@ export default function Hero() {
             <Button
               href="#sponsors"
               variant="secondary"
-              className="w-full sm:w-auto text-base py-4 px-8 border-gray-200 shadow-sm bg-white"
+              className="w-full sm:w-auto text-base py-4 px-8 border-gray-200 shadow-md bg-white/90 backdrop-blur-md hover:bg-white text-dark font-semibold"
             >
               Become a Sponsor
             </Button>

@@ -16,11 +16,9 @@
     <meta property="og:url" content="https://opensourcecon.in" />
     <title>Open Source Con India 2026 — Bengal's Open Source Conference</title>
     <script>
-      if (localStorage.getItem('theme') === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+      // Force light theme and remove any stuck dark mode preferences
+      document.documentElement.classList.remove('dark');
+      localStorage.removeItem('theme');
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
