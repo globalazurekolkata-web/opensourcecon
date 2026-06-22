@@ -33,9 +33,33 @@ function openKonfHub(e) {
   if (kBtn) kBtn.click();
 }
 
-export default function Navbar({ currentUser, onOpenAuth, onOpenProfile }) {
+export default function Navbar({ currentUser, onOpenAuth, onOpenProfile, showLogin = false }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [localShowLogin, setLocalShowLogin] = useState(showLogin);
+
+  useEffect(() => {
+    setLocalShowLogin(showLogin);
+  }, [showLogin]);
+
+  useEffect(() => {
+    // Expose a global function on window so it can be made visible when needed
+    window.showNavbarLogin = (visible = true) => {
+      setLocalShowLogin(visible);
+      if (visible) {
+        localStorage.setItem('showLogin', 'true');
+      } else {
+        localStorage.removeItem('showLogin');
+      }
+      return `Navbar login button visibility set to: ${visible}`;
+    };
+
+    // Check URL parameters or localStorage on mount
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('showLogin') === 'true' || localStorage.getItem('showLogin') === 'true') {
+      setLocalShowLogin(true);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -92,15 +116,17 @@ export default function Navbar({ currentUser, onOpenAuth, onOpenProfile }) {
                 <span>My Pass</span>
               </button>
             ) : (
-              <Button
-                onClick={(e) => { e.preventDefault(); onOpenAuth(); }}
-                variant="text"
-                className={`${mobileOpen ? 'hidden' : 'hidden sm:inline-flex'}`}
-                icon={RiLoginBoxLine}
-                iconPosition="left"
-              >
-                Login
-              </Button>
+              localShowLogin && (
+                <Button
+                  onClick={(e) => { e.preventDefault(); onOpenAuth(); }}
+                  variant="text"
+                  className={`${mobileOpen ? 'hidden' : 'hidden sm:inline-flex'}`}
+                  icon={RiLoginBoxLine}
+                  iconPosition="left"
+                >
+                  Login
+                </Button>
+              )
             )}
             <Button
               onClick={openKonfHub}
@@ -171,15 +197,17 @@ export default function Navbar({ currentUser, onOpenAuth, onOpenProfile }) {
                   <span>View My Pass</span>
                 </button>
               ) : (
-                <Button
-                  onClick={(e) => { e.preventDefault(); setMobileOpen(false); onOpenAuth(); }}
-                  variant="text"
-                  className="flex w-full max-w-[300px] justify-center pb-4 pt-6"
-                  icon={RiLoginBoxLine}
-                  iconPosition="left"
-                >
-                  Login
-                </Button>
+                localShowLogin && (
+                  <Button
+                    onClick={(e) => { e.preventDefault(); setMobileOpen(false); onOpenAuth(); }}
+                    variant="text"
+                    className="flex w-full max-w-[300px] justify-center pb-4 pt-6"
+                    icon={RiLoginBoxLine}
+                    iconPosition="left"
+                  >
+                    Login
+                  </Button>
+                )
               )}
               <Button
                 onClick={(e) => { setMobileOpen(false); openKonfHub(e); }}
