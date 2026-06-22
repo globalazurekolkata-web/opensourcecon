@@ -1,36 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { 
   LogOut, 
   Printer, 
-  Ticket, 
   Calendar, 
-  MapPin, 
-  Building, 
-  Briefcase, 
-  Mail, 
   CheckCircle, 
   ArrowLeft, 
-  Sliders, 
   Sparkles, 
   QrCode, 
-  Heart, 
   Search, 
   Copy, 
   Check, 
   Share2, 
   Edit3, 
-  ExternalLink, 
   SlidersHorizontal,
   Coffee,
   Mic,
   Laptop,
   Users,
   Award,
-  Terminal,
   Bookmark,
   Camera
 } from 'lucide-react';
-import { RiGithubFill, RiTwitterXFill, RiLinkedinBoxFill, RiArrowRightLine } from 'react-icons/ri';
+import { RiGithubFill, RiTwitterXFill, RiLinkedinBoxFill } from 'react-icons/ri';
 import { AuthService } from '../services/auth';
 import { scheduleData } from '../data/schedule';
 import Button from './Button';
@@ -93,26 +84,30 @@ const PRESET_THEMES = [
   { id: 'neon-dark', name: 'Cyber Glow', desc: 'Sleek dark card with custom neon glow' },
   { id: 'glass', name: 'Frosted Glass', desc: 'Translucent glass card with neon accents' },
   { id: 'cyberpunk', name: 'Neo Tokyo', desc: 'Aggressive yellow styling with dark glyphs' },
-  { id: 'matrix', name: 'Digital Rain', desc: 'Lime green binary code fall matrix' }
+  { id: 'matrix', name: 'Digital Rain', desc: 'Lime green binary code fall matrix' },
+  { id: 'aurora', name: 'Aurora Glow', desc: 'Animated cosmic auroras swirling behind' },
+  { id: 'carbon', name: 'Midnight Carbon', desc: 'Sleek carbon-fiber weaves with accent lines' },
+  { id: 'arcade', name: 'Retro Arcade', desc: 'Chunky 8-bit grid console and retro fonts' }
 ];
 
 export default function ProfilePage({ user, onLogout, onUpdateUser }) {
-  if (!user) {
-    // If no session exists, redirect to login
-    window.location.hash = '#login';
-    return null;
-  }
+  // Redirect to login if user is missing, using useEffect to comply with rules of hooks
+  useEffect(() => {
+    if (!user) {
+      window.location.hash = '#login';
+    }
+  }, [user]);
 
   // Active Panel Tab state
   const [activeTab, setActiveTab] = useState('pass'); // 'pass', 'frame', 'itinerary', 'edit', 'swag'
 
   // Edit Profile Form States
-  const [editName, setEditName] = useState(user.name || '');
-  const [editCompany, setEditCompany] = useState(user.company || '');
-  const [editRole, setEditRole] = useState(user.role || '');
-  const [editGithub, setEditGithub] = useState(user.github || '');
-  const [editLinkedin, setEditLinkedin] = useState(user.linkedin || '');
-  const [editTwitter, setEditTwitter] = useState(user.twitter || '');
+  const [editName, setEditName] = useState(user?.name || '');
+  const [editCompany, setEditCompany] = useState(user?.company || '');
+  const [editRole, setEditRole] = useState(user?.role || '');
+  const [editGithub, setEditGithub] = useState(user?.github || '');
+  const [editLinkedin, setEditLinkedin] = useState(user?.linkedin || '');
+  const [editTwitter, setEditTwitter] = useState(user?.twitter || '');
   const [formError, setFormError] = useState('');
   const [formSuccess, setFormSuccess] = useState('');
 
@@ -129,8 +124,45 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
   // Custom Swag States
   const [badgeCopied, setBadgeCopied] = useState(false);
 
+  // Ticket 3D Parallax & Holographic states
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [holoPos, setHoloPos] = useState({ x: 50, y: 50 });
+
+  const handleCardMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Normalize coordinates around center (value between -1 and 1)
+    const xc = rect.width / 2;
+    const yc = rect.height / 2;
+    const dx = (x - xc) / xc; 
+    const dy = (y - yc) / yc; 
+    
+    setTilt({
+      x: -dy * 12, // tilt up/down (rotateX)
+      y: dx * 12   // tilt left/right (rotateY)
+    });
+    
+    setHoloPos({
+      x: (x / rect.width) * 100,
+      y: (y / rect.height) * 100
+    });
+  };
+
+  const handleCardMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleCardMouseLeave = () => {
+    setIsHovered(false);
+    setTilt({ x: 0, y: 0 });
+  };
+
   // Frame Photo Generator States
-  const [frameImage, setFrameImage] = useState(user.avatarUrl || '');
+  const [customImage, setCustomImage] = useState('');
   const [zoom, setZoom] = useState(1.0);
   const [panX, setPanX] = useState(0);
   const [panY, setPanY] = useState(0);
@@ -141,16 +173,12 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
   const canvasRef = useRef(null);
 
   // Fallback defaults for customizable attributes
-  const accentColor = user.accentColor || '#52D237';
-  const passTheme = user.passTheme || 'neon-dark';
-  const bookmarks = user.bookmarks || [];
+  const accentColor = user?.accentColor || '#52D237';
+  const passTheme = user?.passTheme || 'neon-dark';
+  const bookmarks = user?.bookmarks || [];
 
-  // Sync frame photo with profile avatar if toggle is enabled
-  useEffect(() => {
-    if (syncWithProfile) {
-      setFrameImage(user.avatarUrl || '');
-    }
-  }, [user.avatarUrl, syncWithProfile]);
+  // Derived state: Active image for frame (removes synchronous setState-in-effect warning)
+  const frameImage = syncWithProfile ? (user?.avatarUrl || '') : customImage;
 
   const handleLogoutClick = () => {
     AuthService.logout();
@@ -354,136 +382,136 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
     setIsDragging(false);
   };
 
-  // Draw attendee photo frame on Canvas
-  const drawFrameOverlay = (ctx, size) => {
-    const border = 14;
-    
-    // 1. Draw outer black border frame
-    ctx.lineWidth = border;
-    ctx.strokeStyle = '#080C16';
-    ctx.strokeRect(border/2, border/2, size - border, size - border);
-    
-    // 2. Draw accent neon inner border line
-    ctx.lineWidth = 2.5;
-    ctx.strokeStyle = accentColor;
-    ctx.strokeRect(border + 2, border + 2, size - (border * 2) - 4, size - (border * 2) - 4);
-    
-    // 3. Draw tech corner brackets
-    const cornerLen = 35;
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = accentColor;
-    
-    // Top-left
-    ctx.beginPath();
-    ctx.moveTo(border + 8, border + 8 + cornerLen);
-    ctx.lineTo(border + 8, border + 8);
-    ctx.lineTo(border + 8 + cornerLen, border + 8);
-    ctx.stroke();
-    
-    // Top-right
-    ctx.beginPath();
-    ctx.moveTo(size - border - 8 - cornerLen, border + 8);
-    ctx.lineTo(size - border - 8, border + 8);
-    ctx.lineTo(size - border - 8, border + 8 + cornerLen);
-    ctx.stroke();
-    
-    // Bottom-left
-    ctx.beginPath();
-    ctx.moveTo(border + 8, size - border - 8 - cornerLen);
-    ctx.lineTo(border + 8, size - border - 8);
-    ctx.lineTo(border + 8 + cornerLen, size - border - 8);
-    ctx.stroke();
-    
-    // Bottom-right
-    ctx.beginPath();
-    ctx.moveTo(size - border - 8 - cornerLen, size - border - 8);
-    ctx.lineTo(size - border - 8, size - border - 8);
-    ctx.lineTo(size - border - 8, size - border - 8 - cornerLen);
-    ctx.stroke();
-    
-    // 4. Draw bottom badge details banner
-    const bannerHeight = 88;
-    ctx.fillStyle = 'rgba(8, 12, 22, 0.92)';
-    ctx.fillRect(border + 3, size - border - bannerHeight, size - (border * 2) - 6, bannerHeight - 3);
-    
-    // Divider line on top of bottom banner
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = `${accentColor}70`;
-    ctx.beginPath();
-    ctx.moveTo(border + 3, size - border - bannerHeight);
-    ctx.lineTo(size - border - 3, size - border - bannerHeight);
-    ctx.stroke();
-    
-    // Main Brand text
-    ctx.fillStyle = '#FFFFFF';
-    ctx.font = 'bold 22px "Mona Sans", sans-serif';
-    ctx.textAlign = 'left';
-    ctx.fillText("OpenSourceCon", border + 24, size - border - bannerHeight + 36);
-    
-    ctx.fillStyle = accentColor;
-    ctx.font = '900 13px "Mona Sans", sans-serif';
-    ctx.fillText("KOLKATA '26", border + 24, size - border - bannerHeight + 54);
-    
-    // Location Details
-    ctx.fillStyle = '#9CA3AF';
-    ctx.font = '500 10px "Mona Sans", sans-serif';
-    ctx.fillText("DEC 5, 2026 • NEWTOWN", border + 24, size - border - bannerHeight + 71);
-
-    // Pass Tier badge inside frame
-    const labelText = (user.tier || 'ATTENDEE').toUpperCase();
-    ctx.fillStyle = accentColor;
-    
-    const badgeWidth = 120;
-    const badgeHeight = 28;
-    const badgeX = size - border - badgeWidth - 24;
-    const badgeY = size - border - bannerHeight + 28;
-    
-    ctx.strokeStyle = accentColor;
-    ctx.lineWidth = 1.5;
-    ctx.fillStyle = `${accentColor}12`;
-    ctx.beginPath();
-    if (ctx.roundRect) {
-      ctx.roundRect(badgeX, badgeY, badgeWidth, badgeHeight, 6);
-    } else {
-      ctx.rect(badgeX, badgeY, badgeWidth, badgeHeight);
-    }
-    ctx.fill();
-    ctx.stroke();
-    
-    ctx.fillStyle = '#FFFFFF';
-    ctx.font = 'bold 10px "Mona Sans", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(labelText, badgeX + (badgeWidth / 2), badgeY + 17);
-    
-    // 5. Draw top ribbon banner "I'M ATTENDING!"
-    const ribbonWidth = 200;
-    const ribbonHeight = 32;
-    const ribbonX = (size - ribbonWidth) / 2;
-    const ribbonY = border + 12;
-    
-    ctx.fillStyle = '#080C16';
-    ctx.strokeStyle = accentColor;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    if (ctx.roundRect) {
-      ctx.roundRect(ribbonX, ribbonY, ribbonWidth, ribbonHeight, 8);
-    } else {
-      ctx.rect(ribbonX, ribbonY, ribbonWidth, ribbonHeight);
-    }
-    ctx.fill();
-    ctx.stroke();
-    
-    ctx.fillStyle = '#FFFFFF';
-    ctx.font = 'black 12px "Mona Sans", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText("I'M ATTENDING!", size / 2, ribbonY + 20);
-  };
-
   // Canvas renderer trigger
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || !user) return;
     const ctx = canvas.getContext('2d');
+
+    // Draw attendee photo frame on Canvas (inlined inside useEffect to keep dependencies self-contained)
+    const drawFrameOverlay = (ctx, size) => {
+      const border = 14;
+      
+      // 1. Draw outer black border frame
+      ctx.lineWidth = border;
+      ctx.strokeStyle = '#080C16';
+      ctx.strokeRect(border/2, border/2, size - border, size - border);
+      
+      // 2. Draw accent neon inner border line
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = accentColor;
+      ctx.strokeRect(border + 2, border + 2, size - (border * 2) - 4, size - (border * 2) - 4);
+      
+      // 3. Draw tech corner brackets
+      const cornerLen = 35;
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = accentColor;
+      
+      // Top-left
+      ctx.beginPath();
+      ctx.moveTo(border + 8, border + 8 + cornerLen);
+      ctx.lineTo(border + 8, border + 8);
+      ctx.lineTo(border + 8 + cornerLen, border + 8);
+      ctx.stroke();
+      
+      // Top-right
+      ctx.beginPath();
+      ctx.moveTo(size - border - 8 - cornerLen, border + 8);
+      ctx.lineTo(size - border - 8, border + 8);
+      ctx.lineTo(size - border - 8, border + 8 + cornerLen);
+      ctx.stroke();
+      
+      // Bottom-left
+      ctx.beginPath();
+      ctx.moveTo(border + 8, size - border - 8 - cornerLen);
+      ctx.lineTo(border + 8, size - border - 8);
+      ctx.lineTo(border + 8 + cornerLen, size - border - 8);
+      ctx.stroke();
+      
+      // Bottom-right
+      ctx.beginPath();
+      ctx.moveTo(size - border - 8 - cornerLen, size - border - 8);
+      ctx.lineTo(size - border - 8, size - border - 8);
+      ctx.lineTo(size - border - 8, size - border - 8 - cornerLen);
+      ctx.stroke();
+      
+      // 4. Draw bottom badge details banner
+      const bannerHeight = 88;
+      ctx.fillStyle = 'rgba(8, 12, 22, 0.92)';
+      ctx.fillRect(border + 3, size - border - bannerHeight, size - (border * 2) - 6, bannerHeight - 3);
+      
+      // Divider line on top of bottom banner
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = `${accentColor}70`;
+      ctx.beginPath();
+      ctx.moveTo(border + 3, size - border - bannerHeight);
+      ctx.lineTo(size - border - 3, size - border - bannerHeight);
+      ctx.stroke();
+      
+      // Main Brand text
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 22px "Mona Sans", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText("OpenSourceCon", border + 24, size - border - bannerHeight + 36);
+      
+      ctx.fillStyle = accentColor;
+      ctx.font = '900 13px "Mona Sans", sans-serif';
+      ctx.fillText("KOLKATA '26", border + 24, size - border - bannerHeight + 54);
+      
+      // Location Details
+      ctx.fillStyle = '#9CA3AF';
+      ctx.font = '500 10px "Mona Sans", sans-serif';
+      ctx.fillText("DEC 5, 2026 • NEWTOWN", border + 24, size - border - bannerHeight + 71);
+
+      // Pass Tier badge inside frame
+      const labelText = (user.tier || 'ATTENDEE').toUpperCase();
+      ctx.fillStyle = accentColor;
+      
+      const badgeWidth = 120;
+      const badgeHeight = 28;
+      const badgeX = size - border - badgeWidth - 24;
+      const badgeY = size - border - bannerHeight + 28;
+      
+      ctx.strokeStyle = accentColor;
+      ctx.lineWidth = 1.5;
+      ctx.fillStyle = `${accentColor}12`;
+      ctx.beginPath();
+      if (ctx.roundRect) {
+        ctx.roundRect(badgeX, badgeY, badgeWidth, badgeHeight, 6);
+      } else {
+        ctx.rect(badgeX, badgeY, badgeWidth, badgeHeight);
+      }
+      ctx.fill();
+      ctx.stroke();
+      
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 10px "Mona Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(labelText, badgeX + (badgeWidth / 2), badgeY + 17);
+      
+      // 5. Draw top ribbon banner "I'M ATTENDING!"
+      const ribbonWidth = 200;
+      const ribbonHeight = 32;
+      const ribbonX = (size - ribbonWidth) / 2;
+      const ribbonY = border + 12;
+      
+      ctx.fillStyle = '#080C16';
+      ctx.strokeStyle = accentColor;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      if (ctx.roundRect) {
+        ctx.roundRect(ribbonX, ribbonY, ribbonWidth, ribbonHeight, 8);
+      } else {
+        ctx.rect(ribbonX, ribbonY, ribbonWidth, ribbonHeight);
+      }
+      ctx.fill();
+      ctx.stroke();
+      
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'black 12px "Mona Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText("I'M ATTENDING!", size / 2, ribbonY + 20);
+    };
     
     const size = 500;
     canvas.width = size;
@@ -524,7 +552,7 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
       
       drawFrameOverlay(ctx, size);
     }
-  }, [frameImage, zoom, panX, panY, accentColor, user.tier, passTheme]);
+  }, [frameImage, zoom, panX, panY, accentColor, user?.tier, passTheme, user]);
 
   const handleDownloadFrame = () => {
     const canvas = canvasRef.current;
@@ -553,6 +581,8 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
   const rgb = hexToRgb(accentColor);
   const glowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.22)`;
   const glowColorStrong = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.45)`;
+  const isDarkAccent = (rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114) < 140;
+  const accentTextColor = isDarkAccent ? '#FFFFFF' : '#080C16';
 
   let cardStyle = {};
   let textColorClass = "text-white";
@@ -622,6 +652,53 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
     borderGlowStyle = { borderColor: 'rgba(57, 255, 20, 0.2)' };
     qrColor = '#39FF14';
     qrBgColor = '#000000';
+  } else if (passTheme === 'aurora') {
+    cardStyle = {
+      backgroundColor: '#0C0F1D',
+      borderColor: `${accentColor}40`,
+      boxShadow: `0 15px 40px ${glowColor}, inset 0 1px 0 rgba(255, 255, 255, 0.05)`
+    };
+    badgeStyle = {
+      borderColor: `${accentColor}30`,
+      color: accentColor,
+      backgroundColor: `${accentColor}08`
+    };
+    borderGlowStyle = { borderColor: `${accentColor}20` };
+    qrColor = accentColor;
+    qrBgColor = '#FFFFFF';
+  } else if (passTheme === 'carbon') {
+    cardStyle = {
+      backgroundColor: '#121316',
+      backgroundImage: 'linear-gradient(45deg, #1A1B20 25%, transparent 25%), linear-gradient(-45deg, #1A1B20 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1A1B20 75%), linear-gradient(-45deg, transparent 75%, #1A1B20 75%)',
+      backgroundSize: '8px 8px',
+      borderColor: accentColor,
+      boxShadow: `0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(0,0,0,0.8), 0 0 20px ${glowColor}`
+    };
+    badgeStyle = {
+      borderColor: `${accentColor}40`,
+      color: accentColor,
+      backgroundColor: 'rgba(18, 19, 22, 0.6)'
+    };
+    borderGlowStyle = { borderColor: `${accentColor}30` };
+    qrColor = accentColor;
+    qrBgColor = '#121316';
+  } else if (passTheme === 'arcade') {
+    cardStyle = {
+      backgroundColor: '#1B102E',
+      borderColor: '#FF00FF',
+      borderWidth: '4px',
+      boxShadow: '6px 6px 0px #00FFFF',
+      borderRadius: '0px'
+    };
+    textColorClass = "text-[#00FFFF]";
+    badgeStyle = {
+      borderColor: '#FF00FF',
+      color: '#FFE600',
+      backgroundColor: 'rgba(255, 0, 255, 0.05)'
+    };
+    borderGlowStyle = { borderColor: '#FF00FF' };
+    qrColor = '#00FFFF';
+    qrBgColor = '#1B102E';
   }
 
   // Pre-generate matrix code columns for Matrix theme
@@ -637,6 +714,8 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
       </div>
     );
   });
+
+  if (!user) return null;
 
   return (
     <section className="relative min-h-[85vh] py-24 md:py-32 overflow-hidden bg-white dark:bg-[#0B1020] print:bg-white print:p-0 print:absolute print:inset-0 print:z-[200]">
@@ -659,6 +738,11 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
         }
         .laser-scanner-line {
           animation: laser-sweep 2.2s ease-in-out infinite;
+        }
+        @keyframes laser-sweep-bg {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
       `}</style>
 
@@ -728,14 +812,22 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
               )}
             </div>
 
-            {/* Terminal logs list */}
-            <div className="bg-black/45 border border-white/5 rounded-2xl p-4 text-left font-mono text-[10px] text-gray-400 h-32 overflow-y-auto mb-6 space-y-1.5 scrollbar-thin">
-              {scanLogs.map((log, idx) => (
-                <div key={idx} className={`leading-normal ${log.includes('[SUCCESS]') ? 'text-brand-green' : log.includes('[SYSTEM]') ? 'text-blue-400' : 'text-gray-300'}`}>
-                  {log}
-                </div>
-              ))}
-              <div className="w-1.5 h-3.5 bg-brand-green inline-block ml-0.5 terminal-cursor align-middle" />
+            {/* Terminal logs list with MacOS style control buttons */}
+            <div className="bg-black/80 border border-white/10 rounded-2xl overflow-hidden mb-6 flex flex-col shadow-inner">
+              <div className="bg-black/40 px-4 py-2 flex items-center gap-1.5 border-b border-white/5">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                <span className="text-[9px] font-mono text-gray-500 ml-2">checkin-terminal.sh</span>
+              </div>
+              <div className="p-4 text-left font-mono text-[10px] text-gray-400 h-32 overflow-y-auto space-y-1.5 scrollbar-thin select-all">
+                {scanLogs.map((log, idx) => (
+                  <div key={idx} className={`leading-normal ${log.includes('[SUCCESS]') ? 'text-brand-green font-bold' : log.includes('[SYSTEM]') ? 'text-blue-400' : 'text-gray-300'}`}>
+                    {log}
+                  </div>
+                ))}
+                <div className="w-1.5 h-3.5 bg-brand-green inline-block ml-0.5 terminal-cursor align-middle" />
+              </div>
             </div>
 
             {/* Control buttons */}
@@ -788,160 +880,277 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
           Back to Home
         </button>
-
-        {/* Dashboard Grid Card */}
-        <div className="bg-white dark:bg-[#0f172a]/30 border border-gray-150 dark:border-white/10 rounded-[32px] shadow-xl p-6 md:p-8 backdrop-blur-xl relative overflow-hidden print:shadow-none print:border-0 print:p-0">
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-green/30 to-transparent print:hidden" />
+        {/* Dashboard Grid Card with dynamic shadow */}
+        <div 
+          className="bg-white/90 dark:bg-[#0f172a]/65 border border-gray-200/50 dark:border-white/10 rounded-[32px] p-6 md:p-8 backdrop-blur-xl relative overflow-hidden transition-all duration-500 print:shadow-none print:border-0 print:p-0"
+          style={{
+            boxShadow: `0 30px 60px -15px ${glowColor}`,
+          }}
+        >
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-green/40 to-transparent print:hidden" style={{ backgroundImage: `linear-gradient(90deg, transparent, ${accentColor}40, transparent)` }} />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 print:block">
             
             {/* COLUMN 1: DIGITAL PASS SIDEBAR (Col span 4) */}
-            <div className="lg:col-span-4 flex flex-col items-center gap-6 border-b lg:border-b-0 lg:border-r border-gray-100 dark:border-white/5 pb-8 lg:pb-0 lg:pr-8 print:border-0 print:col-span-12 print:block">
+            <div className="lg:col-span-4 flex flex-col items-center gap-6 border-b lg:border-b-0 lg:border-r border-gray-150/40 dark:border-white/5 pb-8 lg:pb-0 lg:pr-8 print:border-0 print:col-span-12 print:block">
               
-              {/* Premium Ticket Card Container */}
+              {/* Pass Card Wrapper with Outer Glow & Parallax 3D Tilt */}
               <div 
-                className={`relative w-full max-w-[250px] aspect-[5/8] rounded-[24px] p-5 flex flex-col justify-between overflow-hidden transition-all duration-500 border print:border-gray-300 print:text-black print:bg-white ${textColorClass}`}
-                style={cardStyle}
+                className="relative p-[3px] rounded-[27px] overflow-hidden transition-all duration-500"
+                style={{
+                  boxShadow: isHovered ? `0 30px 60px -15px ${glowColorStrong}` : `0 15px 35px -15px ${glowColor}`,
+                  transform: isHovered ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale3d(1.03, 1.03, 1.03)` : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
+                  transition: isHovered ? 'none' : 'transform 0.5s ease, box-shadow 0.5s ease',
+                  background: isHovered 
+                    ? `linear-gradient(135deg, ${accentColor}, transparent 30%, ${accentColor} 50%, transparent 70%, ${accentColor})` 
+                    : 'rgba(156, 163, 175, 0.15)',
+                  backgroundSize: '200% 200%',
+                  animation: 'laser-sweep-bg 3s linear infinite'
+                }}
+                onMouseMove={handleCardMouseMove}
+                onMouseEnter={handleCardMouseEnter}
+                onMouseLeave={handleCardMouseLeave}
               >
-                {/* Tech Theme Background Elements */}
-                {passTheme === 'neon-dark' && (
-                  <>
-                    <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-brand-green/5 blur-xl pointer-events-none print:hidden" />
-                    <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-r border-brand-green/20 print:hidden" style={borderGlowStyle} />
-                    <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-l border-brand-green/20 print:hidden" style={borderGlowStyle} />
-                  </>
-                )}
-                {passTheme === 'glass' && (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/2 to-white/8 pointer-events-none" />
-                    <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-brand-green/8 blur-2xl pointer-events-none" style={{ backgroundColor: `${accentColor}15` }} />
-                    <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-r border-white/10 print:hidden" />
-                    <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-l border-white/10 print:hidden" />
-                  </>
-                )}
-                {passTheme === 'cyberpunk' && (
-                  <>
-                    <div className="absolute top-0 left-0 bg-black text-[#FFE600] font-mono text-[7px] font-bold px-2 py-0.5 uppercase tracking-widest">
-                      SYSTEM: AR-ACTIVE
-                    </div>
-                    <div className="absolute top-0 right-0 w-20 h-2 bg-black transform skew-x-30 origin-top-right" />
-                    <div className="absolute bottom-0 left-0 w-full h-1.5 bg-black" />
-                    <div className="absolute -left-3.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white dark:bg-[#0b1020] border-2 border-black print:hidden" />
-                    <div className="absolute -right-3.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white dark:bg-[#0b1020] border-2 border-black print:hidden" />
-                  </>
-                )}
-                {passTheme === 'matrix' && (
-                  <>
-                    <div className="absolute inset-0 matrix-code-grid opacity-25 pointer-events-none" />
-                    <div className="absolute inset-x-0 top-3 flex justify-around pointer-events-none overflow-hidden h-3/4">
-                      {matrixColumns}
-                    </div>
-                    <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-r border-[#39FF14]/30 print:hidden" />
-                    <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-l border-[#39FF14]/30 print:hidden" />
-                  </>
-                )}
-
-                {/* Ticket Header */}
-                <div className={`flex items-start justify-between border-b pb-3 print:border-gray-200 ${passTheme === 'cyberpunk' ? 'border-black' : passTheme === 'matrix' ? 'border-[#39FF14]/20' : 'border-white/10'}`}>
-                  <div className="space-y-0.5 text-left">
-                    <span 
-                      className="text-[7px] font-mono font-extrabold tracking-widest uppercase"
-                      style={passTheme === 'cyberpunk' ? { color: '#000000' } : passTheme === 'matrix' ? { color: '#39FF14' } : { color: accentColor }}
-                    >
-                      OpenSourceCon
-                    </span>
-                    <span className="text-[10px] font-heading font-black block leading-none print:text-black">
-                      KOLKATA '26
-                    </span>
-                  </div>
-                  <span 
-                    className="text-[7px] font-mono px-2 py-0.5 rounded-full border select-none print:border-gray-400 print:text-black"
-                    style={badgeStyle}
-                  >
-                    {user.tier}
-                  </span>
-                </div>
-
-                {/* Ticket Body: Interactive QR Code */}
-                <div className="flex flex-col items-center py-4 my-auto">
+                {/* Premium Ticket Card Container */}
+                <div 
+                  className={`relative w-full max-w-[250px] aspect-[5/8] rounded-[24px] p-5 flex flex-col justify-between overflow-hidden transition-all duration-500 border print:border-gray-300 print:text-black print:bg-white ${textColorClass}`}
+                  style={cardStyle}
+                >
+                  {/* Holographic Overlay Shine */}
                   <div 
-                    onClick={startScanning}
-                    className="w-28 h-28 cursor-pointer rounded-xl p-2.5 flex items-center justify-center shadow-lg relative transition-all duration-300 hover:scale-[1.03] group print:border-gray-400"
+                    className="absolute inset-0 pointer-events-none mix-blend-color-dodge transition-opacity duration-300 z-20"
                     style={{
-                      backgroundColor: qrBgColor,
-                      border: `1.5px solid ${passTheme === 'cyberpunk' ? '#000000' : qrColor}40`,
+                      opacity: isHovered ? 0.35 : 0.08,
+                      background: `radial-gradient(circle at ${holoPos.x}% ${holoPos.y}%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 60%), 
+                                  linear-gradient(${120 + tilt.y * 2.5}deg, rgba(255, 0, 122, 0.3) 0%, rgba(0, 240, 255, 0.3) 33%, rgba(240, 255, 0, 0.3) 66%, rgba(0, 240, 255, 0.3) 100%)`,
                     }}
-                  >
-                    {/* SVG Stylized QR Code Mock */}
-                    <svg className="w-full h-full" viewBox="0 0 100 100" fill="currentColor" style={{ color: qrColor }}>
-                      <rect x="5" y="5" width="25" height="25" />
-                      <rect x="9" y="9" width="17" height="17" fill={qrBgColor} />
-                      <rect x="13" y="13" width="9" height="9" />
-                      
-                      <rect x="70" y="5" width="25" height="25" />
-                      <rect x="74" y="9" width="17" height="17" fill={qrBgColor} />
-                      <rect x="78" y="13" width="9" height="9" />
-                      
-                      <rect x="5" y="70" width="25" height="25" />
-                      <rect x="9" y="74" width="17" height="17" fill={qrBgColor} />
-                      <rect x="13" y="78" width="9" height="9" />
-                      
-                      <rect x="40" y="40" width="20" height="20" />
-                      <rect x="44" y="44" width="12" height="12" fill={qrBgColor} />
-                      
-                      <rect x="40" y="10" width="10" height="5" />
-                      <rect x="55" y="20" width="5" height="15" />
-                      <rect x="15" y="45" width="10" height="10" />
-                      <rect x="10" y="60" width="5" height="5" />
-                      <rect x="45" y="75" width="15" height="10" />
-                      <rect x="75" y="45" width="10" height="5" />
-                      <rect x="85" y="60" width="10" height="20" />
-                      <rect x="70" y="85" width="20" height="5" />
-                    </svg>
+                  />
 
-                    {/* Interactive Scan Prompt Overlay */}
-                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex flex-col items-center justify-center text-[9px] text-white font-mono font-bold gap-1 pointer-events-none">
-                      <QrCode size={18} className="animate-bounce" />
-                      <span>TAP TO TEST SCAN</span>
+                  {/* Tech Theme Background Elements */}
+                  {passTheme === 'neon-dark' && (
+                    <>
+                      <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-brand-green/5 blur-xl pointer-events-none print:hidden" />
+                      <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-r border-brand-green/20 print:hidden" style={borderGlowStyle} />
+                      <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-l border-brand-green/20 print:hidden" style={borderGlowStyle} />
+                    </>
+                  )}
+                  {passTheme === 'glass' && (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-tr from-white/2 to-white/8 pointer-events-none" />
+                      <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-brand-green/8 blur-2xl pointer-events-none" style={{ backgroundColor: `${accentColor}15` }} />
+                      <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-r border-white/10 print:hidden" />
+                      <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-l border-white/10 print:hidden" />
+                    </>
+                  )}
+                  {passTheme === 'cyberpunk' && (
+                    <>
+                      <div className="absolute top-0 left-0 bg-black text-[#FFE600] font-mono text-[7px] font-bold px-2 py-0.5 uppercase tracking-widest">
+                        SYSTEM: AR-ACTIVE
+                      </div>
+                      <div className="absolute top-0 right-0 w-20 h-2 bg-black transform skew-x-30 origin-top-right" />
+                      <div className="absolute bottom-0 left-0 w-full h-1.5 bg-black" />
+                      <div className="absolute -left-3.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white dark:bg-[#0b1020] border-2 border-black print:hidden" />
+                      <div className="absolute -right-3.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white dark:bg-[#0b1020] border-2 border-black print:hidden" />
+                    </>
+                  )}
+                  {passTheme === 'matrix' && (
+                    <>
+                      <div className="absolute inset-0 matrix-code-grid opacity-25 pointer-events-none" />
+                      <div className="absolute inset-x-0 top-3 flex justify-around pointer-events-none overflow-hidden h-3/4">
+                        {matrixColumns}
+                      </div>
+                      <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-r border-[#39FF14]/30 print:hidden" />
+                      <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-l border-[#39FF14]/30 print:hidden" />
+                    </>
+                  )}
+                  {passTheme === 'aurora' && (
+                    <>
+                      <div className="absolute top-[-30%] left-[-30%] w-[90%] h-[90%] rounded-full blur-[60px] pointer-events-none animate-pulse" style={{ backgroundColor: `${accentColor}18`, animationDuration: '8s' }} />
+                      <div className="absolute bottom-[-30%] right-[-30%] w-[90%] h-[90%] rounded-full blur-[60px] pointer-events-none animate-pulse" style={{ backgroundColor: 'rgba(99, 102, 241, 0.15)', animationDuration: '10s', animationDelay: '2s' }} />
+                      <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-r border-white/10 print:hidden" />
+                      <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-l border-white/10 print:hidden" />
+                    </>
+                  )}
+                  {passTheme === 'carbon' && (
+                    <>
+                      <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-white/3 blur-xl pointer-events-none print:hidden" />
+                      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
+                      <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-r border-white/10 print:hidden" />
+                      <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0b1020] border-l border-white/10 print:hidden" />
+                    </>
+                  )}
+                  {passTheme === 'arcade' && (
+                    <>
+                      <div className="absolute inset-0 opacity-15 pointer-events-none" style={{
+                        backgroundImage: `linear-gradient(rgba(255, 0, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 0, 255, 0.15) 1px, transparent 1px)`,
+                        backgroundSize: '12px 12px'
+                      }} />
+                      <div className="absolute top-2 left-2 text-[6px] font-mono text-[#00FFFF]/40 uppercase tracking-widest select-none">
+                        INSERT COIN
+                      </div>
+                      <div className="absolute top-2 right-2 text-[6px] font-mono text-[#FF00FF]/40 uppercase tracking-widest select-none animate-pulse">
+                        1P READY
+                      </div>
+                      <div className="absolute -left-3.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white dark:bg-[#0b1020] border-2 border-[#FF00FF] print:hidden" />
+                      <div className="absolute -right-3.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white dark:bg-[#0b1020] border-2 border-[#FF00FF] print:hidden" />
+                    </>
+                  )}
+
+                  {/* Ticket Header */}
+                  <div className={`flex items-start justify-between border-b pb-3 print:border-gray-200 ${passTheme === 'cyberpunk' ? 'border-black' : passTheme === 'matrix' ? 'border-[#39FF14]/20' : passTheme === 'arcade' ? 'border-[#FF00FF]' : 'border-white/10'}`}>
+                    <div className="space-y-0.5 text-left">
+                      <span 
+                        className="text-[7px] font-mono font-extrabold tracking-widest uppercase"
+                        style={passTheme === 'cyberpunk' ? { color: '#000000' } : passTheme === 'matrix' ? { color: '#39FF14' } : passTheme === 'arcade' ? { color: '#FFE600', fontFamily: 'monospace' } : { color: accentColor }}
+                      >
+                        OpenSourceCon
+                      </span>
+                      <span className={`text-[10px] font-heading font-black block leading-none print:text-black ${passTheme === 'arcade' ? 'font-mono tracking-tighter' : ''}`}>
+                        KOLKATA '26
+                      </span>
+                    </div>
+                    <span 
+                      className={`text-[7px] font-mono px-2 py-0.5 border select-none print:border-gray-400 print:text-black ${passTheme === 'arcade' ? 'rounded-none border-2 font-bold' : 'rounded-full'}`}
+                      style={badgeStyle}
+                    >
+                      {user.tier}
+                    </span>
+                  </div>
+
+                  {/* Ticket Body: Interactive QR Code */}
+                  <div className="flex flex-col items-center py-4 my-auto">
+                    <div 
+                      onClick={startScanning}
+                      className="w-28 h-28 cursor-pointer rounded-xl p-2.5 flex items-center justify-center shadow-lg relative transition-all duration-300 hover:scale-[1.03] group print:border-gray-400"
+                      style={{
+                        backgroundColor: qrBgColor,
+                        border: `1.5px solid ${passTheme === 'cyberpunk' ? '#000000' : qrColor}40`,
+                      }}
+                    >
+                      {/* SVG Stylized QR Code Mock */}
+                      <svg className="w-full h-full" viewBox="0 0 100 100" fill="currentColor" style={{ color: qrColor }}>
+                        <rect x="5" y="5" width="25" height="25" />
+                        <rect x="9" y="9" width="17" height="17" fill={qrBgColor} />
+                        <rect x="13" y="13" width="9" height="9" />
+                        
+                        <rect x="70" y="5" width="25" height="25" />
+                        <rect x="74" y="9" width="17" height="17" fill={qrBgColor} />
+                        <rect x="78" y="13" width="9" height="9" />
+                        
+                        <rect x="5" y="70" width="25" height="25" />
+                        <rect x="9" y="74" width="17" height="17" fill={qrBgColor} />
+                        <rect x="13" y="78" width="9" height="9" />
+                        
+                        <rect x="40" y="40" width="20" height="20" />
+                        <rect x="44" y="44" width="12" height="12" fill={qrBgColor} />
+                        
+                        <rect x="40" y="10" width="10" height="5" />
+                        <rect x="55" y="20" width="5" height="15" />
+                        <rect x="15" y="45" width="10" height="10" />
+                        <rect x="10" y="60" width="5" height="5" />
+                        <rect x="45" y="75" width="15" height="10" />
+                        <rect x="75" y="45" width="10" height="5" />
+                        <rect x="85" y="60" width="10" height="20" />
+                        <rect x="70" y="85" width="20" height="5" />
+                      </svg>
+
+                      {/* Interactive Scan Prompt Overlay */}
+                      <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex flex-col items-center justify-center text-[9px] text-white font-mono font-bold gap-1 pointer-events-none">
+                        <QrCode size={18} className="animate-bounce" />
+                        <span>TAP TO TEST SCAN</span>
+                      </div>
+                    </div>
+                    <span className={`text-[9px] font-mono tracking-widest mt-4 block select-none ${passTheme === 'cyberpunk' ? 'text-black/60' : 'text-gray-400'}`}>
+                      {user.ticketNo}
+                    </span>
+                  </div>
+
+                  {/* Ticket Footer (Incorporating round profile image layout) */}
+                  <div className={`border-t pt-3 flex items-center gap-2.5 text-left print:border-gray-200 ${passTheme === 'cyberpunk' ? 'border-black' : passTheme === 'matrix' ? 'border-[#39FF14]/20' : 'border-[#FF00FF]'}`}>
+                    <div className={`w-8 h-8 flex-shrink-0 flex items-center justify-center font-heading font-black text-[9px] border overflow-hidden ${
+                      passTheme === 'arcade' 
+                        ? 'rounded-none border-2 border-[#00FFFF] bg-black text-[#00FFFF]' 
+                        : passTheme === 'cyberpunk' 
+                          ? 'rounded-full border-black bg-black/10' 
+                          : passTheme === 'matrix' 
+                            ? 'rounded-full border-[#39FF14]/30 bg-[#39FF14]/5' 
+                            : 'rounded-full border-white/15 bg-white/5'
+                    }`}>
+                      {user.avatarUrl ? (
+                        <img src={user.avatarUrl} alt={user.name} className="w-full h-full object-cover animate-fade-in" />
+                      ) : (
+                        getInitials(user.name)
+                      )}
+                    </div>
+                    <div className={`min-w-0 flex-1 ${passTheme === 'arcade' ? 'font-mono uppercase tracking-tighter' : ''}`}>
+                      <span className={`text-[7px] font-mono uppercase leading-none ${
+                        passTheme === 'arcade' 
+                          ? 'text-[#FF00FF]' 
+                          : passTheme === 'cyberpunk' 
+                            ? 'text-black/60' 
+                            : 'text-gray-455'
+                      }`}>
+                        ATTENDEE PASS
+                      </span>
+                      <span className={`text-[12px] font-black truncate max-w-full block leading-tight print:text-black ${passTheme === 'arcade' ? 'text-[#00FFFF]' : ''}`}>
+                        {user.name}
+                      </span>
+                      <span className={`text-[7px] font-medium truncate max-w-full block leading-none print:text-gray-600 ${
+                        passTheme === 'arcade'
+                          ? 'text-[#FFE600]'
+                          : passTheme === 'cyberpunk' 
+                            ? 'text-black/70' 
+                            : 'text-gray-350'
+                      }`}>
+                        {user.company}
+                      </span>
                     </div>
                   </div>
-                  <span className={`text-[9px] font-mono tracking-widest mt-4 block select-none ${passTheme === 'cyberpunk' ? 'text-black/60' : 'text-gray-400'}`}>
-                    {user.ticketNo}
-                  </span>
                 </div>
-
-                {/* Ticket Footer (Incorporating round profile image layout) */}
-                <div className={`border-t pt-3 flex items-center gap-2.5 text-left print:border-gray-200 ${passTheme === 'cyberpunk' ? 'border-black' : passTheme === 'matrix' ? 'border-[#39FF14]/20' : 'border-white/10'}`}>
-                  <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center font-heading font-black text-[9px] border overflow-hidden ${passTheme === 'cyberpunk' ? 'border-black bg-black/10' : passTheme === 'matrix' ? 'border-[#39FF14]/30 bg-[#39FF14]/5' : 'border-white/15 bg-white/5'}`}>
-                    {user.avatarUrl ? (
-                      <img src={user.avatarUrl} alt={user.name} className="w-full h-full object-cover animate-fade-in" />
-                    ) : (
-                      getInitials(user.name)
-                    )}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <span className={`text-[7px] font-mono uppercase leading-none ${passTheme === 'cyberpunk' ? 'text-black/60' : 'text-gray-400'}`}>
-                      ATTENDEE PASS
-                    </span>
-                    <span className="text-[12px] font-black truncate max-w-full block leading-tight print:text-black">
-                      {user.name}
-                    </span>
-                    <span className={`text-[7px] font-medium truncate max-w-full block leading-none print:text-gray-600 ${passTheme === 'cyberpunk' ? 'text-black/70' : 'text-gray-350'}`}>
-                      {user.company}
-                    </span>
-                  </div>
-                </div>
-
               </div>
 
               {/* Sidebar Quick Stats (hidden during print) */}
-              <div className="w-full text-left space-y-3 print:hidden">
-                <div className="flex items-center justify-between p-3.5 bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 rounded-2xl">
-                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">Itinerary Size</span>
-                  <span className="text-xs font-bold text-dark dark:text-white flex items-center gap-1 bg-brand-green/10 text-brand-green-dark dark:text-brand-green px-2.5 py-0.5 rounded-full border border-brand-green/20">
-                    <Bookmark size={11} className="fill-current" />
-                    {bookmarks.length} Bookmarked
-                  </span>
+              <div className="w-full text-left space-y-3.5 print:hidden">
+                <div className="flex flex-col gap-2.5 p-4 bg-gray-50/50 dark:bg-white/[0.02] border border-gray-150/40 dark:border-white/5 rounded-2xl">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">Itinerary Planner</span>
+                    <span className="text-xs font-bold text-dark dark:text-white flex items-center gap-1 bg-brand-green/10 text-brand-green-dark dark:text-brand-green px-2.5 py-0.5 rounded-full border border-brand-green/20">
+                      <Bookmark size={11} className="fill-current" />
+                      {bookmarks.length} Saved
+                    </span>
+                  </div>
+                  {/* Progress bar inside stats */}
+                  <div className="w-full h-1 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full rounded-full transition-all duration-500" 
+                      style={{ 
+                        width: `${Math.min((bookmarks.length / 10) * 100, 100)}%`,
+                        backgroundColor: accentColor
+                      }} 
+                    />
+                  </div>
+                  <span className="text-[9px] text-gray-405 block">Tip: Add key sessions to build your day.</span>
+                </div>
+                
+                {/* Dynamic Check-in Status */}
+                <div className="flex items-center justify-between p-3.5 bg-gray-50/50 dark:bg-white/[0.02] border border-gray-150/40 dark:border-white/5 rounded-2xl">
+                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">Gate Pass Status</span>
+                  {scanState === 'success' ? (
+                    <span className="text-xs font-bold flex items-center gap-1.5 text-brand-green bg-brand-green/10 px-2.5 py-0.5 rounded-full border border-brand-green/20">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse" />
+                      Verified
+                    </span>
+                  ) : scanState === 'scanning' ? (
+                    <span className="text-xs font-bold flex items-center gap-1.5 text-blue-500 bg-blue-500/10 px-2.5 py-0.5 rounded-full border border-blue-500/20">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping" />
+                      Scanning
+                    </span>
+                  ) : (
+                    <span className="text-xs font-bold flex items-center gap-1.5 text-gray-450 bg-gray-100 dark:bg-white/5 px-2.5 py-0.5 rounded-full border border-gray-200 dark:border-white/5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gray-450" />
+                      Pending Scan
+                    </span>
+                  )}
                 </div>
                 
                 {/* Print & Logout CTA */}
@@ -949,7 +1158,7 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
                   <Button
                     onClick={handlePrint}
                     variant="outline"
-                    className="flex-1 py-3 text-xs font-semibold bg-transparent dark:text-white border-gray-200 dark:border-white/10"
+                    className="flex-1 py-3 text-xs font-semibold bg-transparent dark:text-white border-gray-200 dark:border-white/10 hover:border-brand-green/30"
                     icon={Printer}
                     iconPosition="left"
                   >
@@ -973,92 +1182,69 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
             <div className="lg:col-span-8 space-y-6 text-left print:hidden flex flex-col justify-start">
               
               {/* Profile Header */}
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-100 dark:border-white/5 pb-5">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-150/40 dark:border-white/5 pb-5">
                 <div className="flex items-center gap-3">
-                  <div 
-                    className="w-11 h-11 rounded-full text-white flex items-center justify-center font-heading font-black text-base transition-all duration-300 overflow-hidden shadow-md"
-                    style={{ backgroundColor: accentColor, boxShadow: `0 4px 14px ${glowColor}` }}
-                  >
-                    {user.avatarUrl ? (
-                      <img src={user.avatarUrl} alt={user.name} className="w-full h-full object-cover" />
-                    ) : (
-                      getInitials(user.name)
-                    )}
+                  <div className="relative group">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-brand-green to-emerald-500 opacity-20 blur-sm group-hover:opacity-40 transition-opacity" style={{ backgroundImage: `linear-gradient(135deg, ${accentColor}, transparent)` }} />
+                    <div 
+                      className="w-12 h-12 rounded-full text-white flex items-center justify-center font-heading font-black text-base transition-all duration-300 overflow-hidden shadow-md border-2 border-white dark:border-[#0B1020] relative z-10"
+                      style={{ backgroundColor: accentColor, boxShadow: `0 4px 14px ${glowColor}` }}
+                    >
+                      {user.avatarUrl ? (
+                        <img src={user.avatarUrl} alt={user.name} className="w-full h-full object-cover" />
+                      ) : (
+                        getInitials(user.name)
+                      )}
+                    </div>
                   </div>
                   <div>
                     <h4 className="font-heading font-black text-xl text-dark dark:text-white leading-none">
                       {user.name}
                     </h4>
-                    <span className="text-xs text-gray-455 font-medium mt-1.5 block">
+                    <span className="text-xs text-gray-455 dark:text-gray-400 font-medium mt-1.5 block">
                       {user.role} @ <strong className="font-bold text-gray-700 dark:text-gray-300">{user.company}</strong>
                     </span>
                   </div>
                 </div>
 
                 {/* Badge details */}
-                <div className="flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-xl bg-brand-green/8 border border-brand-green/15 text-brand-green">
+                <div className="flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-xl bg-brand-green/8 border border-brand-green/15 text-brand-green" style={{ borderColor: `${accentColor}30`, color: accentColor, backgroundColor: `${accentColor}12` }}>
                   <CheckCircle size={13} className="fill-current text-white dark:text-[#0B1020]" />
                   <span>Pass Authenticated</span>
                 </div>
               </div>
 
-              {/* Navigation Tab list (Including new Attendee Frame tab) */}
-              <div className="flex flex-wrap border-b border-gray-100 dark:border-white/5 gap-1">
-                <button
-                  onClick={() => setActiveTab('pass')}
-                  className={`flex items-center gap-1.5 px-4 py-3 text-xs font-bold transition-all border-b-2 bg-transparent cursor-pointer -mb-px ${
-                    activeTab === 'pass' 
-                      ? 'border-brand-green text-brand-green-dark dark:text-brand-green' 
-                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
-                  }`}
-                >
-                  <SlidersHorizontal size={14} />
-                  Customize Pass
-                </button>
-                <button
-                  onClick={() => setActiveTab('frame')}
-                  className={`flex items-center gap-1.5 px-4 py-3 text-xs font-bold transition-all border-b-2 bg-transparent cursor-pointer -mb-px ${
-                    activeTab === 'frame' 
-                      ? 'border-brand-green text-brand-green-dark dark:text-brand-green' 
-                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
-                  }`}
-                >
-                  <Camera size={14} />
-                  Attendee Frame
-                </button>
-                <button
-                  onClick={() => setActiveTab('itinerary')}
-                  className={`flex items-center gap-1.5 px-4 py-3 text-xs font-bold transition-all border-b-2 bg-transparent cursor-pointer -mb-px ${
-                    activeTab === 'itinerary' 
-                      ? 'border-brand-green text-brand-green-dark dark:text-brand-green' 
-                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
-                  }`}
-                >
-                  <Calendar size={14} />
-                  Itinerary Builder
-                </button>
-                <button
-                  onClick={() => setActiveTab('edit')}
-                  className={`flex items-center gap-1.5 px-4 py-3 text-xs font-bold transition-all border-b-2 bg-transparent cursor-pointer -mb-px ${
-                    activeTab === 'edit' 
-                      ? 'border-brand-green text-brand-green-dark dark:text-brand-green' 
-                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
-                  }`}
-                >
-                  <Edit3 size={14} />
-                  Edit Profile
-                </button>
-                <button
-                  onClick={() => setActiveTab('swag')}
-                  className={`flex items-center gap-1.5 px-4 py-3 text-xs font-bold transition-all border-b-2 bg-transparent cursor-pointer -mb-px ${
-                    activeTab === 'swag' 
-                      ? 'border-brand-green text-brand-green-dark dark:text-brand-green' 
-                      : 'border-transparent text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
-                  }`}
-                >
-                  <Sparkles size={14} />
-                  Digital Swag
-                </button>
+              {/* Futuristic Glassmorphic Tab Deck */}
+              <div className="flex flex-wrap items-center bg-gray-50/50 dark:bg-white/[0.02] backdrop-blur-md rounded-2xl p-1.5 gap-1.5 border border-gray-150/40 dark:border-white/5 w-full">
+                {[
+                  { id: 'pass', label: 'Customize Pass', icon: SlidersHorizontal },
+                  { id: 'frame', label: 'Attendee Frame', icon: Camera },
+                  { id: 'itinerary', label: 'Itinerary Builder', icon: Calendar },
+                  { id: 'edit', label: 'Edit Profile', icon: Edit3 },
+                  { id: 'swag', label: 'Digital Swag', icon: Sparkles }
+                ].map((tab) => {
+                  const Icon = tab.icon;
+                  const isActive = activeTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 bg-transparent cursor-pointer border-0 ${
+                        isActive 
+                          ? 'shadow-sm font-black' 
+                          : 'text-gray-500 hover:text-gray-700 dark:text-gray-455 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5'
+                      }`}
+                      style={isActive ? {
+                        backgroundColor: accentColor,
+                        color: accentTextColor,
+                        boxShadow: `0 4px 12px ${glowColorStrong}`
+                      } : {}}
+                    >
+                      <Icon size={14} />
+                      {tab.label}
+                    </button>
+                  );
+                })}
               </div>
 
               {/* PANEL 1: CUSTOMIZE PASS */}
@@ -1197,9 +1383,6 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
                         checked={syncWithProfile}
                         onChange={(e) => {
                           setSyncWithProfile(e.target.checked);
-                          if (e.target.checked) {
-                            setFrameImage(user.avatarUrl || '');
-                          }
                         }}
                         className="w-4 h-4 accent-brand-green cursor-pointer"
                       />
@@ -1219,7 +1402,7 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
                               const file = e.target.files[0];
                               if (file) {
                                 const reader = new FileReader();
-                                reader.onload = (ev) => setFrameImage(ev.target.result);
+                                reader.onload = (ev) => setCustomImage(ev.target.result);
                                 reader.readAsDataURL(file);
                               }
                             }}
