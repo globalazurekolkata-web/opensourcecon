@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/logo.ico" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/logo.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Open Source Con India 2026 — Bengal's first dedicated open source conference. A full-day celebration of community, code, and collaboration. 5th December 2026, Kolkata." />
     <meta name="theme-color" content="#56D64B" />
@@ -13,11 +16,9 @@
     <meta property="og:url" content="https://opensourcecon.in" />
     <title>Open Source Con India 2026 — Bengal's Open Source Conference</title>
     <script>
-      if (localStorage.getItem('theme') === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+      // Force light theme and remove any stuck dark mode preferences
+      document.documentElement.classList.remove('dark');
+      localStorage.removeItem('theme');
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

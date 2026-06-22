@@ -68,7 +68,7 @@ export default function Footer() {
               <img
                 src="/logoWord.png"
                 alt="OpenSourceCon"
-                className="h-12 object-contain brightness-0 invert"
+                className="h-12 object-contain"
               />
             </div>
             

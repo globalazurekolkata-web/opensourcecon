@@ -26,9 +26,9 @@ body {
 /* ===== Grid Background ===== */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(86, 214, 75, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(86, 214, 75, 0.04) 1px, transparent 1px);
-  background-size: 72px 72px;
+    linear-gradient(rgba(0, 0, 0, 0.035) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1.5px, transparent 1.5px);
+  background-size: 64px 64px;
 }
 
 .dark .grid-bg {
@@ -430,4 +430,28 @@ body {
 
 .darkBg {
   background-color: #12180F;
+}
+
+/* ===== Marquee Animations ===== */
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 40s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 40s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
 }

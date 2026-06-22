@@ -20,7 +20,16 @@ export default function About() {
   return (
     <section id="about" className="relative flex flex-col pt-0 mt-[-1px]">
       {/* Dark background top half */}
-      <div className="w-full bg-gradient-to-b from-darkBg to-black pt-16 pb-32 md:pt-20 md:pb-40 px-4 sm:px-6 lg:px-8 relative z-0">
+      <div className="w-full bg-gradient-to-b from-[#0a1208] via-[#142611] to-black pt-16 pb-32 md:pt-20 md:pb-40 px-4 sm:px-6 lg:px-8 relative z-0">
+        
+        {/* Dark grid pattern */}
+        <div 
+          className="absolute inset-0 opacity-15 pointer-events-none z-0" 
+          style={{
+            backgroundImage: 'linear-gradient(rgba(86, 214, 75, 0.2) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(86, 214, 75, 0.2) 1.5px, transparent 1.5px)',
+            backgroundSize: '72px 72px'
+          }}
+        />
         
         {/* Stats Strip - positioned to overlap the top edge responsively */}
         <div className="relative -mt-24 sm:-mt-28 md:-mt-32 mb-10 md:mb-16 w-full max-w-container mx-auto px-4 sm:px-6 lg:px-8 z-10">
@@ -66,25 +75,33 @@ export default function About() {
         </div>
       </div>
 
-      {/* Feature Cards Grid overlapping the dark/light boundary */}
+      {/* Feature Cards — overlapping the dark/light boundary */}
       <div className="relative z-10 w-full bg-white">
         <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
-        
+
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 -mt-20 md:-mt-20 pb-16 md:pb-20 relative z-10">
-          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
             {features.map((feature, idx) => {
               const CardIcon = feature.icon;
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-500/15 flex flex-col items-center text-center sm:items-start sm:text-left transition-transform hover:-translate-y-1"
+                  className="group relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-7 flex flex-col items-start text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg overflow-hidden"
+                  style={{
+                    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03)',
+                  }}
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl custom-gradient flex items-center justify-center mb-4 sm:mb-6 text-white shadow-sm">
+                  {/* Green top border */}
+                  <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-xl sm:rounded-t-2xl custom-gradient" />
+
+                  {/* Icon */}
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-green-50 flex items-center justify-center mb-4 sm:mb-5 text-green-600">
                     <CardIcon size={18} className="sm:hidden" />
                     <CardIcon size={20} className="hidden sm:block" />
                   </div>
-                  <h4 className="font-heading font-bold text-base sm:text-lg mb-2 text-dark">{feature.label}</h4>
-                  <p className="text-gray-secondary text-xs sm:text-sm leading-relaxed">{feature.desc}</p>
+
+                  <h4 className="font-heading font-bold text-sm sm:text-base lg:text-lg mb-1 sm:mb-1.5 text-dark">{feature.label}</h4>
+                  <p className="text-gray-400 text-[11px] sm:text-xs lg:text-sm leading-relaxed">{feature.desc}</p>
                 </div>
               );
             })}
