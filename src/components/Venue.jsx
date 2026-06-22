@@ -1,4 +1,4 @@
-import { ArrowRight, Plus, Calendar } from 'lucide-react';
+import { ArrowRight, Plus, Calendar, MapPin } from 'lucide-react';
 
 const GoogleCalendarIcon = () => (
   <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none">
@@ -69,16 +69,72 @@ export default function Venue() {
           {/* Map Container Card */}
           <div className="relative rounded-[28px] border border-gray-150 dark:border-white/5 overflow-hidden shadow-lg bg-white dark:bg-[#131C31]">
             
-            {/* Map iframe */}
-            <div className="w-full h-[350px] md:h-[450px] bg-gray-50 dark:bg-gray-900 relative">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3684.0924971846566!2d88.46083167600867!3d22.575647579488316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02753239a5c891%3A0xe54d2417c8052061!2sNazrul%20Tirtha!5e0!3m2!1sen!2sin!4v1718000000000!5m2!1sen!2sin" 
-                className="w-full h-full border-0 grayscale dark:invert opacity-90 hover:opacity-100 transition-opacity duration-300" 
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Venue Map"
-              />
+            {/* Custom Vector Map Illustration (SVG) */}
+            <div className="w-full h-[350px] md:h-[450px] bg-gradient-to-br from-[#FAFCF9] to-[#F3FBF0] dark:from-[#080D08] dark:to-[#0B1020] flex items-center justify-center overflow-hidden relative border-b border-gray-100 dark:border-white/5">
+              {/* Subtle ambient light glow */}
+              <div className="absolute w-[200px] h-[200px] rounded-full bg-brand-green/10 dark:bg-brand-green/5 blur-[50px] pointer-events-none top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+
+              {/* Minimalist Grid overlay */}
+              <div className="absolute inset-0 opacity-25 dark:opacity-10" style={{
+                backgroundImage: 'linear-gradient(rgba(82,210,55,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(82,210,55,0.08) 1px, transparent 1px)',
+                backgroundSize: '32px 32px',
+              }} />
+
+              {/* Custom Vector Map Illustration (SVG) */}
+              <svg className="absolute inset-0 w-full h-full text-brand-green/[0.06] dark:text-brand-green/[0.03] pointer-events-none" viewBox="0 0 400 400" preserveAspectRatio="none">
+                {/* Stylized Hooghly River */}
+                <path
+                  d="M 120,-10 C 140,90 70,180 150,280 C 190,340 130,400 160,460"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="20"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M 120,-10 C 140,90 70,180 150,280 C 190,340 130,400 160,460"
+                  fill="none"
+                  stroke="#52D237"
+                  strokeWidth="1.5"
+                  className="opacity-10 dark:opacity-5"
+                />
+
+                {/* Stylized Road Network */}
+                <path d="M 0,80 L 400,100" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M 0,220 C 120,240 240,190 400,240" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M 0,330 L 400,310" stroke="currentColor" strokeWidth="1.5" />
+                
+                <path d="M 280,-10 L 240,410" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M 330,-10 L 360,410" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M 190,-10 C 210,140 160,280 230,410" fill="none" stroke="currentColor" strokeWidth="1.5" />
+              </svg>
+
+              {/* Map Markers & Labels */}
+              {/* Sector V Marker */}
+              <div className="absolute top-[28%] left-[72%] flex items-center gap-1.5 select-none">
+                <div className="w-1.5 h-1.5 rounded-full bg-brand-green/60" />
+                <span className="text-[10px] font-mono font-medium tracking-wide text-gray-400 dark:text-gray-500">Sector V</span>
+              </div>
+
+              {/* New Town Marker */}
+              <div className="absolute bottom-[32%] left-[48%] flex items-center gap-1.5 select-none">
+                <div className="w-1.5 h-1.5 rounded-full bg-brand-green/60" />
+                <span className="text-[10px] font-mono font-medium tracking-wide text-gray-400 dark:text-gray-500">New Town</span>
+              </div>
+
+              {/* Central Scouting Pulsing Ring & Bouncing Pin */}
+              <div className="absolute top-[42%] left-[62%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center z-10">
+                <div className="absolute w-24 h-24 rounded-full bg-brand-green/10 border border-brand-green/20 animate-ping pointer-events-none" style={{ animationDuration: '3s' }} />
+                <div className="absolute w-12 h-12 rounded-full bg-brand-green/20 border border-brand-green/30 animate-ping pointer-events-none" style={{ animationDuration: '2s' }} />
+                
+                <div className="venue-pin-bounce relative z-10">
+                  <div className="w-16 h-16 rounded-full bg-brand-green/20 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-brand-green flex items-center justify-center shadow-lg shadow-brand-green/30">
+                      <MapPin size={22} className="text-white" />
+                    </div>
+                  </div>
+                </div>
+                <div className="w-3 h-3 rounded-full bg-brand-green/30 mt-2 venue-pin-shadow" />
+              </div>
             </div>
 
             {/* Bottom Bar Info Area */}
