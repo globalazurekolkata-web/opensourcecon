@@ -5,30 +5,40 @@ const organizers = [
   {
     name: 'Kunal Kushwaha',
     role: 'Community Advisor',
+    company: 'Civo',
+    badge: 'CNCF Ambassador',
     image: '/images/team/KunalD.png',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
   {
-    name: 'Sayantan Bhattacharyya',
-    role: 'Lead Organizer',
+    name: 'Sayantan Karmakar',
+    role: 'Platform DevOps Engineer (Kubernetes)',
+    company: 'Motorola Solutions',
+    badge: 'Golden Kubestronaut',
     image: '/images/team/SayantanK.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
   {
     name: 'Sohom Roy',
     role: 'Design & Frontend Lead',
+    company: 'Devfolio',
+    badge: 'Frontend Wizard',
     image: '/images/team/SohomC.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
   {
     name: 'Kazi Haque',
     role: 'Technical Architect',
+    company: 'Red Hat',
+    badge: 'Cloud Native Elite',
     image: '/images/team/KaziH.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
   {
     name: 'Shivam Nandi',
     role: 'DevOps & Community Manager',
+    company: 'Google',
+    badge: 'Community Builder',
     image: '/images/team/ShivamN.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   }
@@ -78,61 +88,68 @@ export default function Team() {
   }, [startIndex, mobileIndex, isPaused]);
 
   const TeamCard = ({ person }) => (
-    <div className="w-full h-full group relative flex flex-col overflow-hidden rounded-2xl sm:rounded-3xl bg-white border border-gray-150 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl">
-      {/* Photo Area */}
-      <div className="aspect-square relative overflow-hidden bg-gray-50 p-2 pb-0 flex-shrink-0">
-        <div className="w-full h-full rounded-[14px] sm:rounded-2xl overflow-hidden relative bg-gray-100 flex items-center justify-center">
-          {person.image ? (
-            <img 
-              src={person.image} 
-              alt={person.name}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          ) : (
-            <div className="text-gray-300 font-bold text-3xl">?</div>
+    <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-white border border-gray-150 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl h-full">
+      {/* Top Info Block (White Segment) */}
+      <div className="px-6 pt-6 pb-5 bg-white relative z-10 flex justify-between items-start gap-4">
+        <div className="space-y-1">
+          <h3 className="font-heading font-bold text-[22px] text-black tracking-tight leading-tight">
+            {person.name}
+          </h3>
+          <p className="text-gray-800 text-[15px]">
+            {person.role}
+          </p>
+          {person.company && (
+            <p className="text-black text-[15px] font-medium">
+              {person.company}
+            </p>
           )}
+        </div>
+        {/* LinkedIn Icon */}
+        {person.socials.linkedin && (
+          <a 
+            href={person.socials.linkedin} 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-8 h-8 shrink-0 rounded bg-[#00823B] text-white flex items-center justify-center hover:bg-[#006629] transition-colors"
+            aria-label={`${person.name} LinkedIn`}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+            </svg>
+          </a>
+        )}
+      </div>
+
+      {/* Middle Photo Area */}
+      <div className="relative px-6 z-10 pb-6">
+        <div className="aspect-square relative overflow-hidden rounded-[28px] border-[3px] border-white bg-gray-100">
+          <img 
+            src={person.image} 
+            alt={person.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          {/* Top Left White Dot */}
+          <div className="absolute top-4 left-4 w-3.5 h-3.5 bg-white rounded-full z-20 shadow-sm" />
+          
+          {/* Top Right Black Icon inside White Cutout */}
+          <div className="absolute -top-6 -right-6 w-[88px] h-[88px] bg-white rounded-full flex items-end justify-start p-3.5 z-20">
+             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden p-1.5">
+                <img src="/images/logo.png" alt="Logo" className="w-full h-full object-contain" />
+             </div>
+          </div>
+        </div>
+
+        {/* Bottom Badge Area */}
+        <div className="mt-5 flex justify-center relative z-10">
+          <div className="bg-white/15 border border-white/20 text-white text-[13px] font-semibold px-5 py-2 rounded-full flex items-center gap-2 backdrop-blur-md shadow-sm">
+            <span className="w-1.5 h-1.5 bg-white rounded-full" />
+            {person.badge || 'Organizer'}
+          </div>
         </div>
       </div>
 
-      {/* Bottom Info Block (Green Segment) */}
-      <div className="bg-brand-green p-4 sm:p-6 flex flex-col items-center justify-center text-center space-y-0.5 sm:space-y-1 relative flex-1">
-        <h3 className="font-heading font-extrabold text-base sm:text-lg text-dark tracking-tight leading-tight">
-          {person.name}
-        </h3>
-        <p className="text-dark/85 text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
-          {person.role}
-        </p>
-
-        {/* Social links */}
-        <div className="flex items-center justify-center gap-3 pt-2 sm:pt-3 pb-1">
-          {person.socials.twitter && (
-            <a 
-              href={person.socials.twitter} 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-dark text-brand-green flex items-center justify-center transition-all duration-300 hover:bg-black hover:scale-110 hover:-translate-y-1 active:scale-95 shadow-sm hover:shadow-md"
-              aria-label={`${person.name} Twitter`}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-          )}
-          {person.socials.linkedin && (
-            <a 
-              href={person.socials.linkedin} 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-dark text-brand-green flex items-center justify-center transition-all duration-300 hover:bg-black hover:scale-110 hover:-translate-y-1 active:scale-95 shadow-sm hover:shadow-md"
-              aria-label={`${person.name} LinkedIn`}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
-              </svg>
-            </a>
-          )}
-        </div>
-      </div>
+      {/* Absolute Green Background for Bottom Half */}
+      <div className="absolute bottom-0 left-0 right-0 h-[45%] custom-gradient z-0" />
     </div>
   );
 
