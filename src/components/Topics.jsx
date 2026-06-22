@@ -1,58 +1,45 @@
-const topics = [
+import { Cloud, Terminal, Bot, Lock, Globe, Handshake, GraduationCap, MapPin } from 'lucide-react';
+
+const topicsData = [
   {
-    title: 'AI & Open Source',
-    img: '/images/AI & Open Source (HOT)_margin.png',
-    rotation: 'topic-card-1',
-  },
-  {
-    title: 'DevOps & Automation',
-    img: '/images/DevOps & Automation_margin.png',
-    rotation: 'topic-card-2',
+    title: 'Cloud Native & DevOps',
+    desc: 'Kubernetes, containers, CI/CD, and infrastructure as code',
+    icon: Cloud,
   },
   {
     title: 'Linux & Systems',
-    img: '/images/Linux & Systems_margin.png',
-    rotation: 'topic-card-3',
+    desc: 'Kernel, embedded, distros, and system programming',
+    icon: Terminal,
+  },
+  {
+    title: 'AI & Open Models',
+    desc: 'Open source AI, LLMs, ML frameworks and ethics',
+    icon: Bot,
   },
   {
     title: 'Security & Privacy',
-    img: '/images/Security & Privacy_margin.png',
-    rotation: 'topic-card-4',
+    desc: 'OSS security, supply chain, cryptography, and compliance',
+    icon: Lock,
   },
   {
-    title: 'Cloud Native',
-    img: '/images/Cloud Native.png',
-    rotation: 'topic-card-5',
+    title: 'Web & Developer Tools',
+    desc: 'Frontend, backend, APIs, databases, and tooling',
+    icon: Globe,
   },
   {
-    title: 'Observability',
-    img: '/images/Observability_margin.png',
-    rotation: 'topic-card-6',
+    title: 'Community & Governance',
+    desc: 'How to build, sustain, and grow open source communities',
+    icon: Handshake,
   },
   {
-    title: 'Open Source Careers',
-    img: '/images/Open Source Careers.png',
-    rotation: 'topic-card-7',
+    title: 'Student & Beginner Track',
+    desc: 'Getting started with open source contributions and GSoC',
+    icon: GraduationCap,
   },
   {
-    title: 'Sustainability in Tech',
-    img: '/images/Sustainability in Tech_margin.png',
-    rotation: 'topic-card-8',
-  },
-  {
-    title: 'Community Building',
-    img: '/images/Community Building_margin.png',
-    rotation: 'topic-card-9',
-  },
-  {
-    title: 'Web Performance',
-    img: '/images/Web Performance_margin.png',
-    rotation: 'topic-card-10',
-  },
-  {
-    title: 'AI Agents & LLMs',
-    img: '/images/AI Agents & LLMs_margin.png',
-    rotation: 'topic-card-11',
+    title: 'Open Source in India',
+    desc: 'Local ecosystem, government initiatives, and FOSS adoption',
+    icon: MapPin,
   },
 ];
 
@@ -64,48 +51,47 @@ export default function Topics() {
       <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Two-Column Header */}
-        <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-end mb-16">
-          <div className="md:col-span-7 space-y-6">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 lg:mb-16">
+          <div className="lg:col-span-7 space-y-4 lg:space-y-6">
             <div className="section-tag w-fit">
               <span className="green-dot" />
               THE TOPICS
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.4]! tracking-tight text-dark">
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.3]! lg:leading-[1.4]! tracking-tight text-dark">
               <span className="font-medium">Let's talk about what</span>
               <br />
               <span className="text-gradient uppercase font-bold">MATTERS</span>
             </h2>
           </div>
-          <div className="md:col-span-5">
+          <div className="lg:col-span-5">
             <p className="text-gray-secondary text-base md:text-lg leading-relaxed max-w-md">
               Explore a wide range of topics spanning across different domains of open-source technology.
             </p>
           </div>
         </div>
 
-        {/* Topic Cards - Scattered Layout */}
-        <div className="relative mt-12">
-          {/* Decorative floating note */}
-          <div className="absolute -top-12 right-0 hidden lg:block">
-            <p className="text-xs font-bold text-gray-400 italic rotate-[-4deg] tracking-wide">
-              * So many ideas. So many conversations!
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-6 justify-center md:justify-start">
-            {topics.map((topic) => (
-              <div
-                key={topic.title}
-                className={`cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 ${topic.rotation} w-[160px] md:w-[180px] rounded-3xl overflow-hidden shadow-sm hover:shadow-md border border-gray-100/50 bg-white`}
+        {/* Uniform 4x2 / 2x4 Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+          {topicsData.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <div 
+                key={i} 
+                className="group rounded-2xl sm:rounded-3xl p-4 sm:p-6 flex flex-col justify-start transition-all duration-300 bg-[#0A0F1A] border border-gray-800/60 hover:border-brand-green/40 shadow-sm hover:shadow-lg hover:-translate-y-1 min-h-[150px] sm:min-h-[220px]"
               >
-                <img
-                  src={topic.img}
-                  alt={topic.title}
-                  className="w-full h-auto object-contain pointer-events-none block"
-                />
+                <div className="text-brand-green mb-3 sm:mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#6ae05e]">
+                  <Icon size={28} strokeWidth={1.5} className="w-6 h-6 sm:w-8 sm:h-8" />
+                </div>
+                
+                <h3 className="font-heading font-bold text-[13px] sm:text-lg mb-1 sm:mb-2 text-white leading-tight">
+                  {item.title}
+                </h3>
+                <p className="text-[10px] sm:text-sm leading-relaxed text-gray-400">
+                  {item.desc}
+                </p>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
       </div>
