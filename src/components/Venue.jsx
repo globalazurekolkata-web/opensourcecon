@@ -1,105 +1,107 @@
-import { MapPin, Calendar, Compass } from 'lucide-react';
+import { ArrowRight, Plus, Calendar } from 'lucide-react';
+
+const GoogleCalendarIcon = () => (
+  <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none">
+    <rect x="3" y="3" width="18" height="18" rx="4" fill="#fff" stroke="#e5e7eb" strokeWidth="1" />
+    {/* Blue top bar */}
+    <path d="M3 6.5C3 4.567 4.567 3 6.5 3h11C19.433 3 21 4.567 21 6.5V8H3V6.5Z" fill="#4285F4" />
+    {/* Number 31 */}
+    <text x="12" y="16" dominantBaseline="middle" textAnchor="middle" fill="#4285F4" fontSize="9.5" fontWeight="900" fontFamily="sans-serif">31</text>
+  </svg>
+);
 
 export default function Venue() {
   return (
-    <section id="venue" className="py-20 lg:py-28 relative bg-white overflow-hidden">
+    <section id="venue" className="py-20 lg:py-28 relative bg-white dark:bg-[#0B1020] overflow-hidden border-t border-gray-100 dark:border-white/5">
       <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
       
       <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="mb-14 max-w-2xl">
-          <div className="section-tag mb-6">
+        <div className="text-center max-w-3xl mx-auto space-y-6 mb-12">
+          <div className="section-tag inline-flex items-center gap-1.5 mx-auto">
             <span className="green-dot" />
             VENUE
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.4]! tracking-tight text-dark">
-            <span className="font-medium">The next destination
+          
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.2]! tracking-tight text-dark dark:text-white">
+            <span className="font-medium">The heart of Bengal</span>
             <br />
-            for our</span> <span className="text-gradient uppercase font-bold">STAGE.</span>
+            <span className="font-medium">is our </span>
+            <span className="text-brand-green uppercase font-bold relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-[-6px] after:w-full after:h-[3px] after:bg-brand-green">
+              STAGE
+            </span>
           </h2>
         </div>
 
-        {/* Split Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* Buttons Row */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
+          <a 
+            href="https://maps.google.com/?q=Kolkata" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="px-6 py-3.5 rounded-full btn-primary bg-dark dark:bg-white text-white dark:text-dark hover:bg-dark/90 dark:hover:bg-gray-100 font-bold text-xs md:text-sm flex items-center gap-2 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 whitespace-nowrap cursor-pointer select-none"
+          >
+            <span>View Map Location</span>
+            <ArrowRight size={16} />
+          </a>
           
-          {/* Left: Floating Venue Details Card */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div className="card p-8 md:p-10 bg-white border border-gray-150 rounded-[28px] shadow-sm flex-1 flex flex-col justify-between space-y-8">
+          <a 
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=OpenSourceCon+India+2026&dates=20261205T090000/20261205T180000&details=Bengal%27s+biggest+open+source+gathering.&location=Kolkata"
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="px-6 py-3.5 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/5 text-dark dark:text-white hover:bg-gray-50 dark:hover:bg-[#1C2640] font-bold text-xs md:text-sm flex items-center gap-2 transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 whitespace-nowrap cursor-pointer select-none"
+          >
+            <GoogleCalendarIcon />
+            <span>Add to Calendar</span>
+            <Plus size={16} className="text-gray-400 dark:text-gray-500" />
+          </a>
+        </div>
+
+        {/* Map Card Visual Block */}
+        <div className="max-w-5xl mx-auto relative">
+          
+          {/* Overlapping Badge on Top-Left */}
+          <div className="absolute -top-5 -left-5 z-20 w-12 h-12 rounded-full bg-white border-[1px] border-[#56D64B] flex items-center justify-center shadow-lg overflow-hidden p-2">
+            <img src="/images/logo.png" alt="OpenSourceCon Logo" className="w-full h-full object-contain" />
+          </div>
+
+          {/* Map Container Card */}
+          <div className="relative rounded-[28px] border border-gray-150 dark:border-white/5 overflow-hidden shadow-lg bg-white dark:bg-[#131C31]">
+            
+            {/* Map iframe */}
+            <div className="w-full h-[350px] md:h-[450px] bg-gray-50 dark:bg-gray-900 relative">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3684.0924971846566!2d88.46083167600867!3d22.575647579488316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02753239a5c891%3A0xe54d2417c8052061!2sNazrul%20Tirtha!5e0!3m2!1sen!2sin!4v1718000000000!5m2!1sen!2sin" 
+                className="w-full h-full border-0 grayscale dark:invert opacity-90 hover:opacity-100 transition-opacity duration-300" 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Venue Map"
+              />
+            </div>
+
+            {/* Bottom Bar Info Area */}
+            <div className="relative z-10 border-t border-gray-100 dark:border-white/5 bg-white dark:bg-[#131C31] px-8 py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+              {/* Left Info */}
+              <div className="space-y-1 text-left">
+                <h4 className="font-heading text-lg md:text-xl font-bold text-dark dark:text-white">Kolkata, West Bengal</h4>
+                <p className="text-xs md:text-sm text-gray-secondary">Venue Location</p>
+              </div>
               
-              <div className="space-y-6">
-                <span className="inline-flex items-center gap-2 text-[10px] font-bold px-3 py-1.5 rounded-full bg-brand-green/8 border border-brand-green/20 text-brand-green uppercase tracking-wider">
-                  <MapPin size={10} />
-                  Official Venue
-                </span>
-
-                <div className="space-y-2">
-                  <h3 className="font-heading text-3xl font-extrabold text-dark leading-tight">
-                    NAZRUL TIRTHA
-                  </h3>
-                  <p className="text-sm font-semibold text-gray-secondary">
-                    Action Area I, Newtown, Kolkata, West Bengal 700156
-                  </p>
+              {/* Right Info */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green flex-shrink-0">
+                  <Calendar size={18} />
                 </div>
-
-                <p className="text-sm text-gray-secondary leading-relaxed">
-                  Nazrul Tirtha is a premier cultural and educational center in Newtown, Kolkata. It features state-of-the-art auditoriums, spacious exhibition halls, and convenient transport links, making it the perfect setting for Bengal's biggest open source gathering.
-                </p>
-              </div>
-
-              <div className="space-y-4 pt-6 border-t border-gray-100">
-                <div className="flex items-center gap-3 text-sm font-bold text-dark">
-                  <div className="w-9 h-9 rounded-xl bg-brand-green/10 flex items-center justify-center text-brand-green flex-shrink-0">
-                    <Calendar size={16} />
-                  </div>
-                  5th December 2026 (09:00 AM - 06:00 PM)
-                </div>
-                
-                <a
-                  href="https://maps.google.com/?q=Nazrul+Tirtha+New+Town+Kolkata"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline text-sm py-3 px-6 rounded-full flex items-center justify-center gap-2 w-full mt-4"
-                >
-                  Get Directions <Compass size={16} />
-                </a>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Right: Map Visual Block */}
-          <div className="lg:col-span-7 min-h-[350px] lg:min-h-auto rounded-[28px] border border-gray-150 overflow-hidden relative shadow-sm flex items-center justify-center bg-gray-50">
-            {/* Map image overlay */}
-            <img 
-              src="/images/Right Image Area.png" 
-              alt="Map Area" 
-              className="absolute inset-0 w-full h-full object-cover opacity-80" 
-            />
-
-            {/* Faint Grid accent overlay */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
-              backgroundImage: 'linear-gradient(rgba(86,214,75,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(86,214,75,0.1) 1px, transparent 1px)',
-              backgroundSize: '40px 40px',
-            }} />
-
-            {/* Interactive/Animated Bouncing Pin */}
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="venue-pin-bounce">
-                <div className="w-16 h-16 rounded-full bg-brand-green/20 flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-brand-green flex items-center justify-center shadow-lg" style={{ boxShadow: '0 4px 20px rgba(86, 214, 75, 0.4)' }}>
-                    <MapPin size={20} className="text-white" />
-                  </div>
+                <div className="text-left space-y-0.5">
+                  <h4 className="font-heading text-sm md:text-base font-bold text-dark dark:text-white">05th December 2026</h4>
+                  <p className="text-[10px] md:text-xs text-gray-secondary">Full Day Event</p>
                 </div>
               </div>
-              <div className="w-3 h-3 rounded-full bg-brand-green/30 mt-2 venue-pin-shadow" />
             </div>
 
-            {/* Pulse rings */}
-            <div className="absolute w-44 h-44 rounded-full border border-brand-green/10 animate-pulse" />
-            <div className="absolute w-72 h-72 rounded-full border border-brand-green/5 animate-ping" />
           </div>
-
         </div>
 
       </div>
