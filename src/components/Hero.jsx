@@ -9,7 +9,7 @@ function openKonfHub(e) {
 
 export default function Hero() {
   return (
-    <section id="home" className="relative pt-28 lg:pt-36 min-h-[84dvh] sm:min-h-[100dvh] flex flex-col justify-start overflow-hidden bg-white">
+    <section id="home" className="relative pt-28 lg:pt-36 min-h-[88dvh] sm:min-h-[100dvh] flex flex-col justify-start overflow-hidden bg-white">
       {/* Grid overlay for the white part */}
       <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
 

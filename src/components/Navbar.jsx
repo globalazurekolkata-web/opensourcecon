@@ -58,7 +58,7 @@ export default function Navbar() {
             <img
               src="/logoWord.png"
               alt="OpenSourceCon"
-              className="h-10 object-contain dark:invert"
+              className="h-10 object-contain"
             />
           </a>
 
@@ -126,10 +126,10 @@ export default function Navbar() {
         {/* Ambient Glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 bg-brand-green/20 rounded-full blur-[100px] pointer-events-none z-0" />
 
-        <div className="px-6 py-10 flex flex-col relative z-10">
+        <div className="px-6 py-6 flex flex-col relative z-10">
           
           {/* Navigation Links - Centered Typography */}
-          <div className="space-y-4 max-w-md mx-auto w-full pt-2">
+          <div className="space-y-2 max-w-md mx-auto w-full pt-2">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -137,7 +137,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="block text-center group py-2"
               >
-                <span className="font-heading text-3xl font-medium text-white group-hover:text-brand-green transition-colors duration-300">
+                <span className="font-heading text-xl font-medium text-white group-hover:text-brand-green transition-colors duration-300">
                   {link.label}
                 </span>
               </a>
@@ -145,13 +145,13 @@ export default function Navbar() {
           </div>
 
           {/* Action Buttons & Social Footer */}
-          <div className="mt-12 space-y-8 max-w-md mx-auto w-full">
-            <div className="flex flex-col gap-5">
+          <div className="mt-8 space-y-6 max-w-md mx-auto w-full">
+            <div className="flex flex-col gap-4">
               <Button
                 href="#login"
                 onClick={() => setMobileOpen(false)}
                 variant="secondary"
-                className="flex w-full justify-center py-4 bg-white/5 border border-white/10 text-white hover:bg-white/10 backdrop-blur-sm"
+                className="flex w-full justify-center py-3 bg-white/5 border border-white/10 text-white hover:bg-white/10 backdrop-blur-sm text-sm"
                 icon={RiLoginBoxLine}
                 iconPosition="left"
               >
@@ -160,7 +160,7 @@ export default function Navbar() {
               <Button
                 onClick={(e) => { setMobileOpen(false); openKonfHub(e); }}
                 variant="primary"
-                className="flex w-full justify-center py-4 text-dark font-extrabold shadow-[0_0_20px_rgba(86,214,75,0.2)]"
+                className="flex w-full justify-center py-3 text-dark font-extrabold shadow-[0_0_20px_rgba(86,214,75,0.2)] text-sm"
                 icon={RiArrowRightLine}
                 iconPosition="right"
               >
@@ -169,15 +169,15 @@ export default function Navbar() {
             </div>
             
             {/* Social Links */}
-            <div className="flex justify-center gap-4 pt-2">
+            <div className="flex justify-center gap-3 pt-2">
               {socialLinks.map(({ Icon, href, label, size }) => (
                 <a
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand-green hover:text-dark transition-all duration-300 border border-white/10 backdrop-blur-sm shadow-xl"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand-green hover:text-dark transition-all duration-300 border border-white/10 backdrop-blur-sm shadow-xl"
                 >
-                  <Icon size={size + 2} />
+                  <Icon size={size} />
                 </a>
               ))}
             </div>
