@@ -1,87 +1,108 @@
-import { Mail } from 'lucide-react';
+import { RiGithubFill, RiTwitterXFill, RiLinkedinBoxFill, RiInstagramFill } from 'react-icons/ri';
+
+const socials = [
+  {
+    handle: 'OpenSourceConIN',
+    url: 'https://www.x.com/OpenSourceConIN',
+    icon: RiTwitterXFill,
+  },
+  {
+    handle: '@opensourceconindia',
+    url: 'https://www.instagram.com/opensourceconindia',
+    icon: RiInstagramFill,
+  },
+  {
+    handle: 'OpenSourceCon India',
+    url: 'https://www.linkedin.com/company/opensource-con-india',
+    icon: RiLinkedinBoxFill,
+  },
+  {
+    handle: 'opensourcecon',
+    url: 'https://github.com/globalazurekolkata-web/opensourcecon',
+    icon: RiGithubFill,
+  },
+];
+
+const ArrowRightIcon = () => (
+  <svg className="w-5 h-5 text-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
+  </svg>
+);
 
 export default function AnnouncementCTA() {
+  const openKonfHub = (e) => {
+    if (e) e.preventDefault();
+    const kBtn = document.querySelector('#konfhub-widget-trigger button, #konfhub-widget-trigger a');
+    if (kBtn) {
+      kBtn.click();
+    } else {
+      // Fallback in case the widget isn't fully initialized
+      window.open('https://konfhub.com/opensourcecon2026', '_blank');
+    }
+  };
+
   return (
-    <section className="py-10 bg-white relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white dark:bg-[#0B1020] relative overflow-hidden">
       <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
       
       <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Main CTA Card */}
         <div 
-          className="relative rounded-[32px] overflow-hidden diagonal-pattern border border-brand-green/20 max-w-5xl mx-auto shadow-lg"
-          style={{ background: 'linear-gradient(135deg, #63D940 0%, #56D64B 50%, #3DBF2E 100%)' }}
+          className="relative rounded-[32px] overflow-hidden diagonal-pattern border border-brand-green/20 max-w-5xl mx-auto shadow-lg py-20 px-8 text-center flex flex-col items-center justify-center"
+          style={{
+            background: 'linear-gradient(135deg, #63D940 0%, #56D64B 50%, #3DBF2E 100%)'
+          }}
         >
           {/* Inner glassmorphism glow overlay */}
           <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-[1px] pointer-events-none z-0" />
 
           {/* Card Content */}
-          <div className="relative z-10 py-16 md:py-20 px-8 text-center max-w-2xl mx-auto space-y-6">
+          <div className="relative z-10 max-w-2xl mx-auto space-y-5 flex flex-col items-center w-full">
+            <span className="text-gray-800 text-xs md:text-sm font-bold tracking-widest uppercase opacity-95 bg-white/10 px-4 py-1.5 rounded-full border border-white/20">
+              Registrations Open
+            </span>
             
-            <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold px-3 py-1 rounded-full border border-dark/20 text-dark bg-white/10 uppercase tracking-widest mx-auto">
-              Partner Program
-            </div>
-
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-[44px] leading-[1.1] tracking-tight text-dark">
-              <span className="font-medium">BUILD WITH US</span>
-              <br />
-              <span className="text-white font-bold">JOIN AS REPRESENTATIVE</span>
+            <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 uppercase tracking-wider leading-none">
+              REGISTER & <span style={{color: "white"}}>CONNECT</span>
             </h2>
             
-            <p className="text-dark/80 text-sm md:text-base max-w-md mx-auto leading-relaxed">
-              Interested in bringing your community? Join our community partner program and collaborate with developers across Bengal.
+            <p className="text-white/95 text-sm md:text-base max-w-lg mx-auto leading-relaxed pt-1">
+              Secure your pass today to join hands-on workshops, keynotes, and panels. Connect with our social handles below for live announcements and speaker releases!
             </p>
 
-            {/* Application / Email Form */}
-            <form 
-              onSubmit={(e) => { e.preventDefault(); window.open('https://forms.gle/Kr6y4FFjtyH1mxaW8', '_blank'); }}
-              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-4"
-            >
-              <div className="flex-1 relative">
-                <input
-                  type="email"
-                  placeholder="Enter community email"
-                  required
-                  className="w-full px-5 py-3.5 pl-11 rounded-2xl bg-white/95 text-sm text-dark placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-dark/20 border-0"
-                />
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                  <Mail size={16} />
-                </span>
-              </div>
+            {/* Registration CTA Button */}
+            <div className="pt-4">
               <button 
-                type="submit"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-dark text-white font-bold text-sm hover:bg-black transition-colors shadow-md whitespace-nowrap"
-                style={{ background: '#111827', color: '#FFFFFF' }}
+                onClick={openKonfHub}
+                className="px-8 py-4 rounded-full bg-white hover:bg-gray-50 text-dark font-black text-xs md:text-sm uppercase tracking-wider flex items-center justify-center gap-3 whitespace-nowrap transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] cursor-pointer select-none border-0"
               >
-                Apply Now
+                <span>Book Your Tickets Now</span>
+                <ArrowRightIcon />
               </button>
-            </form>
-
+            </div>
           </div>
 
-          {/* Decorative shapes */}
+          {/* Decorative background shapes */}
           <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/4 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/4 pointer-events-none" />
         </div>
 
-        {/* Four Statistics Pills Underneath */}
-        <div className="flex flex-wrap justify-center gap-4 mt-10 max-w-4xl mx-auto">
-          <span className="inline-flex items-center gap-1.5 px-4.5 py-2 rounded-full border border-brand-green/30 bg-brand-green/6 text-brand-green font-bold text-xs tracking-wide uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-ping" />
-            20+ Communities
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-4.5 py-2 rounded-full border border-brand-green/30 bg-brand-green/6 text-brand-green font-bold text-xs tracking-wide uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-green" />
-            1000+ Members
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-4.5 py-2 rounded-full border border-brand-green/30 bg-brand-green/6 text-brand-green font-bold text-xs tracking-wide uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-green" />
-            5+ Cities
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-4.5 py-2 rounded-full border border-brand-green/30 bg-brand-green/6 text-brand-green font-bold text-xs tracking-wide uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-green" />
-            1+ Vision
-          </span>
+        {/* Social Links Pills Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 max-w-5xl mx-auto w-full">
+          {socials.map((social) => (
+            <a
+              key={social.handle}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary hover:scale-[1.03] active:scale-98 shadow-md justify-center w-full !text-dark"
+            >
+              <social.icon size={19} />
+              <span>{social.handle}</span>
+            </a>
+          ))}
         </div>
 
       </div>
