@@ -28,7 +28,7 @@ export default function Venue() {
             <span className="font-medium">The heart of Bengal</span>
             <br />
             <span className="font-medium">is our </span>
-            <span className="text-brand-green uppercase font-bold relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-[-6px] after:w-full after:h-[3px] after:bg-brand-green">
+            <span className="text-gradient uppercase font-bold relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-[-6px] after:w-full after:h-[3px] after:bg-brand-green">
               STAGE
             </span>
           </h2>
@@ -62,7 +62,7 @@ export default function Venue() {
         <div className="max-w-5xl mx-auto relative">
           
           {/* Overlapping Badge on Top-Left */}
-          <div className="absolute -top-5 -left-5 z-20 w-12 h-12 rounded-full bg-white border-[1px] border-[#56D64B] flex items-center justify-center shadow-lg overflow-hidden p-2">
+          <div className="absolute -top-5 -left-5 z-20 w-16 h-16 rounded-full bg-white border-[1px] border-[#56D64B] flex items-center justify-center shadow-lg overflow-hidden p-2">
             <img src="/images/logo.png" alt="OpenSourceCon Logo" className="w-full h-full object-contain" />
           </div>
 

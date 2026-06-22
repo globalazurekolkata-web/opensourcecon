@@ -12,15 +12,6 @@ const placeholders = [
 ];
 
 export default function CommunityPartners() {
-  const openPartnerForm = (e) => {
-    // Scroll to the registration card at the bottom
-    const ctaCard = document.getElementById('partner-cta');
-    if (ctaCard) {
-      e.preventDefault();
-      ctaCard.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section id="community" className="py-20 lg:py-28 relative bg-white dark:bg-[#0B1020] overflow-hidden">
       <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
@@ -55,11 +46,10 @@ export default function CommunityPartners() {
              }}>
           <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-5">
             {[...placeholders, ...placeholders, ...placeholders].map((partner, i) => (
-              <a 
-                href="#partner-cta"
-                onClick={openPartnerForm}
+              <div 
                 key={i} 
-                className="w-[260px] sm:w-[285px] shrink-0 card p-5 bg-white dark:bg-[#131C31] border-2 border-dashed border-gray-200 dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-center items-center hover:border-brand-green/45 dark:hover:border-brand-green/45 hover:bg-gray-50/50 dark:hover:bg-white/5 cursor-pointer relative overflow-hidden h-[120px] text-decoration-none group"
+                onClick={() => document.getElementById('partner-cta')?.scrollIntoView({ behavior: 'smooth' })}
+                className="w-[260px] sm:w-[285px] shrink-0 card p-5 bg-white dark:bg-[#131C31] border-2 border-dashed border-gray-200 dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-center items-center hover:border-brand-green/45 dark:hover:border-brand-green/45 hover:bg-gray-50/50 dark:hover:bg-white/5 cursor-pointer relative overflow-hidden h-[120px] group"
               >
                 {/* Visual Accent Hover highlight */}
                 <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-brand-green/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -80,7 +70,7 @@ export default function CommunityPartners() {
                     </span>
                   </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </div>
