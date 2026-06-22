@@ -46,18 +46,26 @@ export default function Navbar({ currentUser, onOpenAuth, onOpenProfile, showLog
     // Expose a global function on window so it can be made visible when needed
     window.showNavbarLogin = (visible = true) => {
       setLocalShowLogin(visible);
-      if (visible) {
-        localStorage.setItem('showLogin', 'true');
-      } else {
-        localStorage.removeItem('showLogin');
-      }
+      localStorage.setItem('showLogin', visible ? 'true' : 'false');
       return `Navbar login button visibility set to: ${visible}`;
     };
 
     // Check URL parameters or localStorage on mount
     const params = new URLSearchParams(window.location.search);
-    if (params.get('showLogin') === 'true' || localStorage.getItem('showLogin') === 'true') {
+    const paramVal = params.get('showLogin');
+    if (paramVal === 'true') {
       setLocalShowLogin(true);
+      localStorage.setItem('showLogin', 'true');
+    } else if (paramVal === 'false') {
+      setLocalShowLogin(false);
+      localStorage.setItem('showLogin', 'false');
+    } else {
+      const storedVal = localStorage.getItem('showLogin');
+      if (storedVal === 'true') {
+        setLocalShowLogin(true);
+      } else if (storedVal === 'false') {
+        setLocalShowLogin(false);
+      }
     }
   }, []);
 
