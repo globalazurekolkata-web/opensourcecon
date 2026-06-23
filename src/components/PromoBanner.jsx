@@ -13,7 +13,7 @@ export default function PromoBanner() {
         <span>
           🎉 Community Discount is Live!{' '}
           <a
-            href="https://opensourcecon.in/core.html"
+            href="https://osci.parot.dev/core.html"
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-2 hover:no-underline font-bold"
