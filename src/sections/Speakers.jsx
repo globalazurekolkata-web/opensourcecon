@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Users, Award, Presentation, User, ArrowLeft, ArrowRight } from 'lucide-react';
-import Button from './Button';
+import Button from '../components/ui/Button';
 import { RiArrowRightLine } from 'react-icons/ri';
 
 const featuredSlots = [

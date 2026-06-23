@@ -24,7 +24,7 @@ import {
 import { RiGithubFill, RiTwitterXFill, RiLinkedinBoxFill } from 'react-icons/ri';
 import { AuthService } from '../services/auth';
 import { scheduleData } from '../data/schedule';
-import Button from './Button';
+import Button from '../components/ui/Button';
 
 // Helper to convert hex to RGB for dynamic glows
 function hexToRgb(hex) {

@@ -1,5 +1,5 @@
 import { Award, Briefcase } from 'lucide-react';
-import Button from './Button';
+import Button from '../components/ui/Button';
 import { RiArrowRightLine } from 'react-icons/ri';
 
 const diamondSlot = { label: 'Diamond Sponsor Slot', sub: 'Become our premier partner' };
