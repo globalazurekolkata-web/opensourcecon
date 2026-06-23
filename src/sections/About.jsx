@@ -1,5 +1,5 @@
 import { RiGroupLine, RiMicLine, RiGlobalLine, RiCalendarLine, RiSparklingLine, RiBookOpenLine, RiCodeSSlashLine, RiShareForwardLine, RiHandHeartLine } from 'react-icons/ri';
-import CountUp from './CountUp';
+import CountUp from '../components/ui/CountUp';
 
 const features = [
   { label: 'Learn', desc: 'Gain insights from maintainers & industry leaders', icon: RiBookOpenLine },

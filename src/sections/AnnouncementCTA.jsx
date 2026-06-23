@@ -1,4 +1,4 @@
-import { RiGithubFill, RiTwitterXFill, RiLinkedinBoxFill, RiInstagramFill } from 'react-icons/ri';
+import { RiGithubFill, RiTwitterXFill, RiLinkedinBoxFill, RiInstagramFill, RiArrowRightLine } from 'react-icons/ri';
 
 const socials = [
   {
@@ -23,12 +23,7 @@ const socials = [
   },
 ];
 
-const ArrowRightIcon = () => (
-  <svg className="w-5 h-5 text-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="5" y1="12" x2="19" y2="12" />
-    <polyline points="12 5 19 12 12 19" />
-  </svg>
-);
+
 
 export default function AnnouncementCTA() {
   const openKonfHub = (e) => {
@@ -43,16 +38,16 @@ export default function AnnouncementCTA() {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-white dark:bg-[#0B1020] relative overflow-hidden">
+    <section className="py-12 md:py-24 bg-white dark:bg-[#0B1020] relative overflow-hidden">
       <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
       
       <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Main CTA Card */}
         <div 
-          className="relative rounded-[32px] overflow-hidden diagonal-pattern border border-brand-green/20 max-w-5xl mx-auto shadow-lg py-20 px-8 text-center flex flex-col items-center justify-center"
+          className="relative rounded-[32px] overflow-hidden diagonal-pattern border border-brand-green/20  py-20 px-8 text-center flex flex-col items-center justify-center"
           style={{
-            background: 'linear-gradient(135deg, #63D940 0%, #56D64B 50%, #3DBF2E 100%)'
+            background: 'linear-gradient(135deg, #56D64B 0%, #3DBF2E 50%, #3DBF2E 100%)'
           }}
         >
           {/* Inner glassmorphism glow overlay */}
@@ -60,15 +55,15 @@ export default function AnnouncementCTA() {
 
           {/* Card Content */}
           <div className="relative z-10 max-w-2xl mx-auto space-y-5 flex flex-col items-center w-full">
-            <span className="text-gray-800 text-xs md:text-sm font-bold tracking-widest uppercase opacity-95 bg-white/10 px-4 py-1.5 rounded-full border border-white/20">
+            <span className="text-white text-xs md:text-sm! font-medium bg-white/10 px-4 py-1.5 rounded-full border border-white/20">
               Registrations Open
             </span>
             
-            <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 uppercase tracking-wider leading-none">
+            <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold text-white uppercase leading-none">
               REGISTER & <span style={{color: "white"}}>CONNECT</span>
             </h2>
             
-            <p className="text-white/95 text-sm md:text-base max-w-lg mx-auto leading-relaxed pt-1">
+            <p className="text-white text-sm md:text-base max-w-lg mx-auto leading-relaxed pt-1">
               Secure your pass today to join hands-on workshops, keynotes, and panels. Connect with our social handles below for live announcements and speaker releases!
             </p>
 
@@ -76,10 +71,10 @@ export default function AnnouncementCTA() {
             <div className="pt-4">
               <button 
                 onClick={openKonfHub}
-                className="px-8 py-4 rounded-full bg-white hover:bg-gray-50 text-dark font-black text-xs md:text-sm uppercase tracking-wider flex items-center justify-center gap-3 whitespace-nowrap transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] cursor-pointer select-none border-0"
+                className="px-8 py-4 rounded-full bg-white hover:bg-gray-50 text-dark font-semibold text-xs md:text-base!   flex items-center justify-center gap-3 whitespace-nowrap transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98] cursor-pointer select-none border-0"
               >
                 <span>Book Your Tickets Now</span>
-                <ArrowRightIcon />
+                <RiArrowRightLine/>
               </button>
             </div>
           </div>
@@ -90,7 +85,7 @@ export default function AnnouncementCTA() {
         </div>
 
         {/* Social Links Pills Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 max-w-5xl mx-auto w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6  mx-auto w-full">
           {socials.map((social) => (
             <a
               key={social.handle}

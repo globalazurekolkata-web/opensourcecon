@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Mail, Lock, User, Briefcase, Compass, CheckCircle, AlertCircle, ArrowLeft } from 'lucide-react';
 import { AuthService } from '../services/auth';
-import Button from './Button';
+import Button from '../components/ui/Button';
 import { RiArrowRightLine } from 'react-icons/ri';
 
 export default function LoginPage({ onLoginSuccess }) {

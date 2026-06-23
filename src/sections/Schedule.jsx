@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Calendar, Users, Clock, Info, Download, Plus } from 'lucide-react';
-import Button from './Button';
+import Button from '../components/ui/Button';
 
 const GoogleCalendarIcon = () => (
   <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none">
@@ -144,6 +145,24 @@ const scheduleData = {
   }
 };
 
+const statBadges = [
+  {
+    title: 'Hands-on Workshops',
+    desc: 'Dive deep into technical sessions led by core maintainers.',
+    icon: Info
+  },
+  {
+    title: 'Networking',
+    desc: 'Connect with community members and build relationships.',
+    icon: Info
+  },
+  {
+    title: 'After Party',
+    desc: 'Celebrate the day with music, food, and like-minded developers.',
+    icon: Info
+  }
+];
+
 export default function Schedule() {
   const [activeTab, setActiveTab] = useState('morning');
   const currentTabSchedule = scheduleData[activeTab];
@@ -178,19 +197,19 @@ export default function Schedule() {
             Everything
           </h2>
           
-          <p className="text-gray-secondary dark:text-gray-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-gray-secondary dark:text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
             From inspiring keynotes to hands-on workshops and everything in between, there's something for everyone throughout the day.
           </p>
         </div>
 
         {/* Buttons Row */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 sm:mb-16 w-full px-2 sm:px-0">
           <Button
             href="https://drive.google.com/file/d/1RVrIZV0d6UskRM9k62cOlUU1A3J2pBg4/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             variant="primary"
-            className="px-6 py-3.5 rounded-full !bg-dark dark:!bg-white text-white dark:text-dark hover:!bg-dark/90 dark:hover:!bg-gray-100 font-bold text-xs md:text-sm flex items-center gap-2 transition-all duration-200 shadow-md"
+            className="px-6 py-3.5 rounded-full !bg-dark dark:!bg-white text-black dark:text-dark hover:!bg-dark/90 dark:hover:!bg-gray-100 font-medium text-xs md:text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-md active:scale-95 whitespace-nowrap cursor-pointer select-none w-full sm:w-auto"
             icon={Download}
             iconPosition="left"
           >
@@ -201,33 +220,36 @@ export default function Schedule() {
             href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=OpenSourceCon+India+2026&dates=20261205T090000/20261205T180000&details=Bengal%27s+biggest+open+source+gathering.&location=Kolkata"
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-6 py-3.5 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/5 text-dark dark:text-white hover:bg-gray-50 dark:hover:bg-[#1C2640] font-bold text-xs md:text-sm flex items-center gap-2 transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 whitespace-nowrap cursor-pointer select-none"
+            className="px-6 py-3.5 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/5 text-dark dark:text-white hover:bg-gray-50 dark:hover:bg-[#1C2640] font-medium text-xs md:text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-sm active:scale-95 whitespace-nowrap cursor-pointer select-none w-full sm:w-auto"
           >
-            <GoogleCalendarIcon />
+            <img src="/images/google-calendar-icon.webp" alt="Google Calendar" className="w-5 h-5 flex-shrink-0 object-contain" />
             <span>Add to Calendar</span>
             <Plus size={16} className="text-gray-400 dark:text-gray-555" />
           </a>
         </div>
 
         {/* Main Timeline Card Container */}
-        <div className="max-w-5xl mx-auto bg-white dark:bg-[#131C31] border border-gray-150 dark:border-white/5 rounded-[32px] shadow-lg overflow-hidden">
+        <div className=" bg-white dark:bg-[#131C31] border border-gray-150 dark:border-white/5 rounded-[32px] overflow-hidden">
           
           {/* Day Navigation Tabs (Sharp & Fully Interactive) */}
-          <div className="flex w-full border-b border-gray-100 dark:border-white/5 bg-gray-50/20 dark:bg-[#1C2640]/5">
+          <div className="flex w-full border-b border-gray-100 dark:border-white/5 bg-gray-50/20 dark:bg-[#1C2640]/5 overflow-x-auto scrollbar-hide relative">
             {scheduleTabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className="flex-grow flex-1 py-5 text-center relative transition-all duration-200 hover:bg-gray-50/50 dark:hover:bg-white/5 border-0 focus:outline-none"
+                className="flex-grow flex-1 py-3 sm:py-5 px-2 sm:px-4 text-center relative transition-colors duration-200 hover:bg-gray-50/50 dark:hover:bg-white/5 border-0 focus:outline-none min-w-[100px]"
               >
-                <div className={`font-heading font-extrabold text-sm md:text-base ${activeTab === tab.id ? 'text-dark dark:text-white font-black' : 'text-gray-400 dark:text-gray-555'}`}>
+                <div className={`font-heading font-semibold text-sm md:text-base relative z-10 transition-colors duration-200 ${activeTab === tab.id ? 'text-brand-green-dark dark:text-brand-green font-bold' : 'text-gray-500 dark:text-gray-400'}`}>
                   {tab.name}
                 </div>
-                <div className="text-[10px] md:text-xs text-gray-secondary dark:text-gray-400 mt-1 font-semibold font-mono">
+                <div className="hidden sm:block text-[10px] md:text-xs text-gray-secondary dark:text-gray-500 mt-1 font-semibold font-mono relative z-10">
                   {tab.time}
                 </div>
                 {activeTab === tab.id && (
-                  <div className="absolute bottom-0 inset-x-0 h-[3px] bg-[#52D237] rounded-full mx-auto w-[65%]" />
+                  <motion.div 
+                    layoutId="scheduleTabIndicator"
+                    className="absolute bottom-0 inset-x-0 h-[3px] bg-brand-green rounded-t-full mx-auto w-[80%]" 
+                  />
                 )}
               </button>
             ))}
@@ -236,7 +258,7 @@ export default function Schedule() {
           {/* Timeline Wrapper - Covers only the Grid area */}
           <div className="relative min-h-[300px]">
             {/* Timeline Columns (Blurred) */}
-            <div className="p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 filter blur-[4px] pointer-events-none select-none">
+            <div className="p-4 sm:p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 filter blur-[4px] pointer-events-none select-none">
               
               {/* Left Column (Track 1) */}
               <div className="space-y-8">
@@ -250,7 +272,7 @@ export default function Schedule() {
                     </div>
                     <div className="space-y-3">
                       <div>
-                        <h4 className="font-heading font-extrabold text-[15px] md:text-[17px] text-dark dark:text-white leading-tight">
+                        <h4 className="font-heading font-semibold text-[15px] md:text-[17px] text-dark dark:text-white leading-tight">
                           {session.title}
                         </h4>
                         <span className="text-[10px] md:text-xs font-semibold text-gray-secondary dark:text-gray-400 mt-1 block font-mono">
@@ -274,7 +296,7 @@ export default function Schedule() {
                     </div>
                     <div className="space-y-3">
                       <div>
-                        <h4 className="font-heading font-extrabold text-[15px] md:text-[17px] text-dark dark:text-white leading-tight">
+                        <h4 className="font-heading font-semibold text-[15px] md:text-[17px] text-dark dark:text-white leading-tight">
                           {session.title}
                         </h4>
                         <span className="text-[10px] md:text-xs font-semibold text-gray-secondary dark:text-gray-400 mt-1 block font-mono">
@@ -289,26 +311,26 @@ export default function Schedule() {
             </div>
 
             {/* Glassmorphic Blur Overlay Cover */}
-            <div className="absolute inset-0 bg-white/40 dark:bg-[#0B1020]/45 backdrop-blur-md flex flex-col items-center justify-center p-8 z-20">
-              <div className="max-w-md text-center space-y-6">
+            <div className="absolute inset-0 bg-white/40 dark:bg-[#0B1020]/45 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 z-20">
+              <div className="max-w-md text-center space-y-4 sm:space-y-6">
                 {/* Pulsing neon icon */}
-                <div className="w-16 h-16 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center mx-auto shadow-glow animate-pulse">
-                  <Calendar size={32} />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-brand-green/10 text-brand-green-dark flex items-center justify-center mx-auto shadow-glow animate-pulse">
+                  <Calendar className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
                 
-                <div className="space-y-2">
-                  <h3 className="font-heading font-black text-2xl md:text-3xl text-dark dark:text-white leading-tight">
+                <div className="space-y-2 px-2 sm:px-0">
+                  <h3 className="font-heading font-semibold text-xl sm:text-2xl md:text-3xl text-dark dark:text-white leading-tight">
                     Schedule Unveiling Soon
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-secondary dark:text-gray-400 leading-relaxed font-semibold">
+                  <p className="text-xs md:text-sm text-gray-secondary dark:text-gray-400 leading-relaxed font-normal">
                     We are finalising our tracks and technical session slots with our core maintainers. Check back soon for the full day agenda!
                   </p>
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-2 w-full sm:w-auto px-4 sm:px-0">
                   <button
                     onClick={openKonfHub}
-                    className="px-8 py-3.5 rounded-full text-xs md:text-sm font-extrabold bg-[#52D237] text-white hover:bg-brand-green-dark transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 cursor-pointer border-0"
+                    className="px-8 py-3.5 rounded-full text-xs md:text-sm font-medium bg-[#52D237] text-black hover:bg-brand-green transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 cursor-pointer border-0 w-full sm:w-auto"
                   >
                     Book Your Tickets Now
                   </button>
@@ -318,73 +340,47 @@ export default function Schedule() {
           </div>
 
           {/* Bottom Banner (Sharp & Fully Interactive) */}
-          <div className="border-t border-gray-100 dark:border-white/5 px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-gray-50/50 dark:bg-[#1C2640]/20 rounded-b-[32px] text-left">
+          <div className="border-t border-gray-100 dark:border-white/5 px-6 sm:px-8 py-5 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-4 bg-gray-50/50 dark:bg-[#1C2640]/20 rounded-b-[32px] text-center sm:text-left">
             <div>
-              <h4 className="font-heading font-extrabold text-base text-dark dark:text-white">
+              <h4 className="font-heading font-semibold text-base text-dark dark:text-white">
                 More sessions, more learning.
               </h4>
               <p className="text-xs text-gray-secondary dark:text-gray-505 font-semibold mt-0.5">
                 05 Dec, 2026
               </p>
             </div>
-            <button
-              onClick={openKonfHub}
-              className="px-6 py-3 rounded-full text-xs font-bold bg-black dark:bg-white text-white dark:text-dark hover:bg-black/90 dark:hover:bg-gray-100 transition-colors shadow-md active:scale-95 cursor-pointer border-0"
-            >
-              View All Schedule
-            </button>
+            <div className="w-full sm:w-auto">
+              <button
+                onClick={openKonfHub}
+                className="px-6 py-3 rounded-full text-xs font-medium bg-black dark:bg-white text-white dark:text-dark hover:bg-black/90 dark:hover:bg-gray-100 transition-colors shadow-md active:scale-95 cursor-pointer border-0 w-full sm:w-auto"
+              >
+                View All Schedule
+              </button>
+            </div>
           </div>
           
         </div>
 
         {/* Triple Stat Badges Container */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
-          
-          {/* Badge 1: Hands-on Workshops */}
-          <div className="card p-6 bg-white dark:bg-[#131C31] border border-gray-150 dark:border-white/5 rounded-[24px] flex items-start gap-4 text-left shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="w-10 h-10 rounded-full bg-[#52D237]/10 text-[#52D237] flex items-center justify-center flex-shrink-0 shadow-sm">
-              <Info size={18} />
-            </div>
-            <div>
-              <h4 className="font-heading font-extrabold text-sm md:text-base text-dark dark:text-white leading-tight">
-                Hands-on Workshops
-              </h4>
-              <p className="text-[11px] leading-relaxed text-gray-secondary dark:text-gray-400 mt-1 font-semibold">
-                Dive deep into technical sessions led by core maintainers.
-              </p>
-            </div>
-          </div>
-
-          {/* Badge 2: Networking */}
-          <div className="card p-6 bg-white dark:bg-[#131C31] border border-gray-150 dark:border-white/5 rounded-[24px] flex items-start gap-4 text-left shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="w-10 h-10 rounded-full bg-[#52D237]/10 text-[#52D237] flex items-center justify-center flex-shrink-0 shadow-sm">
-              <Info size={18} />
-            </div>
-            <div>
-              <h4 className="font-heading font-extrabold text-sm md:text-base text-dark dark:text-white leading-tight">
-                Networking
-              </h4>
-              <p className="text-[11px] leading-relaxed text-gray-secondary dark:text-gray-400 mt-1 font-semibold">
-                Connect with community members and build relationships.
-              </p>
-            </div>
-          </div>
-
-          {/* Badge 3: After Party */}
-          <div className="card p-6 bg-white dark:bg-[#131C31] border border-gray-150 dark:border-white/5 rounded-[24px] flex items-start gap-4 text-left shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="w-10 h-10 rounded-full bg-[#52D237]/10 text-[#52D237] flex items-center justify-center flex-shrink-0 shadow-sm">
-              <Info size={18} />
-            </div>
-            <div>
-              <h4 className="font-heading font-extrabold text-sm md:text-base text-dark dark:text-white leading-tight">
-                After Party
-              </h4>
-              <p className="text-[11px] leading-relaxed text-gray-secondary dark:text-gray-400 mt-1 font-semibold">
-                Celebrate the day with music, food, and like-minded developers.
-              </p>
-            </div>
-          </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+          {statBadges.map((badge, idx) => {
+            const Icon = badge.icon;
+            return (
+              <div key={idx} className="card p-6 bg-white dark:bg-[#131C31] border border-gray-150 dark:border-white/5 rounded-[12px]! flex items-start gap-4 text-left transition-all duration-300">
+                <div className="w-10 h-10 rounded-full bg-[#52D237]/5 text-brand-green-dark flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <Icon size={18} />
+                </div>
+                <div>
+                  <h4 className="font-heading font-semibold text-sm md:text-base text-dark dark:text-white leading-tight">
+                    {badge.title}
+                  </h4>
+                  <p className="text-[12px] sm:text-[14px] leading-relaxed text-gray-secondary dark:text-gray-400 mt-1 font-medium">
+                    {badge.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
       </div>

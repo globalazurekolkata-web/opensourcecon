@@ -1,4 +1,4 @@
-import Button from './Button';
+import Button from '../components/ui/Button';
 import { RiArrowRightLine } from 'react-icons/ri';
 
 function openKonfHub(e) {

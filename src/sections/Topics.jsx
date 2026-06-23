@@ -75,7 +75,7 @@ const row2Topics = [
 
 export default function Topics() {
   return (
-    <section id="topics" className="py-20 lg:py-28 relative overflow-hidden bg-white dark:bg-[#0B1020]">
+    <section id="topics" className="py-14 lg:py-28 relative overflow-hidden bg-white dark:bg-[#0B1020]">
       <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
       
       <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
@@ -97,7 +97,7 @@ export default function Topics() {
             </h2>
             
             {/* Attendees Avatar Stack */}
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-3 pt-4">
               <div className="flex -space-x-2.5 overflow-hidden">
                 <img
                   className="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#0B1020] object-cover"
@@ -120,7 +120,7 @@ export default function Topics() {
                   alt="Attendee 4"
                 />
               </div>
-              <div className="text-left text-[11px] leading-tight font-semibold text-gray-500 dark:text-gray-400">
+              <div className="text-left text-[12px] leading-tight font-semibold text-gray-500 dark:text-gray-400">
                 <span className="text-dark dark:text-white font-extrabold">500+</span> Attendees
                 <br />
                 Community.
@@ -128,7 +128,7 @@ export default function Topics() {
             </div>
           </div>
           <div className="md:col-span-5 text-left md:pt-14">
-            <p className="text-gray-secondary dark:text-gray-400 text-base md:text-lg leading-relaxed max-w-md">
+            <p className="text-gray-secondary dark:text-gray-400 text-sm md:text-base leading-relaxed max-w-md">
               Sponsorship opportunities are open. Join us in making Bengal's biggest open source event a reality.
             </p>
           </div>
@@ -139,6 +139,11 @@ export default function Topics() {
           
           {/* Top Decorative handwritten note & arrow */}
           <div className="absolute right-[12%] top-[-80px] hidden md:flex items-center gap-2 select-none z-20">
+                        {/* Arrow pointing down-left */}
+            <svg className="w-10 h-10 text-brand-green/70 transform rotate-[10deg] translate-y-2" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M40,10 C30,12 15,18 12,32" />
+              <path d="M8,26 L12,32 L18,28" />
+            </svg>
             <div className="text-right">
               <p className="font-mono text-xs md:text-sm font-semibold text-gray-400/90 italic leading-tight rotate-[-4deg]">
                 Open Source
@@ -146,20 +151,12 @@ export default function Topics() {
                 Talks & Solutions
               </p>
             </div>
-            {/* Arrow pointing down-left */}
-            <svg className="w-10 h-10 text-brand-green/70 transform rotate-[10deg] translate-y-2" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M40,10 C30,12 15,18 12,32" />
-              <path d="M8,26 L12,32 L18,28" />
-            </svg>
+
           </div>
 
           {/* Bottom Decorative handwritten note & arrow */}
           <div className="absolute left-[8%] bottom-[-75px] hidden md:flex items-center gap-2 select-none z-20">
-            {/* Arrow pointing up-right */}
-            <svg className="w-10 h-10 text-brand-green/70 transform rotate-[-10deg] -translate-y-2" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M10,38 C20,36 35,30 38,16" />
-              <path d="M32,20 L38,16 L40,24" />
-            </svg>
+
             <div className="text-left">
               <p className="font-mono text-xs md:text-sm font-semibold text-gray-400/90 italic leading-tight rotate-[-4deg]">
                 So many ideas.
@@ -167,31 +164,36 @@ export default function Topics() {
                 So many conversations!
               </p>
             </div>
+                        {/* Arrow pointing up-right */}
+            <svg className="w-10 h-10 text-brand-green/70 transform rotate-[-10deg] -translate-y-2" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M10,38 C20,36 35,30 38,16" />
+              <path d="M32,20 L38,16 L40,24" />
+            </svg>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-2">
             {/* Row 1 Marquee (Scrolls Left) */}
             <div className="relative w-full overflow-hidden flex py-2"
                  style={{ 
                    WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
                    maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' 
                  }}>
-              <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-5">
+              <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-4">
                 {[...row1Topics, ...row1Topics, ...row1Topics].map((topic, i) => {
                   const Icon = topic.icon;
                   return (
                     <div 
                       key={i}
-                      className="w-[280px] shrink-0 p-4 bg-white dark:bg-[#131C31] border border-brand-green/20 dark:border-white/10 rounded-[20px] shadow-sm hover:shadow-md hover:border-brand-green/45 transition-all duration-300 flex items-center gap-3 cursor-pointer group"
+                      className="w-[300px] shrink-0 p-4 bg-white dark:bg-[#131C31] border border-brand-green/20 dark:border-white/10 rounded-[12px] hover:border-brand-green/45 transition-all duration-300 flex items-center gap-3 cursor-pointer group"
                     >
-                      <div className="w-10 h-10 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
-                        <Icon size={18} />
+                      <div className="w-12 h-12 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
+                        <Icon size={24} />
                       </div>
                       <div className="text-left">
-                        <h4 className="font-heading font-extrabold text-[13px] text-dark dark:text-white leading-tight">
+                        <h4 className="font-heading font-semibold text-[16px] text-dark dark:text-white leading-tight">
                           {topic.title}
                         </h4>
-                        <p className="text-[10px] font-semibold text-gray-400 dark:text-gray-500 mt-0.5 leading-tight">
+                        <p className="text-[12px] font-normal text-dark/70 dark:text-gray-500 mt-1 leading-tight">
                           {topic.desc}
                         </p>
                       </div>
@@ -208,7 +210,7 @@ export default function Topics() {
                    maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' 
                  }}>
               <div 
-                className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-5"
+                className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-4"
                 style={{ animationDirection: 'reverse' }}
               >
                 {[...row2Topics, ...row2Topics, ...row2Topics].map((topic, i) => {
@@ -216,16 +218,16 @@ export default function Topics() {
                   return (
                     <div 
                       key={i}
-                      className="w-[280px] shrink-0 p-4 bg-white dark:bg-[#131C31] border border-brand-green/20 dark:border-white/10 rounded-[20px] shadow-sm hover:shadow-md hover:border-brand-green/45 transition-all duration-300 flex items-center gap-3 cursor-pointer group"
+                     className="w-[300px] shrink-0 p-4 bg-white dark:bg-[#131C31] border border-brand-green/20 dark:border-white/10 rounded-[12px] hover:border-brand-green/45 transition-all duration-300 flex items-center gap-3 cursor-pointer group"
                     >
-                      <div className="w-10 h-10 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
-                        <Icon size={18} />
+                            <div className="w-12 h-12 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
+                        <Icon size={24} />
                       </div>
-                      <div className="text-left">
-                        <h4 className="font-heading font-extrabold text-[13px] text-dark dark:text-white leading-tight">
+                           <div className="text-left">
+                        <h4 className="font-heading font-semibold text-[16px] text-dark dark:text-white leading-tight">
                           {topic.title}
                         </h4>
-                        <p className="text-[10px] font-semibold text-gray-400 dark:text-gray-550 mt-0.5 leading-tight">
+                        <p className="text-[12px] font-normal text-dark/70 dark:text-gray-500 mt-1 leading-tight">
                           {topic.desc}
                         </p>
                       </div>

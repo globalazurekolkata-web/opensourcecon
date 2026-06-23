@@ -1,5 +1,5 @@
 import { ArrowRight, Users, ExternalLink, Sparkles } from 'lucide-react';
-import Button from './Button';
+import Button from '../components/ui/Button';
 
 // Placeholder partner slots until confirmed
 const placeholders = [
