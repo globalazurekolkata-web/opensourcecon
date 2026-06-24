@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 import PromoBanner from './components/PromoBanner';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Schedule from './components/Schedule';
-import Speakers from './components/Speakers';
-import Topics from './components/Topics';
-import Team from './components/Team';
-import Sponsors from './components/Sponsors';
-import CommunityPartners from './components/CommunityPartners';
-import Venue from './components/Venue';
-import AnnouncementCTA from './components/AnnouncementCTA';
-import FAQ from './components/FAQ';
+import Hero from './sections/Hero';
+import About from './sections/About';
+import Schedule from './sections/Schedule';
+import Speakers from './sections/Speakers';
+import Topics from './sections/Topics';
+import Team from './sections/Team';
+import Sponsors from './sections/Sponsors';
+import CommunityPartners from './sections/CommunityPartners';
+import Venue from './sections/Venue';
+import AnnouncementCTA from './sections/AnnouncementCTA';
+import FAQ from './sections/FAQ';
 import Footer from './components/Footer';
-import RevealOnScroll from './components/RevealOnScroll';
-import LoginPage from './components/LoginPage';
-import ProfilePage from './components/ProfilePage';
+import RevealOnScroll from './components/ui/RevealOnScroll';
+import LoginPage from './pages/LoginPage';
+import ProfilePage from './pages/ProfilePage';
 import { AuthService } from './services/auth';
 
 export default function App() {

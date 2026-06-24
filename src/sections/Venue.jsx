@@ -1,18 +1,10 @@
 import { ArrowRight, Plus, Calendar, MapPin } from 'lucide-react';
 
-const GoogleCalendarIcon = () => (
-  <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none">
-    <rect x="3" y="3" width="18" height="18" rx="4" fill="#fff" stroke="#e5e7eb" strokeWidth="1" />
-    {/* Blue top bar */}
-    <path d="M3 6.5C3 4.567 4.567 3 6.5 3h11C19.433 3 21 4.567 21 6.5V8H3V6.5Z" fill="#4285F4" />
-    {/* Number 31 */}
-    <text x="12" y="16" dominantBaseline="middle" textAnchor="middle" fill="#4285F4" fontSize="9.5" fontWeight="900" fontFamily="sans-serif">31</text>
-  </svg>
-);
+
 
 export default function Venue() {
   return (
-    <section id="venue" className="py-20 lg:py-28 relative bg-white dark:bg-[#0B1020] overflow-hidden border-t border-gray-100 dark:border-white/5">
+    <section id="venue" className="py-12 lg:py-20 relative bg-white dark:bg-[#0B1020] overflow-hidden border-t border-gray-100 dark:border-white/5">
       <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
       
       <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
@@ -40,7 +32,7 @@ export default function Venue() {
             href="https://maps.google.com/?q=Kolkata" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-6 py-3.5 rounded-full btn-primary bg-dark dark:bg-white text-white dark:text-dark hover:bg-dark/90 dark:hover:bg-gray-100 font-bold text-xs md:text-sm flex items-center gap-2 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 whitespace-nowrap cursor-pointer select-none"
+            className="px-6 py-3.5 rounded-full btn-primary bg-dark dark:bg-white text-dark dark:text-dark hover:bg-dark/90 dark:hover:bg-gray-100 font-medium text-xs md:text-sm flex items-center gap-2 transition-all duration-200 shadow-md  active:scale-95 whitespace-nowrap cursor-pointer select-none"
           >
             <span>View Map Location</span>
             <ArrowRight size={16} />
@@ -50,16 +42,16 @@ export default function Venue() {
             href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=OpenSourceCon+India+2026&dates=20261205T090000/20261205T180000&details=Bengal%27s+biggest+open+source+gathering.&location=Kolkata"
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-6 py-3.5 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/5 text-dark dark:text-white hover:bg-gray-50 dark:hover:bg-[#1C2640] font-bold text-xs md:text-sm flex items-center gap-2 transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 whitespace-nowrap cursor-pointer select-none"
+            className="px-6 py-3.5 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/5 text-dark dark:text-white hover:bg-gray-50 dark:hover:bg-[#1C2640] font-medium text-xs md:text-sm flex items-center gap-2 transition-all duration-200 shadow-sm  active:scale-95 whitespace-nowrap cursor-pointer select-none"
           >
-            <GoogleCalendarIcon />
+            <img src="/images/google-calendar-icon.webp" alt="Google Calendar" className="w-5 h-5 flex-shrink-0 object-contain" />
             <span>Add to Calendar</span>
             <Plus size={16} className="text-gray-400 dark:text-gray-500" />
           </a>
         </div>
 
         {/* Map Card Visual Block */}
-        <div className="max-w-5xl mx-auto relative">
+        <div className=" relative">
           
           {/* Overlapping Badge on Top-Left */}
           <div className="absolute -top-5 -left-5 z-20 w-16 h-16 rounded-full bg-white border-[1px] border-[#56D64B] flex items-center justify-center shadow-lg overflow-hidden p-2">
@@ -67,7 +59,7 @@ export default function Venue() {
           </div>
 
           {/* Map Container Card */}
-          <div className="relative rounded-[28px] border border-gray-150 dark:border-white/5 overflow-hidden shadow-lg bg-white dark:bg-[#131C31]">
+          <div className="relative rounded-[28px] border border-gray-150 dark:border-white/5 overflow-hidden  bg-white dark:bg-[#131C31]">
             
             {/* Custom Vector Map Illustration (SVG) */}
             <div className="w-full h-[350px] md:h-[450px] bg-gradient-to-br from-[#FAFCF9] to-[#F3FBF0] dark:from-[#080D08] dark:to-[#0B1020] flex items-center justify-center overflow-hidden relative border-b border-gray-100 dark:border-white/5">
@@ -147,11 +139,11 @@ export default function Venue() {
               
               {/* Right Info */}
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green-dark flex-shrink-0">
                   <Calendar size={18} />
                 </div>
                 <div className="text-left space-y-0.5">
-                  <h4 className="font-heading text-sm md:text-base font-bold text-dark dark:text-white">05th December 2026</h4>
+                  <h4 className="font-heading text-sm md:text-base font-semibold text-dark dark:text-white">05th December 2026</h4>
                   <p className="text-[10px] md:text-xs text-gray-secondary">Full Day Event</p>
                 </div>
               </div>

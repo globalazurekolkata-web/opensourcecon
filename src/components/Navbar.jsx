@@ -9,7 +9,7 @@ import {
   RiLinkedinBoxFill, 
   RiInstagramFill 
 } from 'react-icons/ri';
-import Button from './Button';
+import Button from './ui/Button';
 
 const navLinks = [
   { label: 'About', href: '#about' },

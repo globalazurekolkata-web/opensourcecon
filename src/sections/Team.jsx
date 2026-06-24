@@ -169,14 +169,14 @@ export default function Team() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div className="space-y-4 max-w-xl text-center md:text-left mx-auto md:mx-0">
-            <div className="section-tag inline-flex items-center gap-1.5 border-brand-green/30 bg-brand-green/5 text-brand-green">
+            <div className="section-tag inline-flex items-center gap-1.5 border-brand-green/30 bg-brand-green/5 text-green-300">
               <span className="green-dot" />
               THE TEAM
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] tracking-tight text-white">
-              Meet Our <span className="text-brand-green uppercase">ORGANIZERS</span>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] font-semibold leading-[1.1] tracking-tight text-white">
+              Meet Our <span className="text-brand-green font-bold uppercase">ORGANIZERS</span>
             </h2>
-            <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-sm sm:max-w-md mx-auto md:mx-0">
+            <p className="text-white/90 text-sm sm:text-base md:text-base leading-relaxed max-w-sm sm:max-w-md mx-auto md:mx-0">
               A passionate group of engineers and community builders working behind the scenes to make this event possible.
             </p>
           </div>
@@ -185,14 +185,14 @@ export default function Team() {
           <div className="hidden sm:flex items-center gap-3 self-end">
             <button
               onClick={prevSlide}
-              className="w-10 h-10 rounded-full border border-gray-800 bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors shadow-lg"
+              className="w-10 h-10 rounded-full border border-gray-800 bg-white text-brand-green-dark flex items-center justify-center  transition-colors shadow-lg"
               aria-label="Previous organizer"
             >
               <ArrowLeft size={18} />
             </button>
             <button
               onClick={nextSlide}
-              className="w-10 h-10 rounded-full border border-gray-800 bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors shadow-lg"
+              className="w-10 h-10 rounded-full border border-gray-800 bg-white text-brand-green-dark flex items-center justify-center  transition-colors shadow-lg"
               aria-label="Next organizer"
             >
               <ArrowRight size={18} />
@@ -202,7 +202,7 @@ export default function Team() {
 
         {/* Desktop Carousel Grid */}
         <div 
-          className="hidden sm:grid sm:grid-cols-3 gap-6 max-w-5xl mx-auto transition-all duration-300"
+          className="hidden sm:grid sm:grid-cols-3 gap-6  transition-all duration-300"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
