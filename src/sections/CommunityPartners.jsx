@@ -75,7 +75,7 @@ export default function CommunityPartners() {
             Collaborate with India's largest community-led developer conference. Provide outreach support, register your campus group, or host local satellite meetups.
           </p>
           <Button
-            href="https://forms.gle/opensourcecon-partner-register"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe50iD7K4mf6JYTSou4sRreWsWXl1wGxV4Dsz-Ga9HoU7d5fg/viewform"
             target="_blank"
             rel="noopener noreferrer"
             variant="primary"

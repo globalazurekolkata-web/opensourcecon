@@ -51,7 +51,7 @@ export default function FAQ() {
             </p>
 
             <a 
-              href="mailto:hello@opensourcecon.in" 
+              href="mailto:opensourceconkol@gmail.com" 
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 mt-6 rounded-full bg-black text-white font-medium text-[15px] hover:bg-gray-900 transition-colors shadow-sm w-fit"
             >
               Contact US <ArrowRight size={18} />

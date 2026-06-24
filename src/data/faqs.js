@@ -17,7 +17,7 @@ export const faqs = [
   },
   {
     q: 'Can my community partner with Open Source Con Kolkata?',
-    a: 'Yes! We love partnering with local and national tech communities. Community partners get co-promotion, booth space, and more. Reach out to us via our social channels or email at hello@opensourcecon.in.',
+    a: 'Yes! We love partnering with local and national tech communities. Community partners get co-promotion, booth space, and more. Reach out to us via our social channels or email at opensourceconkol@gmail.com.',
   },
   {
     q: 'Is this event beginner-friendly?',
