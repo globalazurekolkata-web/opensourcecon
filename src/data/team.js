@@ -10,14 +10,14 @@ export const teamMembers = [
   {
     name: 'Soham Chakraborty',
     role: 'Site Reliability Engineer',
-    org: 'Sematext Group',
+    org: 'Sematext Group, Inc',
     tag: 'Cloud-native',
     photo: '/images/team/SohomC.jpeg',
     linkedin: 'https://www.linkedin.com/in/soham-chakraborty-31136514/',
   },
   {
     name: 'Kunal Das',
-    role: 'Developer Advocate APAC',
+    role: 'Developer Advocate-APAC',
     org: 'CastAI',
     tag: 'Data platforms',
     photo: '/images/team/KunalD.png',
@@ -33,8 +33,8 @@ export const teamMembers = [
   },
   {
     name: 'Shivam Nandy',
-    role: 'Co-Founder & CEO',
-    org: 'Chapter',
+    role: 'Co-Founder and CEO (Technology)',
+    org: 'Hallucinate Labs',
     tag: 'Distributed sys.',
     photo: '/images/team/ShivamN.jpeg',
     linkedin: 'https://www.linkedin.com/in/shivam-nandy-hyphen/',

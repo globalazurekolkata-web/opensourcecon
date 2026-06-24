@@ -3,9 +3,9 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const organizers = [
   {
-    name: 'Kunal Kushwaha',
-    role: 'Community Advisor',
-    company: 'Civo',
+    name: 'Kunal Das',
+    role: 'Developer Advocate-APAC',
+    company: 'CastAI',
     badge: 'CNCF Ambassador',
     image: '/images/team/KunalD.png',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
@@ -19,25 +19,25 @@ const organizers = [
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
   {
-    name: 'Sohom Roy',
-    role: 'Design & Frontend Lead',
-    company: 'Devfolio',
-    badge: 'Frontend Wizard',
+    name: 'Soham Chakraborty',
+    role: 'Site Reliability Engineer',
+    company: 'Sematext Group, Inc',
+    badge: 'Organizer',
     image: '/images/team/SohomC.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
   {
     name: 'Kazi Haque',
-    role: 'Technical Architect',
-    company: 'Red Hat',
+    role: 'Founder',
+    company: 'Callchimp.ai',
     badge: 'Cloud Native Elite',
     image: '/images/team/KaziH.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
   {
-    name: 'Shivam Nandi',
-    role: 'DevOps & Community Manager',
-    company: 'Google',
+    name: 'Shivam Nandy',
+    role: 'Co-Founder and CEO (Technology)',
+    company: 'Hallucinate Labs',
     badge: 'Community Builder',
     image: '/images/team/ShivamN.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
