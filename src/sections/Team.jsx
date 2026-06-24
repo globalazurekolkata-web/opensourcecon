@@ -6,7 +6,7 @@ const organizers = [
     name: 'Kunal Das',
     role: 'Developer Advocate-APAC',
     company: 'CastAI',
-    badge: 'CNCF Ambassador',
+    badge: 'Organizer',
     image: '/images/team/KunalD.png',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
@@ -14,7 +14,7 @@ const organizers = [
     name: 'Sayantan Karmakar',
     role: 'Platform DevOps Engineer (Kubernetes)',
     company: 'Motorola Solutions',
-    badge: 'Golden Kubestronaut',
+    badge: 'Organizer',
     image: '/images/team/SayantanK.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
@@ -30,7 +30,7 @@ const organizers = [
     name: 'Kazi Haque',
     role: 'Founder',
     company: 'Callchimp.ai',
-    badge: 'Cloud Native Elite',
+    badge: 'Organizer',
     image: '/images/team/KaziH.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
@@ -38,7 +38,7 @@ const organizers = [
     name: 'Shivam Nandy',
     role: 'Co-Founder and CEO (Technology)',
     company: 'Hallucinate Labs',
-    badge: 'Community Builder',
+    badge: 'Organizer',
     image: '/images/team/ShivamN.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   }
