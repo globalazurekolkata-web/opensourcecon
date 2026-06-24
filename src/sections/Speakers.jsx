@@ -268,8 +268,6 @@ export default function Speakers() {
             handleTouchEnd();
             setIsPaused(false);
           }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
         >
           {featuredSlots.map((slot, i) => {
             const offset = (i - mobileIndex + featuredSlots.length) % featuredSlots.length;
@@ -299,16 +297,34 @@ export default function Speakers() {
           })}
         </div>
 
-        {/* Mobile Swipe Indicator Dots */}
-        <div className="flex sm:hidden justify-center items-center gap-2 mt-4">
-           {featuredSlots.map((_, i) => (
-             <div 
-               key={i} 
-               className={`h-1.5 rounded-full transition-all duration-300 ${
-                 i === mobileIndex ? 'w-4 bg-brand-green' : 'w-1.5 bg-gray-600'
-               }`}
-             />
-           ))}
+        {/* Mobile Swipe Indicator Dots & Controls */}
+        <div className="flex sm:hidden justify-center items-center gap-6 mt-4">
+          <button 
+            onClick={() => setMobileIndex((prev) => (prev - 1 + featuredSlots.length) % featuredSlots.length)}
+            className="w-10 h-10 rounded-full border border-gray-800 bg-white/10 backdrop-blur-sm text-white flex items-center justify-center transition-colors active:bg-white/20"
+            aria-label="Previous speaker"
+          >
+            <ArrowLeft size={18} />
+          </button>
+
+          <div className="flex items-center gap-2">
+             {featuredSlots.map((_, i) => (
+               <div 
+                 key={i} 
+                 className={`h-1.5 rounded-full transition-all duration-300 ${
+                   i === mobileIndex ? 'w-4 bg-brand-green' : 'w-1.5 bg-gray-600'
+                 }`}
+               />
+             ))}
+          </div>
+
+          <button 
+            onClick={() => setMobileIndex((prev) => (prev + 1) % featuredSlots.length)}
+            className="w-10 h-10 rounded-full border border-gray-800 bg-white/10 backdrop-blur-sm text-white flex items-center justify-center transition-colors active:bg-white/20"
+            aria-label="Next speaker"
+          >
+            <ArrowRight size={18} />
+          </button>
         </div>
 
       </div>
