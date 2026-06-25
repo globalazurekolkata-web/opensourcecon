@@ -3,10 +3,10 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const organizers = [
   {
-    name: 'Kunal Kushwaha',
-    role: 'Community Advisor',
-    company: 'Civo',
-    badge: 'CNCF Ambassador',
+    name: 'Kunal Das',
+    role: 'Developer Advocate-APAC',
+    company: 'CastAI',
+    badge: 'Organizer',
     image: '/images/team/KunalD.png',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
@@ -14,31 +14,31 @@ const organizers = [
     name: 'Sayantan Karmakar',
     role: 'Platform DevOps Engineer (Kubernetes)',
     company: 'Motorola Solutions',
-    badge: 'Golden Kubestronaut',
+    badge: 'Organizer',
     image: '/images/team/SayantanK.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
   {
-    name: 'Sohom Roy',
-    role: 'Design & Frontend Lead',
-    company: 'Devfolio',
-    badge: 'Frontend Wizard',
+    name: 'Soham Chakraborty',
+    role: 'Site Reliability Engineer',
+    company: 'Sematext Group, Inc',
+    badge: 'Organizer',
     image: '/images/team/SohomC.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
   {
     name: 'Kazi Haque',
-    role: 'Technical Architect',
-    company: 'Red Hat',
-    badge: 'Cloud Native Elite',
+    role: 'Founder',
+    company: 'Callchimp.ai',
+    badge: 'Organizer',
     image: '/images/team/KaziH.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   },
   {
-    name: 'Shivam Nandi',
-    role: 'DevOps & Community Manager',
-    company: 'Google',
-    badge: 'Community Builder',
+    name: 'Shivam Nandy',
+    role: 'Co-Founder and CEO (Technology)',
+    company: 'Hallucinate Labs',
+    badge: 'Organizer',
     image: '/images/team/ShivamN.jpeg',
     socials: { twitter: 'https://twitter.com', linkedin: 'https://linkedin.com' }
   }
@@ -225,8 +225,6 @@ export default function Team() {
             handleTouchEnd();
             setIsPaused(false);
           }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
         >
           {organizers.map((person, i) => {
             const offset = (i - mobileIndex + organizers.length) % organizers.length;
@@ -256,16 +254,34 @@ export default function Team() {
           })}
         </div>
         
-        {/* Mobile Swipe Indicator Dots */}
-        <div className="flex sm:hidden justify-center items-center gap-2">
-           {organizers.map((_, i) => (
-             <div 
-               key={i} 
-               className={`h-1.5 rounded-full transition-all duration-300 ${
-                 i === mobileIndex ? 'w-4 bg-brand-green' : 'w-1.5 bg-gray-600'
-               }`}
-             />
-           ))}
+        {/* Mobile Swipe Indicator Dots & Controls */}
+        <div className="flex sm:hidden justify-center items-center gap-6 mt-4">
+          <button 
+            onClick={() => setMobileIndex((prev) => (prev - 1 + organizers.length) % organizers.length)}
+            className="w-10 h-10 rounded-full border border-gray-800 bg-white/10 backdrop-blur-sm text-white flex items-center justify-center transition-colors active:bg-white/20"
+            aria-label="Previous organizer"
+          >
+            <ArrowLeft size={18} />
+          </button>
+          
+          <div className="flex items-center gap-2">
+             {organizers.map((_, i) => (
+               <div 
+                 key={i} 
+                 className={`h-1.5 rounded-full transition-all duration-300 ${
+                   i === mobileIndex ? 'w-4 bg-brand-green' : 'w-1.5 bg-gray-600'
+                 }`}
+               />
+             ))}
+          </div>
+
+          <button 
+            onClick={() => setMobileIndex((prev) => (prev + 1) % organizers.length)}
+            className="w-10 h-10 rounded-full border border-gray-800 bg-white/10 backdrop-blur-sm text-white flex items-center justify-center transition-colors active:bg-white/20"
+            aria-label="Next organizer"
+          >
+            <ArrowRight size={18} />
+          </button>
         </div>
 
       </div>

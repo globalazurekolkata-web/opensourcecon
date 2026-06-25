@@ -20,10 +20,6 @@ const faqs = [
   {
     q: "Do I need to be an expert to attend?",
     a: "Not at all! We have sessions ranging from beginner to advanced levels. Everyone is welcome."
-  },
-  {
-    q: "Are there any travel grants available?",
-    a: "We are working on securing funds for travel grants. Stay tuned to our social media for announcements."
   }
 ];
 
@@ -55,7 +51,7 @@ export default function FAQ() {
             </p>
 
             <a 
-              href="mailto:hello@opensourcecon.in" 
+              href="mailto:opensourceconkol@gmail.com" 
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 mt-6 rounded-full bg-black text-white font-medium text-[15px] hover:bg-gray-900 transition-colors shadow-sm w-fit"
             >
               Contact US <ArrowRight size={18} />

@@ -12,7 +12,7 @@ import {
   Users 
 } from 'lucide-react';
 
-const row1Topics = [
+const allTopics = [
   {
     title: 'Cloud Native',
     desc: 'Scalable. Resilient. Open.',
@@ -37,19 +37,11 @@ const row1Topics = [
     title: 'Security & Privacy',
     desc: 'Secure code. Protected users.',
     icon: Lock,
-  }
-];
-
-const row2Topics = [
+  },
   {
     title: 'Web Performance',
     desc: 'Fast experiences for everyone.',
     icon: Zap,
-  },
-  {
-    title: 'Observability',
-    desc: 'See more. Understand better.',
-    icon: BarChart3,
   },
   {
     title: 'AI Agents & LLMs',
@@ -75,8 +67,8 @@ const row2Topics = [
 
 export default function Topics() {
   return (
-    <section id="topics" className="py-14 lg:py-28 relative overflow-hidden bg-white dark:bg-[#0B1020]">
-      <div className="absolute inset-0 grid-bg pointer-events-none z-0" />
+    <section id="topics" className="py-14 lg:py-28 relative overflow-hidden bg-[#FAFCF9]">
+      <div className="absolute inset-0 grid-bg pointer-events-none z-0 opacity-50" />
       
       <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10">
         
@@ -87,7 +79,7 @@ export default function Topics() {
               <span className="green-dot" />
               TOPICS
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.2]! tracking-tight text-dark dark:text-white">
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-[56px] leading-[1.2]! tracking-tight text-dark">
               <span className="font-medium">Let's talk about what</span>
               <br />
               <span className="text-gradient uppercase font-bold relative inline-block">
@@ -100,144 +92,63 @@ export default function Topics() {
             <div className="flex items-center gap-3 pt-4">
               <div className="flex -space-x-2.5 overflow-hidden">
                 <img
-                  className="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#0B1020] object-cover"
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-[#FAFCF9] object-cover"
                   src="/images/team/SayantanK.jpeg"
                   alt="Attendee 1"
                 />
                 <img
-                  className="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#0B1020] object-cover"
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-[#FAFCF9] object-cover"
                   src="/images/team/SohomC.jpeg"
                   alt="Attendee 2"
                 />
                 <img
-                  className="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#0B1020] object-cover"
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-[#FAFCF9] object-cover"
                   src="/images/team/ShivamN.jpeg"
                   alt="Attendee 3"
                 />
                 <img
-                  className="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#0B1020] object-cover"
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-[#FAFCF9] object-cover"
                   src="/images/team/KunalD.png"
                   alt="Attendee 4"
                 />
               </div>
-              <div className="text-left text-[12px] leading-tight font-semibold text-gray-500 dark:text-gray-400">
-                <span className="text-dark dark:text-white font-extrabold">500+</span> Attendees
+              <div className="text-left text-[12px] leading-tight font-semibold text-gray-500">
+                <span className="text-dark font-extrabold">500+</span> Attendees
                 <br />
                 Community.
               </div>
             </div>
           </div>
           <div className="md:col-span-5 text-left md:pt-14">
-            <p className="text-gray-secondary dark:text-gray-400 text-sm md:text-base leading-relaxed max-w-md">
+            <p className="text-gray-secondary text-sm md:text-base leading-relaxed max-w-md">
               Sponsorship opportunities are open. Join us in making Bengal's biggest open source event a reality.
             </p>
           </div>
         </div>
 
-        {/* Scrolling Topic Cards Container */}
-        <div className="relative mt-20 mb-16 px-4">
-          
-          {/* Top Decorative handwritten note & arrow */}
-          <div className="absolute right-[12%] top-[-80px] hidden md:flex items-center gap-2 select-none z-20">
-                        {/* Arrow pointing down-left */}
-            <svg className="w-10 h-10 text-brand-green/70 transform rotate-[10deg] translate-y-2" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M40,10 C30,12 15,18 12,32" />
-              <path d="M8,26 L12,32 L18,28" />
-            </svg>
-            <div className="text-right">
-              <p className="font-mono text-xs md:text-sm font-semibold text-gray-400/90 italic leading-tight rotate-[-4deg]">
-                Open Source
-                <br />
-                Talks & Solutions
-              </p>
-            </div>
-
-          </div>
-
-          {/* Bottom Decorative handwritten note & arrow */}
-          <div className="absolute left-[8%] bottom-[-75px] hidden md:flex items-center gap-2 select-none z-20">
-
-            <div className="text-left">
-              <p className="font-mono text-xs md:text-sm font-semibold text-gray-400/90 italic leading-tight rotate-[-4deg]">
-                So many ideas.
-                <br />
-                So many conversations!
-              </p>
-            </div>
-                        {/* Arrow pointing up-right */}
-            <svg className="w-10 h-10 text-brand-green/70 transform rotate-[-10deg] -translate-y-2" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M10,38 C20,36 35,30 38,16" />
-              <path d="M32,20 L38,16 L40,24" />
-            </svg>
-          </div>
-
-          <div className="space-y-2">
-            {/* Row 1 Marquee (Scrolls Left) */}
-            <div className="relative w-full overflow-hidden flex py-2"
-                 style={{ 
-                   WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
-                   maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' 
-                 }}>
-              <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-4">
-                {[...row1Topics, ...row1Topics, ...row1Topics].map((topic, i) => {
-                  const Icon = topic.icon;
-                  return (
-                    <div 
-                      key={i}
-                      className="w-[300px] shrink-0 p-4 bg-white dark:bg-[#131C31] border border-brand-green/20 dark:border-white/10 rounded-[12px] hover:border-brand-green/45 transition-all duration-300 flex items-center gap-3 cursor-pointer group"
-                    >
-                      <div className="w-12 h-12 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
-                        <Icon size={24} />
-                      </div>
-                      <div className="text-left">
-                        <h4 className="font-heading font-semibold text-[16px] text-dark dark:text-white leading-tight">
-                          {topic.title}
-                        </h4>
-                        <p className="text-[12px] font-normal text-dark/70 dark:text-gray-500 mt-1 leading-tight">
-                          {topic.desc}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Row 2 Marquee (Scrolls Right) */}
-            <div className="relative w-full overflow-hidden flex py-2"
-                 style={{ 
-                   WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
-                   maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' 
-                 }}>
+        {/* Topics Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5 mt-16">
+          {allTopics.map((topic, i) => {
+            const Icon = topic.icon;
+            return (
               <div 
-                className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-4"
-                style={{ animationDirection: 'reverse' }}
+                key={i}
+                className="group p-4 md:p-6 bg-[#131C31] border border-[#1e293b] rounded-[20px] hover:border-brand-green/50 hover:shadow-xl hover:shadow-brand-green/10 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 cursor-pointer"
               >
-                {[...row2Topics, ...row2Topics, ...row2Topics].map((topic, i) => {
-                  const Icon = topic.icon;
-                  return (
-                    <div 
-                      key={i}
-                     className="w-[300px] shrink-0 p-4 bg-white dark:bg-[#131C31] border border-brand-green/20 dark:border-white/10 rounded-[12px] hover:border-brand-green/45 transition-all duration-300 flex items-center gap-3 cursor-pointer group"
-                    >
-                            <div className="w-12 h-12 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
-                        <Icon size={24} />
-                      </div>
-                           <div className="text-left">
-                        <h4 className="font-heading font-semibold text-[16px] text-dark dark:text-white leading-tight">
-                          {topic.title}
-                        </h4>
-                        <p className="text-[12px] font-normal text-dark/70 dark:text-gray-500 mt-1 leading-tight">
-                          {topic.desc}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+                <div className="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6 rounded-xl bg-[#1C2640] border border-white/5 text-brand-green flex items-center justify-center group-hover:bg-brand-green group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md group-hover:-rotate-3">
+                  <Icon size={22} strokeWidth={1.5} />
+                </div>
+                <div className="text-left">
+                  <h4 className="font-heading font-extrabold text-[14px] md:text-[16px] text-white leading-tight mb-1.5">
+                    {topic.title}
+                  </h4>
+                  <p className="text-[12px] md:text-[13px] text-gray-400 leading-snug font-medium line-clamp-2">
+                    {topic.desc}
+                  </p>
+                </div>
               </div>
-            </div>
-          </div>
-          
+            );
+          })}
         </div>
 
       </div>

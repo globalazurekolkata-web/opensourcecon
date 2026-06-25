@@ -16,7 +16,7 @@ export const footerLinks = {
     { label: 'Volunteer', href: 'https://docs.google.com/forms/d/e/1FAIpQLScmPrA5nQAFVUPHbTd_wWH0WTaTAvMQPDZiSpe15sAgpFVVGw/viewform', external: true },
   ],
   Contact: [
-    { label: 'hello@opensourcecon.in', href: 'mailto:hello@opensourcecon.in' },
+    { label: 'opensourceconkol@gmail.com', href: 'mailto:opensourceconkol@gmail.com' },
   ],
 };
 

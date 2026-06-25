@@ -3,14 +3,6 @@ import { motion } from 'framer-motion';
 import { Calendar, Users, Clock, Info, Download, Plus } from 'lucide-react';
 import Button from '../components/ui/Button';
 
-const GoogleCalendarIcon = () => (
-  <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none">
-    <rect x="3" y="3" width="18" height="18" rx="4" fill="#fff" stroke="#e5e7eb" strokeWidth="1" />
-    <path d="M3 6.5C3 4.567 4.567 3 6.5 3h11C19.433 3 21 4.567 21 6.5V8H3V6.5Z" fill="#4285F4" />
-    <text x="12" y="16" dominantBaseline="middle" textAnchor="middle" fill="#4285F4" fontSize="9.5" fontWeight="900" fontFamily="sans-serif">31</text>
-  </svg>
-);
-
 const scheduleTabs = [
   { id: 'morning', name: 'Morning', time: '09:00 AM - 12:30 PM' },
   { id: 'afternoon', name: 'Afternoon', time: '01:30 PM - 05:00 PM' },
@@ -145,24 +137,6 @@ const scheduleData = {
   }
 };
 
-const statBadges = [
-  {
-    title: 'Hands-on Workshops',
-    desc: 'Dive deep into technical sessions led by core maintainers.',
-    icon: Info
-  },
-  {
-    title: 'Networking',
-    desc: 'Connect with community members and build relationships.',
-    icon: Info
-  },
-  {
-    title: 'After Party',
-    desc: 'Celebrate the day with music, food, and like-minded developers.',
-    icon: Info
-  }
-];
-
 export default function Schedule() {
   const [activeTab, setActiveTab] = useState('morning');
   const currentTabSchedule = scheduleData[activeTab];
@@ -224,7 +198,7 @@ export default function Schedule() {
           >
             <img src="/images/google-calendar-icon.webp" alt="Google Calendar" className="w-5 h-5 flex-shrink-0 object-contain" />
             <span>Add to Calendar</span>
-            <Plus size={16} className="text-gray-400 dark:text-gray-555" />
+            <Plus size={16} className="text-gray-400 dark:text-gray-500" />
           </a>
         </div>
 
@@ -338,49 +312,7 @@ export default function Schedule() {
               </div>
             </div>
           </div>
-
-          {/* Bottom Banner (Sharp & Fully Interactive) */}
-          <div className="border-t border-gray-100 dark:border-white/5 px-6 sm:px-8 py-5 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-4 bg-gray-50/50 dark:bg-[#1C2640]/20 rounded-b-[32px] text-center sm:text-left">
-            <div>
-              <h4 className="font-heading font-semibold text-base text-dark dark:text-white">
-                More sessions, more learning.
-              </h4>
-              <p className="text-xs text-gray-secondary dark:text-gray-505 font-semibold mt-0.5">
-                05 Dec, 2026
-              </p>
-            </div>
-            <div className="w-full sm:w-auto">
-              <button
-                onClick={openKonfHub}
-                className="px-6 py-3 rounded-full text-xs font-medium bg-black dark:bg-white text-white dark:text-dark hover:bg-black/90 dark:hover:bg-gray-100 transition-colors shadow-md active:scale-95 cursor-pointer border-0 w-full sm:w-auto"
-              >
-                View All Schedule
-              </button>
-            </div>
-          </div>
           
-        </div>
-
-        {/* Triple Stat Badges Container */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-          {statBadges.map((badge, idx) => {
-            const Icon = badge.icon;
-            return (
-              <div key={idx} className="card p-6 bg-white dark:bg-[#131C31] border border-gray-150 dark:border-white/5 rounded-[12px]! flex items-start gap-4 text-left transition-all duration-300">
-                <div className="w-10 h-10 rounded-full bg-[#52D237]/5 text-brand-green-dark flex items-center justify-center flex-shrink-0 shadow-sm">
-                  <Icon size={18} />
-                </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-sm md:text-base text-dark dark:text-white leading-tight">
-                    {badge.title}
-                  </h4>
-                  <p className="text-[12px] sm:text-[14px] leading-relaxed text-gray-secondary dark:text-gray-400 mt-1 font-medium">
-                    {badge.desc}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
         </div>
 
       </div>

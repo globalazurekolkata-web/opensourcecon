@@ -21,7 +21,7 @@ const footerLinks = {
     { label: 'Terms & Conditions', href: '#' },
   ],
   Contact: [
-    { label: 'hello@opensourcecon.in', href: 'mailto:hello@opensourcecon.in' },
+    { label: 'opensourceconkol@gmail.com', href: 'mailto:opensourceconkol@gmail.com' },
   ],
 };
 
@@ -258,7 +258,7 @@ export default function Footer() {
                     <h4 className="text-white font-semibold font-heading text-base">Your Rights</h4>
                     <p>
                       You have the right to request access to, correction of, or deletion of the personal data we hold about you. 
-                      For any privacy concerns, you can contact us at <a href="mailto:hello@opensourcecon.in" className="text-brand-green hover:underline">hello@opensourcecon.in</a>.
+                      For any privacy concerns, you can contact us at <a href="mailto:opensourceconkol@gmail.com" className="text-brand-green hover:underline">opensourceconkol@gmail.com</a>.
                     </p>
                   </section>
                 </>

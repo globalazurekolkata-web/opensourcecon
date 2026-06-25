@@ -193,26 +193,22 @@ export default function Sponsors() {
         </div>
 
         {/* Sponsor Us CTA */}
-        <div id="sponsor-cta" className="mt-16 py-8 px-6 bg-gray-50 border border-gray-150 rounded-[28px] max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
-          <div className="flex items-center gap-4 text-left">
-            <div className="w-12 h-12 rounded-2xl bg-brand-green/10 flex items-center justify-center text-brand-green flex-shrink-0">
-              <Briefcase size={20} />
-            </div>
-            <div>
-              <h4 className="font-heading font-extrabold text-base text-dark">
-                Interested in partnering with us?
-              </h4>
-              <p className="text-xs text-gray-secondary mt-0.5">
-                Download our sponsorship prospectus and get in touch with our team.
-              </p>
-            </div>
+        <div id="sponsor-cta" className="mt-24 pt-16 border-t border-gray-200 dark:border-white/10 flex flex-col items-center justify-center text-center max-w-3xl mx-auto">
+          <div className="w-16 h-16 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green mb-6">
+            <Briefcase size={32} strokeWidth={1.5} />
           </div>
+          <h4 className="font-heading font-bold text-3xl md:text-4xl text-dark dark:text-white mb-4">
+            Interested in partnering with us?
+          </h4>
+          <p className="text-gray-500 dark:text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
+            Join forces with Bengal's biggest open source gathering. Download our sponsorship prospectus to discover opportunities to showcase your brand to 500+ top developers.
+          </p>
           <Button
             href="https://drive.google.com/file/d/1RVrIZV0d6UskRM9k62cOlUU1A3J2pBg4/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             variant="primary"
-            className="text-sm py-3 px-6 whitespace-nowrap"
+            className="w-full sm:w-auto py-4 px-8 text-[15px] font-bold rounded-full transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg active:scale-95"
             icon={RiArrowRightLine}
             iconPosition="right"
           >
