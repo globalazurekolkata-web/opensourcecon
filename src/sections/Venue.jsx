@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar, MapPin, Compass, Train, Plane, Car, ExternalLink, Building } from 'lucide-react';
+import { Calendar, MapPin, Compass, Train, Plane, ExternalLink, Building } from 'lucide-react';
 import Button from '../components/ui/Button';
 
 export default function Venue() {
@@ -203,7 +203,7 @@ export default function Venue() {
         </div>
 
         {/* Transit details below the card */}
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-12">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-12">
           {/* Metro */}
           <div className="group relative bg-white dark:bg-[#131C31] rounded-2xl p-5 sm:p-6 flex flex-col items-start text-left border border-gray-150 dark:border-white/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg overflow-hidden shadow-soft">
             {/* Top green gradient accent line */}
@@ -249,22 +249,6 @@ export default function Venue() {
             <h5 className="font-heading font-bold text-sm sm:text-base text-dark dark:text-white mb-1.5 uppercase tracking-wide">Airport</h5>
             <p className="text-gray-secondary dark:text-gray-400 text-xs sm:text-sm leading-relaxed">
               Kolkata Airport (CCU) (~22 km)
-            </p>
-          </div>
-
-          {/* Parking */}
-          <div className="group relative bg-white dark:bg-[#131C31] rounded-2xl p-5 sm:p-6 flex flex-col items-start text-left border border-gray-150 dark:border-white/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg overflow-hidden shadow-soft">
-            {/* Top green gradient accent line */}
-            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-green via-[#22c55e] to-brand-green/20" />
-            
-            {/* Icon */}
-            <div className="w-10 h-10 rounded-xl bg-brand-green/10 text-brand-green flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-brand-green/10">
-              <Car size={20} strokeWidth={2} />
-            </div>
-            
-            <h5 className="font-heading font-bold text-sm sm:text-base text-dark dark:text-white mb-1.5 uppercase tracking-wide">Parking</h5>
-            <p className="text-gray-secondary dark:text-gray-400 text-xs sm:text-sm leading-relaxed">
-              Dedicated space for 300+ vehicles
             </p>
           </div>
         </div>

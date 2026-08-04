@@ -9,6 +9,7 @@ import Topics from './sections/Topics';
 import Team from './sections/Team';
 import Sponsors from './sections/Sponsors';
 import CommunityPartners from './sections/CommunityPartners';
+import MediaPartners from './sections/MediaPartners';
 import Venue from './sections/Venue';
 import AnnouncementCTA from './sections/AnnouncementCTA';
 import FAQ from './sections/FAQ';
@@ -91,6 +92,7 @@ export default function App() {
             <RevealOnScroll><Sponsors /></RevealOnScroll>
             <RevealOnScroll><Venue /></RevealOnScroll>
             <RevealOnScroll><CommunityPartners /></RevealOnScroll>
+            <RevealOnScroll><MediaPartners /></RevealOnScroll>
             <RevealOnScroll><AnnouncementCTA /></RevealOnScroll>
             <RevealOnScroll><FAQ /></RevealOnScroll>
           </>

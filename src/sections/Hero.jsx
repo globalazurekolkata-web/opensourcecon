@@ -1,5 +1,6 @@
 import Button from '../components/ui/Button';
 import { RiArrowRightLine } from 'react-icons/ri';
+import { Calendar, MapPin } from 'lucide-react';
 
 function openKonfHub(e) {
   e.preventDefault();
@@ -16,6 +17,19 @@ export default function Hero() {
       {/* Main Content */}
       <div className="max-w-container mx-auto px-6 lg:px-8 relative z-10 mt-4 w-full mb-10">
         <div className="max-w-4xl space-y-6">
+          {/* Date & Location Pill */}
+          <div className="inline-flex flex-wrap items-center gap-2 sm:gap-3 px-4 py-2 rounded-full bg-brand-green/10 border border-brand-green/30 text-xs sm:text-sm font-semibold w-fit shadow-xs">
+            <div className="flex items-center gap-1.5 text-brand-green-dark dark:text-brand-green font-bold">
+              <Calendar size={15} className="text-brand-green shrink-0" />
+              <span>December 05, 2026</span>
+            </div>
+            <span className="w-1 h-1 rounded-full bg-brand-green/40" />
+            <div className="flex items-center gap-1 text-gray-700 dark:text-gray-300 font-medium">
+              <MapPin size={14} className="text-brand-green shrink-0" />
+              <span>Kolkata, India</span>
+            </div>
+          </div>
+
           <div className='flex flex-col gap-3'>
             <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[72px] leading-[1.1] lg:leading-[1.1] tracking-tight text-dark flex flex-wrap items-center gap-x-6 gap-y-2">
               Where Kolkata Meets
@@ -38,7 +52,8 @@ export default function Hero() {
               Register Now
             </Button>
             <Button
-              href="#sponsors"
+              href="https://forms.fillout.com/t/2sKNq3RM68us"
+              target="_blank"
               variant="secondary"
               className="w-full sm:w-auto text-base py-4 px-8 border-gray-200 shadow-md bg-white/90 backdrop-blur-md hover:bg-white text-dark font-semibold"
             >
