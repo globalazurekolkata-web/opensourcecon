@@ -140,7 +140,7 @@ export default function Navbar({ currentUser, onOpenAuth, onOpenProfile, showLog
             )}
             <Button
               // onClick={openKonfHub}
-              src="https://konfhub.com/opensourcecon-india"
+              onClick={() => window.open("https://konfhub.com/opensourcecon-india", "_blank")}
               variant="primary"
               className={`${mobileOpen ? 'hidden' : 'hidden md:inline-flex'} py-2.5 px-6`}
               icon={RiArrowRightLine}
@@ -229,7 +229,7 @@ export default function Navbar({ currentUser, onOpenAuth, onOpenProfile, showLog
               )}
               <Button
                 // onClick={(e) => { setMobileOpen(false); openKonfHub(e); }}
-                src="https://konfhub.com/opensourcecon-india"
+                onClick={() => window.open("https://konfhub.com/opensourcecon-india", "_blank")}
                 variant="primary"
                 className="flex w-full justify-center py-3 text-dark font-extrabold shadow-[0_0_20px_rgba(86,214,75,0.2)] text-sm"
                 icon={RiArrowRightLine}
