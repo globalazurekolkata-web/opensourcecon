@@ -3,16 +3,22 @@ import Button from '../components/ui/Button';
 
 const mediaPartners = [
   {
-    name: 'Prospera X',
+    name: 'Wiki Kolkata',
     type: 'Official Media Partner',
-    logo: '/images/community-partners/media-partners/Prospera X.png',
-    tag: 'Media Partner',
+    logo: '/images/community-partners/media-partners/Wiki Kolkata.png',
+    tag: 'Official Media Partner',
   },
   {
     name: 'Kube Events',
     type: 'Ecosystem & Media Partner',
     logo: '/images/community-partners/media-partners/kube events.png',
     tag: 'Ecosystem',
+  },
+  {
+    name: 'Prospera X',
+    type: 'Community Media Partner',
+    logo: '/images/community-partners/media-partners/Prospera X.png',
+    tag: 'Community Media Partner',
   },
 ];
 
@@ -43,8 +49,8 @@ export default function MediaPartners() {
         </div>
 
         {/* Media Partners Grid */}
-        <div className="max-w-2xl mx-auto mb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 justify-center">
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 justify-center">
             {mediaPartners.map((partner, i) => (
               <div 
                 key={i} 
