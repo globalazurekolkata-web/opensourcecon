@@ -4,19 +4,19 @@ import Button from '../components/ui/Button';
 const mediaPartners = [
   {
     name: 'Wiki Kolkata',
-    type: 'Official Media Partner',
+    type: 'Media Partner',
     logo: '/images/community-partners/media-partners/Wiki Kolkata.png',
     tag: 'Official Media Partner',
   },
   {
     name: 'Kube Events',
-    type: 'Ecosystem & Media Partner',
+    type: 'Media Partner',
     logo: '/images/community-partners/media-partners/kube events.png',
     tag: 'Ecosystem',
   },
   {
     name: 'Prospera X',
-    type: 'Community Media Partner',
+    type: 'Media Partner',
     logo: '/images/community-partners/media-partners/Prospera X.png',
     tag: 'Community Media Partner',
   },
