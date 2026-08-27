@@ -6,19 +6,19 @@ const mediaPartners = [
     name: 'Wiki Kolkata',
     type: 'Media Partner',
     logo: '/images/community-partners/media-partners/Wiki Kolkata.png',
-    tag: 'Official Media Partner',
+    tag: 'Media Partner',
   },
   {
     name: 'Kube Events',
     type: 'Media Partner',
     logo: '/images/community-partners/media-partners/kube events.png',
-    tag: 'Ecosystem',
+    tag: 'Media Partner',
   },
   {
     name: 'Prospera X',
     type: 'Media Partner',
     logo: '/images/community-partners/media-partners/Prospera X.png',
-    tag: 'Community Media Partner',
+    tag: 'Media Partner',
   },
 ];
 
