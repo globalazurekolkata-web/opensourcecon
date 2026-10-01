@@ -172,29 +172,27 @@ export default function Speakers() {
             We're curating an exceptional lineup of maintainers, engineers, and community leaders. Speaker announcements coming soon.
           </p>
 
+          {/* CFP Closed Notice */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs sm:text-sm font-semibold">
+            <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
+            Call for Proposals is now closed. Thank you for all submissions!
+          </div>
+
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <Button
-              href="https://forms.gle/tFUzkFuCyb1heshu9"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#"
               variant="primary"
-              className="text-sm py-3.5 px-8 font-bold flex items-center gap-2 !bg-brand-green hover:!bg-brand-green-dark text-white border-0 shadow-lg"
-              icon={RiArrowRightLine}
-              iconPosition="right"
+              className="text-sm py-3.5 px-8 font-bold flex items-center gap-2 !bg-gray-600 hover:!bg-gray-600 text-gray-300 border-0 shadow-lg cursor-not-allowed opacity-60 pointer-events-none"
             >
-              <User size={16} className="text-white flex-shrink-0" />
-              <span>Become a Speaker</span>
+              <User size={16} className="text-gray-300 flex-shrink-0" />
+              <span>CFP Closed</span>
             </Button>
             <Button
-              href="https://forms.gle/tFUzkFuCyb1heshu9"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#"
               variant="secondary"
-              className="text-sm py-3.5 px-8 font-bold flex items-center gap-2 border border-white/10 bg-white/5 hover:bg-white/10 text-white"
-              icon={RiArrowRightLine}
-              iconPosition="right"
+              className="text-sm py-3.5 px-8 font-bold flex items-center gap-2 border border-white/10 bg-white/5 text-gray-400 cursor-not-allowed opacity-60 pointer-events-none"
             >
-              <span>Speaker Guidelines</span>
+              <span>Applications Closed</span>
             </Button>
           </div>
         </div>
