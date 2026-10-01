@@ -25,3 +25,6 @@ dist-ssr
 
 # Agent directories
 .agent/
+
+DEPLOYMENT_WORKFLOW.md
+

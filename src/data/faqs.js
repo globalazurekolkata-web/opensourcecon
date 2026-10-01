@@ -9,7 +9,7 @@ export const faqs = [
   },
   {
     q: 'How can I speak at the event?',
-    a: 'We have an open Call for Proposals (CFP). Click the "Submit Your Talk Proposal" button and share your idea. We welcome talks, workshops, and lightning talks on any open source topic.',
+    a: 'Our Call for Proposals (CFP) is now closed. Thank you to everyone who submitted! We received an incredible number of proposals and our review committee is currently evaluating them. Selected speakers will be announced soon. Stay tuned!',
   },
   {
     q: 'Can my company sponsor the event?',
