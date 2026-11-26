@@ -191,7 +191,7 @@ export default function Schedule() {
           </Button>
           
           <a 
-            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=OpenSourceCon+India+2026&dates=20261205T090000/20261205T180000&details=Bengal%27s+biggest+open+source+gathering.&location=Kolkata"
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=OpenSourceCon+India+2027&dates=20270220T090000/20270220T203000&ctz=Asia/Kolkata&details=Bengal%27s+biggest+open+source+gathering.&location=Kolkata"
             target="_blank" 
             rel="noopener noreferrer"
             className="px-6 py-3.5 rounded-full bg-white dark:bg-[#131C31] border border-gray-200 dark:border-white/5 text-dark dark:text-white hover:bg-gray-50 dark:hover:bg-[#1C2640] font-medium text-xs md:text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-sm active:scale-95 whitespace-nowrap cursor-pointer select-none w-full sm:w-auto"

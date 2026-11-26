@@ -119,7 +119,7 @@ export default function CommunityPartners() {
                   </span>
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed">
-                  Powering seamless event registration, ticketing, and check-ins for Open Source Con India 2026.
+                  Powering seamless event registration, ticketing, and check-ins for Open Source Con India 2027.
                 </p>
               </div>
             </div>
@@ -152,7 +152,7 @@ export default function CommunityPartners() {
                   CertDirectory
                 </h4>
                 <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed">
-                  Powering verifiable, tamper-proof digital certificates & achievement badges for all Open Source Con India 2026 attendees, speakers, and volunteers.
+                  Powering verifiable, tamper-proof digital certificates & achievement badges for all Open Source Con India 2027 attendees, speakers, and volunteers.
                 </p>
               </div>
             </div>

@@ -65,7 +65,7 @@ export const AuthService = {
     const newTicket = {
       email: cleanEmail,
       name: name.trim(),
-      ticketNo: `OSC-2026-${randomID}`,
+      ticketNo: `OSC-2027-${randomID}`,
       tier: 'General Pass',
       company: company.trim() || 'Self-Employed',
       role: role.trim() || 'Developer'

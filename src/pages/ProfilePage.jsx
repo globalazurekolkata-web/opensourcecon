@@ -461,7 +461,7 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
       // Location Details
       ctx.fillStyle = '#9CA3AF';
       ctx.font = '500 10px "Mona Sans", sans-serif';
-      ctx.fillText("DEC 5, 2026 • NEWTOWN", border + 24, size - border - bannerHeight + 71);
+      ctx.fillText("FEB 20, 2027 • NEWTOWN", border + 24, size - border - bannerHeight + 71);
 
       // Pass Tier badge inside frame
       const labelText = (user.tier || 'ATTENDEE').toUpperCase();
@@ -568,8 +568,8 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
   const cleanName = encodeURIComponent(user.name.replace(/ /g, '_'));
   const cleanTier = encodeURIComponent(user.tier.replace(/ /g, '_'));
   const hexColor = accentColor.replace('#', '');
-  const badgeUrl = `https://img.shields.io/badge/OpenSourceCon_2026-${cleanName}_|_${cleanTier}-${hexColor}?style=for-the-badge&logo=github&logoColor=white`;
-  const markdownBadge = `[![OpenSourceCon 2026 Attendee Pass](${badgeUrl})](https://github.com/globalazurekolkata-web/opensourcecon)`;
+  const badgeUrl = `https://img.shields.io/badge/OpenSourceCon_2027-${cleanName}_|_${cleanTier}-${hexColor}?style=for-the-badge&logo=github&logoColor=white`;
+  const markdownBadge = `[![OpenSourceCon 2027 Attendee Pass](${badgeUrl})](https://github.com/globalazurekolkata-web/opensourcecon)`;
 
   const handleCopyBadge = () => {
     navigator.clipboard.writeText(markdownBadge);
@@ -1840,12 +1840,12 @@ export default function ProfilePage({ user, onLogout, onUpdateUser }) {
                     <div className="text-left">
                       <span className="font-bold text-sm text-dark dark:text-white block">Tell the community you are attending!</span>
                       <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 leading-normal max-w-md">
-                        Share your pass style customization or badge on socials using hashtags <strong className="text-brand-green-dark dark:text-brand-green">#OpenSourceCon</strong> and <strong className="text-brand-green-dark dark:text-brand-green">#OpenSourceCon2026</strong>.
+                        Share your pass style customization or badge on socials using hashtags <strong className="text-brand-green-dark dark:text-brand-green">#OpenSourceCon</strong> and <strong className="text-brand-green-dark dark:text-brand-green">#OpenSourceCon2027</strong>.
                       </p>
                     </div>
 
                     <Button
-                      href={`https://twitter.com/intent/tweet?text=I%27m%20attending%20%40OpenSourceConIN%20in%20Kolkata%20this%20December%21%20Check%20out%20my%20attendee%20pass%20badge%3A%20${encodeURIComponent(badgeUrl)}%20%23OpenSourceCon%20%23OpenSourceCon2026`}
+                      href={`https://twitter.com/intent/tweet?text=I%27m%20attending%20%40OpenSourceConIN%20in%20Kolkata%20this%20February%21%20Check%20out%20my%20attendee%20pass%20badge%3A%20${encodeURIComponent(badgeUrl)}%20%23OpenSourceCon%20%23OpenSourceCon2027`}
                       target="_blank"
                       rel="noopener noreferrer"
                       variant="primary"
