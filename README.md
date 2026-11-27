@@ -1,6 +1,6 @@
-# OpenSourceCon Kolkata 2026
+# OpenSourceCon Kolkata 2027
 
-The redesigned official website for **OpenSourceCon Kolkata 2026** — Bengal's premier open-source event. Built using **React + Vite + Tailwind CSS + Lucide React**.
+The redesigned official website for **OpenSourceCon Kolkata 2027** — Bengal's premier open-source event. Built using **React + Vite + Tailwind CSS + Lucide React**.
 
 ## 🚀 Quick Start
 

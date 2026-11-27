@@ -58,7 +58,7 @@ export default function Venue() {
           </Button>
           
           <Button 
-            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=OpenSourceCon+India+2026&dates=20261205T090000/20261205T180000&details=Bengal%27s+biggest+open+source+gathering.&location=Dhono+Dhanyo+Auditorium%2C+Alipore%2C+Kolkata"
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=OpenSourceCon+India+2027&dates=20270220T090000/20270220T203000&ctz=Asia/Kolkata&details=Bengal%27s+biggest+open+source+gathering.&location=Dhono+Dhanyo+Auditorium%2C+Alipore%2C+Kolkata"
             target="_blank"
             rel="noopener noreferrer"
             variant="secondary"
@@ -188,7 +188,7 @@ export default function Venue() {
                   </div>
                   <div>
                     <h5 className="text-dark dark:text-white font-heading text-base sm:text-lg font-extrabold leading-tight">
-                      05th December 2026
+                      20th February 2027
                     </h5>
                     <p className="text-gray-secondary dark:text-gray-400 text-[10px] sm:text-xs font-semibold uppercase tracking-wider mt-0.5">
                       Full Day Event

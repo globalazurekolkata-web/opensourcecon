@@ -21,7 +21,7 @@ export default function Hero() {
           <div className="inline-flex flex-wrap items-center gap-2 sm:gap-3 px-4 py-2 rounded-full bg-brand-green/10 border border-brand-green/30 text-xs sm:text-sm font-semibold w-fit shadow-xs">
             <div className="flex items-center gap-1.5 text-brand-green-dark dark:text-brand-green font-bold">
               <Calendar size={15} className="text-brand-green shrink-0" />
-              <span>December 05, 2026</span>
+              <span>February 20, 2027</span>
             </div>
             <span className="w-1 h-1 rounded-full bg-brand-green/40" />
             <div className="flex items-center gap-1 text-gray-700 dark:text-gray-300 font-medium">

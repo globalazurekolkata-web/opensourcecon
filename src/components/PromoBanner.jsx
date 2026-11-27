@@ -23,7 +23,7 @@ export default function PromoBanner() {
           <span className="text-gray-300 leading-relaxed sm:leading-none text-center sm:text-left py-0.5 sm:py-0">
             {/* Desktop & Tablet Text */}
             <span className="hidden sm:inline">
-              Join us at <strong className="text-white font-extrabold">Dhono Dhanyo Auditorium</strong>, Kolkata on Dec 05! <strong className="text-brand-green font-extrabold">Early Birds</strong> selling fast!{' '}
+              Join us at <strong className="text-white font-extrabold">Dhono Dhanyo Auditorium</strong>, Kolkata on Feb 20! <strong className="text-brand-green font-extrabold">Early Birds</strong> selling fast!{' '}
             </span>
             {/* Mobile Text */}
             <span className="sm:hidden">

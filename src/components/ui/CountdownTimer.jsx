@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export default function CountdownTimer() {
-  const targetDate = new Date('2026-12-05T09:00:00+05:30'); // Kolkata Time
+  const targetDate = new Date('2027-02-20T09:00:00+05:30'); // Kolkata Time
 
   const calculateTimeLeft = () => {
     const difference = +targetDate - +new Date();
